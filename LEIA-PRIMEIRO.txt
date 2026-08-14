@@ -1,0 +1,17 @@
+E-CURRÍCULO | ARTHUR PEDRO — VERSÃO ATUAL
+
+1. Extraia TODO o conteúdo do ZIP para uma pasta nova.
+2. Não misture estes arquivos com versões anteriores.
+3. Para iniciar, dê dois cliques em:
+
+   INICIAR-E-CURRICULO.cmd
+
+4. Para encerrar o servidor, dê dois cliques em:
+
+   PARAR-E-CURRICULO.cmd
+
+5. O site correto abrirá em:
+
+   http://127.0.0.1:5388/?build=E-CURRICULO-BUILD-8-CROP-FIX-1
+
+Não use localhost:5173 nem a porta 5274. Esses endereços pertencem às versões antigas.
