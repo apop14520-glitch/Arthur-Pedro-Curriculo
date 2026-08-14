@@ -1,0 +1,59 @@
+.cinema-slide::after {
+  content: '';
+  position: absolute;
+  inset: 36% 0 0;
+  pointer-events: none;
+  background: linear-gradient(to bottom, transparent, rgba(1, 7, 13, .38) 34%, rgba(1, 7, 13, .78));
+}
+.cinema-slide figcaption {
+  z-index: 2;
+  background: rgba(2, 10, 18, .96) !important;
+  border-color: rgba(91, 222, 237, .28) !important;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, .58), inset 0 1px 0 rgba(255,255,255,.035) !important;
+  color: #f5fbff !important;
+}
+.cinema-slide figcaption > span {
+  color: #53e5f3 !important;
+  font-weight: 700 !important;
+  text-shadow: 0 0 16px rgba(83, 229, 243, .3);
+}
+.cinema-slide figcaption h3 {
+  color: #f7fbff !important;
+  font-weight: 700 !important;
+  text-shadow: 0 2px 15px rgba(0, 0, 0, .8);
+}
+.cinema-slide figcaption p {
+  max-width: 58%;
+  color: #c7d8e3 !important;
+  font-size: 13px !important;
+  font-weight: 500;
+  line-height: 1.55;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, .75);
+}
+.cinema-slide figcaption button,
+.cinema-slide figcaption a {
+  border-color: rgba(83, 229, 243, .58) !important;
+  color: #62ebf7 !important;
+  background: #071a28 !important;
+  transition: background .2s ease, color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+.cinema-slide figcaption a {
+  color: #021016 !important;
+  background: #45ddeb !important;
+}
+.cinema-slide figcaption button:hover,
+.cinema-slide figcaption a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(57, 213, 230, .25);
+}
+.cinema-slide figcaption button:hover {
+  color: #021016 !important;
+  background: #45ddeb !important;
+}
+:root[data-theme='light'] .cinema-slide figcaption {
+  background: rgba(2, 12, 21, .96) !important;
+  color: #f7fbff !important;
+}
+@media (max-width: 900px) {
+  .cinema-slide figcaption p { max-width: 100%; padding-right: 0; }
+}

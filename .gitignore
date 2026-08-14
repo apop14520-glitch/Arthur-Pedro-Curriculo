@@ -1,0 +1,10 @@
+node_modules
+dist
+.npm-cache
+.netlify
+.netlify-user-config
+.gh-config
+data
+logs
+.DS_Store
+*.local
