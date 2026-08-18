@@ -199,15 +199,17 @@ export function initializeRedesign({ isOwnerView, editor }) {
   requestAnimationFrame(updateTimelineState)
 
   if (!isOwnerView) {
-    document.querySelector('.profile-editor-trigger')?.setAttribute('disabled', '')
+    const profileTrigger = document.querySelector('.profile-editor-trigger')
+    profileTrigger?.removeAttribute('disabled')
+    profileTrigger?.setAttribute('aria-label', 'Acessar área pessoal pelas iniciais ou foto do perfil')
+    profileTrigger?.setAttribute('title', 'Clique nas iniciais ou na foto para acessar a área pessoal')
     document.querySelector('.brand i')?.remove()
-    const ownerAccess = document.createElement('a')
-    ownerAccess.className = 'owner-access'
-    ownerAccess.href = '/admin.html'
-    ownerAccess.setAttribute('aria-label', 'Abrir minha área pessoal de edição')
-    ownerAccess.title = 'Área pessoal de edição'
-    ownerAccess.innerHTML = '<span>⚙</span><b>Área pessoal</b>'
-    document.querySelector('.site-header')?.append(ownerAccess)
+    profileTrigger?.addEventListener('click', event => {
+      if (!event.target.closest('.brand-avatar')) return
+      event.preventDefault()
+      event.stopImmediatePropagation()
+      window.location.assign('/admin.html')
+    }, true)
     return
   }
 
