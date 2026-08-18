@@ -153,3 +153,50 @@ html[data-theme='light'] .owner-access { background: rgba(255,255,255,.96); colo
 @media (max-width: 900px) { .owner-access { left: 12px; } main > section:not(.cinema-section)::after { width: calc(100% - 40px); } }
 @media (max-width: 620px) { .owner-access { top: 1px; left: 8px; } .owner-access b { display: none; } .about-copy p, .section-heading p, .time-content > p, .topic-project p, .contact-card p { text-align: left; } .contact-card { padding: 2.2rem 1.35rem !important; } }
 
+html:not([data-theme='light']) .about-copy p,
+html:not([data-theme='light']) .about-copy .large,
+html:not([data-theme='light']) .section-heading p,
+html:not([data-theme='light']) .time-content > p,
+html:not([data-theme='light']) .education-intro p,
+html:not([data-theme='light']) .education-list p,
+html:not([data-theme='light']) .topic-project p,
+html:not([data-theme='light']) .journey-timeline p,
+html:not([data-theme='light']) .certificate-card p,
+html:not([data-theme='light']) .contact-card p { color: #a9bfcd !important; }
+html:not([data-theme='light']) .tags span,
+html:not([data-theme='light']) .stack-line span { color: #b6cfdb !important; border-color: rgba(57,213,230,.28) !important; background: rgba(57,213,230,.065) !important; }
+html:not([data-theme='light']) .skills-grid li { color: #abc2cf !important; }
+html:not([data-theme='light']) .skills-grid li::before { color: #39d5e6 !important; }
+html:not([data-theme='light']) .topic-project { color: #edf7fb; box-shadow: inset 0 1px rgba(255,255,255,.018); }
+
+.admin-locked { overflow: hidden !important; }
+.admin-locked > :not(.admin-gate) { pointer-events: none !important; user-select: none; }
+.admin-gate { position: fixed; z-index: 1000; inset: 0; display: grid; place-items: center; padding: 1.25rem; background: radial-gradient(circle at 20% 10%, color-mix(in srgb, var(--accent, #39d5e6) 15%, transparent), transparent 35%), color-mix(in srgb, var(--bg, #06111f) 96%, #000); backdrop-filter: blur(18px); }
+.admin-gate-card { width: min(460px, 100%); padding: clamp(2rem, 5vw, 3.2rem); border: 1px solid color-mix(in srgb, var(--accent, #39d5e6) 28%, var(--line)); border-radius: 22px; background: color-mix(in srgb, var(--surface, #091a2b) 96%, transparent); box-shadow: 0 35px 100px rgba(0,0,0,.42); }
+.admin-gate-card > span, .recovery-result > span { color: var(--accent, #39d5e6); font: 700 .68rem 'Space Grotesk', sans-serif; letter-spacing: .16em; }
+.admin-gate-card h1 { margin: .7rem 0 .8rem; font-size: clamp(2rem, 6vw, 3rem); letter-spacing: -.045em; }
+.admin-gate-card > p, .recovery-result p { color: var(--muted); line-height: 1.65; }
+.admin-gate-card form { display: grid; gap: 1rem; margin-top: 1.6rem; }
+.admin-gate-card label, .security-panel label { display: grid; gap: .45rem; color: var(--muted); font-size: .78rem; }
+.admin-gate-card input, .security-panel input { width: 100%; border: 1px solid var(--line); border-radius: 9px; background: color-mix(in srgb, var(--bg, #06111f) 78%, transparent); color: var(--text); padding: .9rem 1rem; outline: 0; }
+.admin-gate-card input:focus, .security-panel input:focus { border-color: var(--accent, #39d5e6); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent, #39d5e6) 12%, transparent); }
+.admin-gate-card button, .security-panel button { border: 1px solid var(--accent, #39d5e6); border-radius: 9px; background: var(--accent, #39d5e6); color: #04101a; padding: .88rem 1rem; font-weight: 700; cursor: pointer; transition: transform .2s ease, filter .2s ease; }
+.admin-gate-card button:hover, .security-panel button:hover { transform: translateY(-2px); filter: brightness(1.06); }
+.admin-gate-card .security-link { border-color: transparent; background: transparent; color: var(--accent, #39d5e6); padding: .45rem; }
+.admin-gate-card > a { display: block; margin-top: 1.35rem; color: var(--muted); font-size: .76rem; text-align: center; }
+.security-message { min-height: 1.2em; margin: 0; color: #f08a8a !important; font-size: .76rem; }
+.recovery-result { display: grid; gap: 1rem; margin-top: 1.6rem; }
+.recovery-result[hidden], [data-security-reset][hidden], [data-security-login][hidden], [data-security-create][hidden] { display: none !important; }
+.recovery-result strong, .security-panel output { display: block; padding: 1rem; border: 1px dashed color-mix(in srgb, var(--accent, #39d5e6) 52%, transparent); border-radius: 10px; background: color-mix(in srgb, var(--accent, #39d5e6) 8%, transparent); color: var(--accent, #39d5e6); font: 700 clamp(.9rem, 3vw, 1.2rem) 'Space Grotesk', monospace; letter-spacing: .08em; text-align: center; }
+.security-panel > p { color: var(--muted); }
+.security-panel > div { display: flex; flex-wrap: wrap; gap: .65rem; margin-top: .3rem; }
+.security-panel > div button:nth-child(2), .security-panel > div button:nth-child(3) { background: transparent; color: var(--accent, #39d5e6); }
+.security-panel output { margin-top: 1rem; }
+
+html[data-theme='light'] .admin-gate { background: radial-gradient(circle at 20% 10%, rgba(0,127,148,.14), transparent 34%), rgba(232,241,245,.97); }
+html[data-theme='light'] .admin-gate-card { background: rgba(255,255,255,.98); border-color: rgba(0,127,148,.25); box-shadow: 0 35px 90px rgba(31,63,82,.18); }
+html[data-theme='light'] .admin-gate-card input,
+html[data-theme='light'] .security-panel input { background: #f6fafc; color: #092036; border-color: rgba(18,62,88,.2); }
+
+@media (prefers-reduced-motion: reduce) { main > section, .owner-access, .admin-gate-card button, .security-panel button { transition: none !important; } }
+

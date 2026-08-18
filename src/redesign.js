@@ -1,5 +1,18 @@
 const EDUCATION_KEY = 'arthur-education-v1'
 const TIMELINE_KEY = 'arthur-timeline-v1'
+const SECURITY_KEY = 'arthur-admin-security-v1'
+const SECURITY_SESSION_KEY = 'arthur-admin-unlocked-v1'
+
+const bytesToText = bytes => btoa(String.fromCharCode(...bytes)).replace(/[+/=]/g, '')
+const createSalt = () => bytesToText(crypto.getRandomValues(new Uint8Array(18)))
+const createRecoveryCode = () => Array.from(crypto.getRandomValues(new Uint8Array(12)), byte => byte.toString(16).padStart(2, '0')).join('').toUpperCase().match(/.{1,4}/g).join('-')
+const hashSecret = async (secret, salt) => {
+  const data = new TextEncoder().encode(`${salt}:${secret}`)
+  return [...new Uint8Array(await crypto.subtle.digest('SHA-256', data))].map(byte => byte.toString(16).padStart(2, '0')).join('')
+}
+const readSecurity = () => {
+  try { return JSON.parse(localStorage.getItem(SECURITY_KEY)) } catch { return null }
+}
 
 const safeParse = (key, fallback = []) => {
   try { return JSON.parse(localStorage.getItem(key)) || fallback } catch { return fallback }
@@ -198,6 +211,53 @@ export function initializeRedesign({ isOwnerView, editor }) {
     return
   }
 
+  const unlockAdmin = () => {
+    sessionStorage.setItem(SECURITY_SESSION_KEY, '1')
+    document.body.classList.remove('admin-locked')
+    document.querySelector('.admin-gate')?.remove()
+  }
+  const mountAdminGate = () => {
+    if (sessionStorage.getItem(SECURITY_SESSION_KEY) === '1') return
+    document.body.classList.add('admin-locked')
+    const gate = document.createElement('div')
+    gate.className = 'admin-gate'
+    const security = readSecurity()
+    gate.innerHTML = security
+      ? `<div class="admin-gate-card"><span>ÁREA PESSOAL</span><h1>Acessar painel</h1><p>Informe sua senha para editar o currículo neste navegador.</p><form data-security-login><label>Senha<input name="password" type="password" autocomplete="current-password" required /></label><p class="security-message" aria-live="polite"></p><button type="submit">Entrar no painel</button><button class="security-link" type="button" data-show-reset>Esqueci a senha</button></form><form data-security-reset hidden><label>Código de recuperação<input name="recovery" autocomplete="off" required /></label><label>Nova senha<input name="newPassword" type="password" minlength="8" required /></label><label>Confirmar nova senha<input name="confirmPassword" type="password" minlength="8" required /></label><p class="security-message" aria-live="polite"></p><button type="submit">Redefinir senha</button><button class="security-link" type="button" data-show-login>Voltar</button></form><a href="/">Voltar ao site público</a></div>`
+      : `<div class="admin-gate-card"><span>PRIMEIRO ACESSO</span><h1>Criar senha pessoal</h1><p>Proteja o painel de edição neste navegador. Use pelo menos 8 caracteres.</p><form data-security-create><label>Nova senha<input name="password" type="password" minlength="8" autocomplete="new-password" required /></label><label>Confirmar senha<input name="confirmPassword" type="password" minlength="8" autocomplete="new-password" required /></label><p class="security-message" aria-live="polite"></p><button type="submit">Criar senha</button></form><div class="recovery-result" hidden><span>CÓDIGO DE RECUPERAÇÃO</span><strong></strong><p>Guarde este código em local seguro. Ele será necessário para redefinir a senha.</p><button type="button" data-security-continue>Guardar e continuar</button></div><a href="/">Voltar ao site público</a></div>`
+    document.body.append(gate)
+    gate.querySelector('[data-security-create]')?.addEventListener('submit', async event => {
+      event.preventDefault()
+      const form = event.currentTarget, password = form.elements.password.value, confirmation = form.elements.confirmPassword.value
+      const message = form.querySelector('.security-message')
+      if (password.length < 8 || password !== confirmation) { message.textContent = password.length < 8 ? 'Use pelo menos 8 caracteres.' : 'As senhas não coincidem.'; return }
+      const salt = createSalt(), recoveryCode = createRecoveryCode()
+      localStorage.setItem(SECURITY_KEY, JSON.stringify({ salt, passwordHash: await hashSecret(password, salt), recoveryHash: await hashSecret(recoveryCode.replaceAll('-', ''), salt) }))
+      form.hidden = true
+      const result = gate.querySelector('.recovery-result'); result.hidden = false; result.querySelector('strong').textContent = recoveryCode
+    })
+    gate.querySelector('[data-security-continue]')?.addEventListener('click', unlockAdmin)
+    gate.querySelector('[data-security-login]')?.addEventListener('submit', async event => {
+      event.preventDefault()
+      const form = event.currentTarget, current = readSecurity(), message = form.querySelector('.security-message')
+      if (current && await hashSecret(form.elements.password.value, current.salt) === current.passwordHash) unlockAdmin()
+      else message.textContent = 'Senha incorreta.'
+    })
+    gate.querySelector('[data-show-reset]')?.addEventListener('click', () => { gate.querySelector('[data-security-login]').hidden = true; gate.querySelector('[data-security-reset]').hidden = false })
+    gate.querySelector('[data-show-login]')?.addEventListener('click', () => { gate.querySelector('[data-security-reset]').hidden = true; gate.querySelector('[data-security-login]').hidden = false })
+    gate.querySelector('[data-security-reset]')?.addEventListener('submit', async event => {
+      event.preventDefault()
+      const form = event.currentTarget, current = readSecurity(), password = form.elements.newPassword.value, confirmation = form.elements.confirmPassword.value, message = form.querySelector('.security-message')
+      const recovery = form.elements.recovery.value.replace(/[^a-f\d]/gi, '').toUpperCase()
+      if (!current || await hashSecret(recovery, current.salt) !== current.recoveryHash) { message.textContent = 'Código de recuperação inválido.'; return }
+      if (password.length < 8 || password !== confirmation) { message.textContent = password.length < 8 ? 'Use pelo menos 8 caracteres.' : 'As senhas não coincidem.'; return }
+      const salt = createSalt()
+      localStorage.setItem(SECURITY_KEY, JSON.stringify({ salt, passwordHash: await hashSecret(password, salt), recoveryHash: await hashSecret(recovery, salt) }))
+      unlockAdmin()
+    })
+  }
+  mountAdminGate()
+
   const ownerMenu = document.createElement('aside')
   ownerMenu.className = 'owner-menu'
   ownerMenu.setAttribute('aria-hidden', 'true')
@@ -207,6 +267,7 @@ export function initializeRedesign({ isOwnerView, editor }) {
       <button type="button" data-owner-action="education"><i>▤</i><span><b>Formações</b><small>Graduação e pós-graduação</small></span></button>
       <button type="button" data-owner-action="timeline"><i>⌁</i><span><b>Linha do tempo</b><small>Marcos da trajetória profissional</small></span></button>
       <button type="button" data-owner-action="publish"><i>＋</i><span><b>Publicações</b><small>Projetos, cursos e entregas</small></span></button>
+      <button type="button" data-owner-action="security"><i>⌾</i><span><b>Senha e segurança</b><small>Alterar ou recuperar acesso</small></span></button>
     </div>
     <button class="owner-preview" type="button" data-owner-action="preview"><i>↗</i><span><b>Visualizar site público</b><small>Abrir apresentação sem permissões</small></span></button>`
   document.querySelector('.site-header').append(ownerMenu)
@@ -215,6 +276,7 @@ export function initializeRedesign({ isOwnerView, editor }) {
   editorBody.insertAdjacentHTML('beforeend', `
     <section class="editor-section owner-form" data-owner-panel="education"><h3>Nova formação</h3><label>Tipo<select name="educationType"><option>Graduação</option><option>Pós-graduação</option><option>Mestrado</option><option>Doutorado</option></select></label><label>Curso<input name="educationCourse" placeholder="Nome do curso" /></label><div class="editor-fields"><label>Instituição<input name="educationInstitution" placeholder="Instituição" /></label><label>Período<input name="educationPeriod" placeholder="Ex.: 2024–2026" /></label></div><label>Identificador<input name="educationBadge" maxlength="10" placeholder="Ex.: IFRO" /></label><button type="button" data-save-education>Adicionar formação</button></section>
     <section class="editor-section owner-form" data-owner-panel="timeline"><h3>Novo marco da trajetória</h3><div class="editor-fields"><label>Ano<input name="timelineYear" inputmode="numeric" placeholder="2026" /></label><label>Categoria<input name="timelineCategory" placeholder="Formação, publicação..." /></label></div><label>Título<input name="timelineTitle" placeholder="Título do marco" /></label><label>Descrição<textarea name="timelineDescription" rows="3" placeholder="Breve contexto profissional"></textarea></label><button type="button" data-save-timeline>Adicionar à linha do tempo</button></section>`)
+  editorBody.insertAdjacentHTML('beforeend', `<section class="editor-section owner-form security-panel" data-owner-panel="security"><h3>Senha e segurança</h3><p>Altere a senha local ou gere um novo código de recuperação.</p><label>Senha atual<input name="securityCurrent" type="password" autocomplete="current-password" /></label><label>Nova senha<input name="securityNew" type="password" minlength="8" autocomplete="new-password" /></label><label>Confirmar nova senha<input name="securityConfirm" type="password" minlength="8" autocomplete="new-password" /></label><p class="security-message" data-security-message aria-live="polite"></p><div><button type="button" data-change-password>Alterar senha</button><button type="button" data-new-recovery>Novo código de recuperação</button><button type="button" data-lock-admin>Bloquear painel agora</button></div><output data-recovery-output hidden></output></section>`)
 
   const openPanel = panel => {
     editor.showModal()
@@ -237,6 +299,28 @@ export function initializeRedesign({ isOwnerView, editor }) {
     if (action === 'publish') return editor.showModal()
     openPanel(action)
   })
+
+  editor.querySelector('[data-change-password]').addEventListener('click', async () => {
+    const form = editor.querySelector('form'), current = readSecurity(), message = editor.querySelector('[data-security-message]')
+    const oldPassword = form.elements.securityCurrent.value, password = form.elements.securityNew.value, confirmation = form.elements.securityConfirm.value
+    if (!current || await hashSecret(oldPassword, current.salt) !== current.passwordHash) { message.textContent = 'A senha atual está incorreta.'; return }
+    if (password.length < 8 || password !== confirmation) { message.textContent = password.length < 8 ? 'Use pelo menos 8 caracteres.' : 'As novas senhas não coincidem.'; return }
+    const salt = createSalt(), recoveryCode = createRecoveryCode()
+    localStorage.setItem(SECURITY_KEY, JSON.stringify({ salt, passwordHash: await hashSecret(password, salt), recoveryHash: await hashSecret(recoveryCode.replaceAll('-', ''), salt) }))
+    message.textContent = 'Senha alterada. Guarde o novo código de recuperação exibido abaixo.'
+    const output = editor.querySelector('[data-recovery-output]'); output.hidden = false; output.textContent = recoveryCode
+    ;['securityCurrent', 'securityNew', 'securityConfirm'].forEach(name => { form.elements[name].value = '' })
+  })
+  editor.querySelector('[data-new-recovery]').addEventListener('click', async () => {
+    const form = editor.querySelector('form'), current = readSecurity(), message = editor.querySelector('[data-security-message]')
+    if (!current || await hashSecret(form.elements.securityCurrent.value, current.salt) !== current.passwordHash) { message.textContent = 'Informe corretamente a senha atual.'; return }
+    const recoveryCode = createRecoveryCode()
+    current.recoveryHash = await hashSecret(recoveryCode.replaceAll('-', ''), current.salt)
+    localStorage.setItem(SECURITY_KEY, JSON.stringify(current))
+    message.textContent = 'Novo código criado. O código anterior deixou de funcionar.'
+    const output = editor.querySelector('[data-recovery-output]'); output.hidden = false; output.textContent = recoveryCode
+  })
+  editor.querySelector('[data-lock-admin]').addEventListener('click', () => { sessionStorage.removeItem(SECURITY_SESSION_KEY); window.location.reload() })
 
   editor.querySelector('[data-save-education]').addEventListener('click', () => {
     const form = editor.querySelector('form')
