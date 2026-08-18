@@ -240,7 +240,9 @@ const applyProfile = () => {
 const escapeHtml = value => String(value).replace(/[&<>'"]/g, char => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', "'":'&#39;', '"':'&quot;' })[char])
 const renderFeed = () => {
   const grid = document.querySelector('[data-feed-grid]')
-  document.querySelector('[data-feed-empty]').hidden = savedEntries.length > 0
+  const empty = document.querySelector('[data-feed-empty]')
+  if (!grid || !empty) return
+  empty.hidden = savedEntries.length > 0
   grid.innerHTML = savedEntries.map(entry => `<article class="feed-card"><div class="feed-card-head"><span>${escapeHtml(entry.category)}</span><button type="button" data-delete-entry="${entry.id}" aria-label="Excluir ${escapeHtml(entry.title)}">Excluir</button></div>${entry.image ? `<img src="${entry.image}" alt="Imagem de ${escapeHtml(entry.title)}" />` : ''}<div class="feed-card-body"><h3>${escapeHtml(entry.title)}</h3><p>${escapeHtml(entry.description)}</p><small>Adicionado ao perfil</small></div></article>`).join('')
   if (isRecruiterView) return
   grid.querySelectorAll('[data-delete-entry]').forEach(button => button.addEventListener('click', () => {
@@ -248,6 +250,7 @@ const renderFeed = () => {
     localStorage.setItem(FEED_KEY, JSON.stringify(savedEntries)); renderFeed()
   }))
 }
+document.addEventListener('profile-feed-remounted', renderFeed)
 
 let pendingProfilePhoto = ''
 const updateCropPreview = () => {
@@ -411,11 +414,26 @@ editor.querySelector('.editor-save-profile').addEventListener('click', async () 
 editor.querySelector('.editor-publish').addEventListener('click', async () => {
   const title = editorForm.elements.entryTitle.value.trim(), description = editorForm.elements.entryDescription.value.trim()
   if (!title || !description) return editorForm.elements[!title ? 'entryTitle' : 'entryDescription'].focus()
-  const image = await imageToDataUrl(editorForm.elements.entryImage.files[0])
-  savedEntries.unshift({ id: `${Date.now()}`, category: editorForm.elements.entryCategory.value, title, description, image })
-  try { localStorage.setItem(FEED_KEY, JSON.stringify(savedEntries)) } catch { alert('A imagem é muito grande. Escolha uma imagem menor.'); savedEntries.shift(); return }
-  editorForm.elements.entryTitle.value = ''; editorForm.elements.entryDescription.value = ''; editorForm.elements.entryImage.value = ''
-  renderFeed(); editor.close(); document.querySelector('#publicacoes').scrollIntoView({ behavior: 'smooth' })
+  const publishButton = editor.querySelector('.editor-publish')
+  const originalLabel = publishButton.textContent
+  publishButton.disabled = true
+  publishButton.textContent = 'Publicando...'
+  try {
+    const image = await imageToDataUrl(editorForm.elements.entryImage.files[0])
+    savedEntries.unshift({ id: `${Date.now()}`, category: editorForm.elements.entryCategory.value, title, description, image })
+    try { localStorage.setItem(FEED_KEY, JSON.stringify(savedEntries)) } catch { alert('A imagem é muito grande. Escolha uma imagem menor.'); savedEntries.shift(); return }
+    editorForm.elements.entryTitle.value = ''; editorForm.elements.entryDescription.value = ''; editorForm.elements.entryImage.value = ''
+    renderFeed()
+    publishButton.textContent = 'Publicado com sucesso'
+    setTimeout(() => {
+      editor.close()
+      document.querySelector('[data-portfolio-feed]')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }, 450)
+  } catch {
+    alert('Não foi possível processar a imagem. Tente outro arquivo.')
+  } finally {
+    setTimeout(() => { publishButton.disabled = false; publishButton.textContent = originalLabel }, 500)
+  }
 })
 applyProfile(); renderFeed()
 window.addEventListener('storage', event => {
