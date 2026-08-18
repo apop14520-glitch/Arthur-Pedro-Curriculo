@@ -418,6 +418,11 @@ editor.querySelector('.editor-publish').addEventListener('click', async () => {
   renderFeed(); editor.close(); document.querySelector('#publicacoes').scrollIntoView({ behavior: 'smooth' })
 })
 applyProfile(); renderFeed()
+window.addEventListener('storage', event => {
+  if (event.key !== PROFILE_KEY) return
+  savedProfile = readSaved(PROFILE_KEY, defaultProfile)
+  applyProfile()
+})
 if (isRecruiterView) {
   editor.querySelectorAll('input,select,textarea,button').forEach(control => { control.disabled = true })
   const feedSection = document.querySelector('.profile-feed')
