@@ -57,6 +57,21 @@ html[data-theme='light'] .theme-toggle.nexforma-theme-switch::after { color: #00
 .journey-timeline p { color: var(--muted); margin: 0; }
 .timeline-progress { height: 2px; margin-top: .35rem; background: var(--line); overflow: hidden; }
 .timeline-progress i { display: block; width: var(--timeline-progress, 8%); height: 100%; background: var(--accent, #39d5e6); transition: width .18s ease; }
+.portfolio-feed {
+  margin-top: clamp(3.5rem, 7vw, 6rem) !important;
+  padding-top: clamp(2.5rem, 5vw, 4rem);
+  border-top: 1px solid color-mix(in srgb, var(--line) 65%, transparent);
+  scroll-margin-top: 100px;
+}
+.portfolio-feed-head { max-width: 760px; margin-bottom: 2rem; }
+.portfolio-feed-head > span { color: var(--accent, #39d5e6); font-size: .72rem; font-weight: 700; letter-spacing: .15em; }
+.portfolio-feed-head h3 { margin: .65rem 0 .55rem; font-size: clamp(1.55rem, 3vw, 2.35rem); }
+.portfolio-feed-head p { margin: 0; color: var(--copy-color, var(--muted)); font-size: 1rem; line-height: 1.65; }
+.portfolio-feed .feed-empty { padding: clamp(1.5rem, 4vw, 2.5rem); border: 1px dashed color-mix(in srgb, var(--accent, #39d5e6) 25%, var(--line)); background: color-mix(in srgb, var(--accent, #39d5e6) 4%, transparent); }
+.portfolio-feed .feed-empty strong,
+.portfolio-feed .feed-empty span { display: block; }
+.portfolio-feed .feed-empty span { margin-top: .35rem; color: var(--copy-color, var(--muted)); }
+.portfolio-feed .feed-grid { margin-top: 0; }
 .entry-remove { align-self: start; border: 1px solid var(--line); background: transparent; color: var(--muted); padding: .5rem .7rem; cursor: pointer; }
 .education-list article { grid-template-columns: minmax(120px, .8fr) minmax(240px, 2.1fr) auto auto !important; }
 .certificate-card h3 { font-size: 1rem !important; line-height: 1.35 !important; }
