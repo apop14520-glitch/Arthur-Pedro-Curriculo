@@ -2,6 +2,7 @@ const EDUCATION_KEY = 'arthur-education-v1'
 const TIMELINE_KEY = 'arthur-timeline-v1'
 const SECURITY_KEY = 'arthur-admin-security-v1'
 const SECURITY_SESSION_KEY = 'arthur-admin-unlocked-v1'
+const CUSTOM_CERTIFICATES_KEY = 'arthur-custom-certificates-v1'
 
 const bytesToText = bytes => btoa(String.fromCharCode(...bytes)).replace(/[+/=]/g, '')
 const createSalt = () => bytesToText(crypto.getRandomValues(new Uint8Array(18)))
@@ -281,6 +282,7 @@ export function initializeRedesign({ isOwnerView, editor }) {
       <button type="button" data-owner-action="education"><i>▤</i><span><b>Formações</b><small>Graduação e pós-graduação</small></span></button>
       <button type="button" data-owner-action="timeline"><i>⌁</i><span><b>Linha do tempo</b><small>Marcos da trajetória profissional</small></span></button>
       <button type="button" data-owner-action="publish"><i>＋</i><span><b>Publicações</b><small>Projetos, cursos e entregas</small></span></button>
+      <button type="button" data-owner-action="certificates"><i>✓</i><span><b>Certificados</b><small>Adicionar formação e credencial</small></span></button>
       <button type="button" data-owner-action="security"><i>⌾</i><span><b>Senha e segurança</b><small>Alterar ou recuperar acesso</small></span></button>
     </div>
     <button class="owner-preview" type="button" data-owner-action="preview"><i>↗</i><span><b>Visualizar site público</b><small>Abrir apresentação sem permissões</small></span></button>
@@ -290,7 +292,8 @@ export function initializeRedesign({ isOwnerView, editor }) {
   const editorBody = editor.querySelector('.editor-body')
   editorBody.insertAdjacentHTML('beforeend', `
     <section class="editor-section owner-form" data-owner-panel="education"><h3>Nova formação</h3><label>Tipo<select name="educationType"><option>Graduação</option><option>Pós-graduação</option><option>Mestrado</option><option>Doutorado</option></select></label><label>Curso<input name="educationCourse" placeholder="Nome do curso" /></label><div class="editor-fields"><label>Instituição<input name="educationInstitution" placeholder="Instituição" /></label><label>Período<input name="educationPeriod" placeholder="Ex.: 2024–2026" /></label></div><label>Identificador<input name="educationBadge" maxlength="10" placeholder="Ex.: IFRO" /></label><button type="button" data-save-education>Adicionar formação</button></section>
-    <section class="editor-section owner-form" data-owner-panel="timeline"><h3>Novo marco da trajetória</h3><div class="editor-fields"><label>Ano<input name="timelineYear" inputmode="numeric" placeholder="2026" /></label><label>Categoria<input name="timelineCategory" placeholder="Formação, publicação..." /></label></div><label>Título<input name="timelineTitle" placeholder="Título do marco" /></label><label>Descrição<textarea name="timelineDescription" rows="3" placeholder="Breve contexto profissional"></textarea></label><button type="button" data-save-timeline>Adicionar à linha do tempo</button></section>`)
+    <section class="editor-section owner-form" data-owner-panel="timeline"><h3>Novo marco da trajetória</h3><div class="editor-fields"><label>Ano<input name="timelineYear" inputmode="numeric" placeholder="2026" /></label><label>Categoria<input name="timelineCategory" placeholder="Formação, publicação..." /></label></div><label>Título<input name="timelineTitle" placeholder="Título do marco" /></label><label>Descrição<textarea name="timelineDescription" rows="3" placeholder="Breve contexto profissional"></textarea></label><button type="button" data-save-timeline>Adicionar à linha do tempo</button></section>
+    <section class="editor-section owner-form certificate-panel" data-owner-panel="certificates"><h3>Adicionar certificado</h3><p>Cadastre a formação e a credencial para exibição na seção de certificados.</p><label>Título do certificado<input name="certificateTitle" placeholder="Ex.: Cibersegurança" /></label><div class="editor-fields"><label>Instituição emissora<input name="certificateIssuer" placeholder="Ex.: IFRO" /></label><label>Data de emissão<input name="certificateDate" placeholder="Ex.: ago 2026" /></label></div><div class="editor-fields"><label>Ano<input name="certificateYear" inputmode="numeric" maxlength="4" placeholder="2026" /></label><label>Código ou link da credencial<input name="certificateCredential" placeholder="Código ou https://..." /></label></div><button type="button" data-save-certificate>Adicionar aos certificados</button></section>`)
   editorBody.insertAdjacentHTML('beforeend', `<section class="editor-section owner-form security-panel" data-owner-panel="security"><h3>Senha e segurança</h3><p>Altere a senha local ou gere um novo código de recuperação.</p><label>Senha atual<input name="securityCurrent" type="password" autocomplete="current-password" /></label><label>Nova senha<input name="securityNew" type="password" minlength="8" autocomplete="new-password" /></label><label>Confirmar nova senha<input name="securityConfirm" type="password" minlength="8" autocomplete="new-password" /></label><p class="security-message" data-security-message aria-live="polite"></p><div><button type="button" data-change-password>Alterar senha</button><button type="button" data-new-recovery>Novo código de recuperação</button><button type="button" data-lock-admin>Bloquear painel agora</button></div><output data-recovery-output hidden></output></section>`)
 
   const openPanel = panel => {
@@ -349,6 +352,26 @@ export function initializeRedesign({ isOwnerView, editor }) {
     localStorage.setItem(EDUCATION_KEY, JSON.stringify(extraEducation)); renderEducation()
     ;['educationCourse', 'educationInstitution', 'educationPeriod', 'educationBadge'].forEach(name => { form.elements[name].value = '' })
     editor.close(); document.querySelector('#formacao').scrollIntoView({ behavior: 'smooth' })
+  })
+  editor.querySelector('[data-save-certificate]').addEventListener('click', () => {
+    const form = editor.querySelector('form')
+    const title = form.elements.certificateTitle.value.trim()
+    const issuer = form.elements.certificateIssuer.value.trim()
+    const date = form.elements.certificateDate.value.trim()
+    const year = form.elements.certificateYear.value.trim()
+    const credential = form.elements.certificateCredential.value.trim()
+    if (!title || !issuer || !date || !/^\d{4}$/.test(year)) {
+      const target = !title ? 'certificateTitle' : !issuer ? 'certificateIssuer' : !date ? 'certificateDate' : 'certificateYear'
+      form.elements[target].focus()
+      return
+    }
+    const items = safeParse(CUSTOM_CERTIFICATES_KEY)
+    items.unshift({ id: `certificate-${Date.now()}`, title, issuer, date, year, credential })
+    localStorage.setItem(CUSTOM_CERTIFICATES_KEY, JSON.stringify(items))
+    ;['certificateTitle', 'certificateIssuer', 'certificateDate', 'certificateYear', 'certificateCredential'].forEach(name => { form.elements[name].value = '' })
+    document.dispatchEvent(new CustomEvent('certificates-updated'))
+    editor.close()
+    document.querySelector('#certificados')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   })
   editor.querySelector('[data-save-timeline]').addEventListener('click', () => {
     const form = editor.querySelector('form')
