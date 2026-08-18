@@ -277,7 +277,8 @@ export function initializeRedesign({ isOwnerView, editor }) {
       <button type="button" data-owner-action="publish"><i>＋</i><span><b>Publicações</b><small>Projetos, cursos e entregas</small></span></button>
       <button type="button" data-owner-action="security"><i>⌾</i><span><b>Senha e segurança</b><small>Alterar ou recuperar acesso</small></span></button>
     </div>
-    <button class="owner-preview" type="button" data-owner-action="preview"><i>↗</i><span><b>Visualizar site público</b><small>Abrir apresentação sem permissões</small></span></button>`
+    <button class="owner-preview" type="button" data-owner-action="preview"><i>↗</i><span><b>Visualizar site público</b><small>Abrir apresentação sem permissões</small></span></button>
+    <button class="owner-logout" type="button" data-owner-action="logout"><i>⇥</i><span><b>Sair da administração</b><small>Encerrar a sessão e voltar ao site público</small></span></button>`
   document.querySelector('.site-header').append(ownerMenu)
 
   const editorBody = editor.querySelector('.editor-body')
@@ -302,6 +303,10 @@ export function initializeRedesign({ isOwnerView, editor }) {
     const action = event.target.closest('[data-owner-action]')?.dataset.ownerAction
     if (!action) return
     toggleMenu(false)
+    if (action === 'logout') {
+      sessionStorage.removeItem(SECURITY_SESSION_KEY)
+      return window.location.replace(new URL('index.html', document.baseURI).href)
+    }
     if (action === 'preview') return window.open(new URL('index.html', window.location.href), '_blank', 'noopener')
     if (action === 'profile') return editor.showModal()
     if (action === 'publish') return editor.showModal()
