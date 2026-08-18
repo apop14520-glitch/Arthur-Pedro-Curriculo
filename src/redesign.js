@@ -200,16 +200,22 @@ export function initializeRedesign({ isOwnerView, editor }) {
 
   if (!isOwnerView) {
     const profileTrigger = document.querySelector('.profile-editor-trigger')
-    profileTrigger?.removeAttribute('disabled')
-    profileTrigger?.setAttribute('aria-label', 'Acessar área pessoal pelas iniciais ou foto do perfil')
-    profileTrigger?.setAttribute('title', 'Clique nas iniciais ou na foto para acessar a área pessoal')
     document.querySelector('.brand i')?.remove()
-    profileTrigger?.addEventListener('click', event => {
-      if (!event.target.closest('.brand-avatar')) return
-      event.preventDefault()
-      event.stopImmediatePropagation()
-      window.location.assign('/admin.html')
-    }, true)
+    if (profileTrigger) {
+      const avatar = profileTrigger.querySelector('.brand-avatar')
+      const name = profileTrigger.querySelector('strong')
+      const publicBrand = document.createElement('div')
+      const avatarLink = document.createElement('a')
+      publicBrand.className = 'brand public-brand'
+      avatarLink.className = 'brand-avatar admin-avatar-link'
+      avatarLink.href = new URL('admin.html', document.baseURI).href
+      avatarLink.setAttribute('aria-label', 'Acessar área pessoal de administração')
+      avatarLink.title = 'Área pessoal'
+      while (avatar?.firstChild) avatarLink.append(avatar.firstChild)
+      publicBrand.append(avatarLink)
+      if (name) publicBrand.append(name)
+      profileTrigger.replaceWith(publicBrand)
+    }
     return
   }
 
