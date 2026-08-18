@@ -2,6 +2,20 @@
 
 Site profissional em JavaScript puro, CSS e Vite. Não utiliza React nem bibliotecas de interface.
 
+## Cloudflare Pages pelo GitHub
+
+O projeto está preparado para implantação automática no Cloudflare Pages a partir do repositório privado `apop14520-glitch/e-curriculo-arthur-pedro`.
+
+Use estas configurações no painel do Cloudflare:
+
+- branch de produção: `main`;
+- preset: `Vite`;
+- comando de build: `npm run build`;
+- diretório de saída: `dist`;
+- diretório raiz: `/`.
+
+Consulte [CLOUDFLARE-PAGES.md](CLOUDFLARE-PAGES.md) para o procedimento completo e as configurações de segurança/cache.
+
 ## Duas versões do site
 
 - `admin.html`: versão exclusiva do proprietário. É aberta automaticamente por `INICIAR-E-CURRICULO.cmd` e contém o menu de controle dentro da foto do perfil.
@@ -130,3 +144,4 @@ Os arquivos finais serão criados na pasta `dist`.
 - `src/redesign.js`: separação das versões, formações, linha do tempo e painel do proprietário.
 - `src/style.css`: identidade visual e responsividade.
 - `AGENTS.md`: orientação para futuras alterações com Codex.
+
