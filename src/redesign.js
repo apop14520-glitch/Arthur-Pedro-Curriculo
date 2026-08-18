@@ -135,7 +135,13 @@ export function initializeRedesign({ isOwnerView, editor }) {
       <div class="timeline-controls"><span>ARRASTE OU USE AS SETAS</span><div><button type="button" data-timeline-prev aria-label="Voltar na linha do tempo">‹</button><button type="button" data-timeline-next aria-label="Avançar na linha do tempo">›</button></div></div>
       <div class="journey-timeline" data-timeline tabindex="0" aria-label="Linha do tempo profissional"></div>
       <div class="timeline-progress"><i data-timeline-progress></i></div>
+    </div>
+    <div class="portfolio-feed" data-portfolio-feed>
+      <div class="portfolio-feed-head"><span>PUBLICAÇÕES DO PERFIL</span><h3>Projetos, cursos e novas conquistas</h3><p>Conteúdos adicionados diretamente pela área administrativa.</p></div>
+      <div class="feed-empty" data-feed-empty><strong>Nenhuma publicação adicionada.</strong><span>Use o painel administrativo para publicar o primeiro conteúdo.</span></div>
+      <div class="feed-grid" data-feed-grid></div>
     </div>`
+    document.dispatchEvent(new CustomEvent('profile-feed-remounted'))
   }
 
   const footer = document.querySelector('footer')
