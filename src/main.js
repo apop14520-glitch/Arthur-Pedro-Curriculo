@@ -351,7 +351,9 @@ document.querySelector('.whatsapp-float').addEventListener('click', () => {
   window.open(`https://wa.me/55${savedProfile.whatsapp}?text=${encodeURIComponent('Olá, Arthur! Vi seu portfólio profissional e gostaria de conversar.')}`, '_blank', 'noopener')
 })
 
-const certificates = [
+const CUSTOM_CERTIFICATES_KEY = 'arthur-custom-certificates-v1'
+let customCertificates = readSaved(CUSTOM_CERTIFICATES_KEY, [])
+const baseCertificates = [
   ['Certificado de Participação — Jornada Tech.RO','Even3','mar 2026','48659679.2001935.6.5.0587537266179858'],
   ['O ecossistema da LGPD','Descomplica Faculdade Digital','jan 2026','fe011ba1-e1f3-40ca-8307-5415daa22882'],
   ['A Inteligência Artificial como Habilidade no Mercado de Trabalho','Descomplica Faculdade Digital','jan 2026','48c96af5-a5bb-4641-8898-de365153a316'],
@@ -382,14 +384,20 @@ const certificates = [
   ['Fundamentos de Lógica de Programação','Fundação Bradesco','jan 2023','401F6B2C-06A2-4F59-9A48-45FA88F75E82'],
   ['Introdução ao Python','IFRO','nov 2022','4739415.2001935.935446.5.56412783324674671197'],
   ['19ª Semana Nacional de Ciência e Tecnologia','IFRO','out 2022','4714820.2001935.6.5.521083833246797']
-].map(([title, issuer, date, credential]) => ({ title, issuer, date, year: date.slice(-4), credential }))
+].map(([title, issuer, date, credential]) => ({ title, issuer, date, year: date.slice(-4), credential, custom: false }))
 let showAllCertificates = false
 const renderCertificates = () => {
+  const certificates = [...customCertificates.map(cert => ({ ...cert, custom: true })), ...baseCertificates]
   const query = document.querySelector('[data-cert-search]').value.toLocaleLowerCase('pt-BR')
-  const year = document.querySelector('[data-cert-year]').value
+  const yearSelect = document.querySelector('[data-cert-year]')
+  const currentYear = yearSelect.value
+  const years = [...new Set(certificates.map(cert => cert.year))].sort((a, b) => b.localeCompare(a))
+  yearSelect.innerHTML = '<option value="">Todos os anos</option>' + years.map(item => `<option>${escapeHtml(item)}</option>`).join('')
+  yearSelect.value = years.includes(currentYear) ? currentYear : ''
+  const year = yearSelect.value
   const matched = certificates.filter(cert => (!year || cert.year === year) && (!query || `${cert.title} ${cert.issuer}`.toLocaleLowerCase('pt-BR').includes(query)))
   const visible = showAllCertificates || query || year ? matched : matched.slice(0, 9)
-  document.querySelector('[data-cert-grid]').innerHTML = visible.map(cert => `<article class="certificate-card"><div class="certificate-year">${cert.year}</div><div><span>${escapeHtml(cert.issuer)}</span><h3>${escapeHtml(cert.title)}</h3><p>Emitido em ${escapeHtml(cert.date)}</p>${cert.credential ? `<details><summary>Ver credencial</summary><code>${escapeHtml(cert.credential)}</code></details>` : ''}</div></article>`).join('') || '<p class="certificate-none">Nenhum certificado encontrado.</p>'
+  document.querySelector('[data-cert-grid]').innerHTML = visible.map(cert => `<article class="certificate-card"><div class="certificate-year">${escapeHtml(cert.year)}</div><div><span>${escapeHtml(cert.issuer)}</span><h3>${escapeHtml(cert.title)}</h3><p>Emitido em ${escapeHtml(cert.date)}</p>${cert.credential ? `<details><summary>Ver credencial</summary><code>${escapeHtml(cert.credential)}</code></details>` : ''}${isOwnerView && cert.custom ? `<button class="certificate-delete" type="button" data-delete-certificate="${escapeHtml(cert.id)}">Excluir certificado</button>` : ''}</div></article>`).join('') || '<p class="certificate-none">Nenhum certificado encontrado.</p>'
   const more = document.querySelector('[data-cert-more]')
   more.hidden = Boolean(query || year) || matched.length <= 9
   more.textContent = showAllCertificates ? 'Mostrar destaques' : `Ver todos os ${certificates.length} certificados`
@@ -398,6 +406,17 @@ document.querySelector('[data-cert-search]').addEventListener('input', renderCer
 document.querySelector('[data-cert-year]').addEventListener('change', renderCertificates)
 document.querySelector('[data-cert-more]').addEventListener('click', () => { showAllCertificates = !showAllCertificates; renderCertificates() })
 renderCertificates()
+document.addEventListener('certificates-updated', () => {
+  customCertificates = readSaved(CUSTOM_CERTIFICATES_KEY, [])
+  renderCertificates()
+})
+document.querySelector('[data-cert-grid]').addEventListener('click', event => {
+  const id = event.target.closest('[data-delete-certificate]')?.dataset.deleteCertificate
+  if (!id || !isOwnerView) return
+  customCertificates = customCertificates.filter(cert => cert.id !== id)
+  localStorage.setItem(CUSTOM_CERTIFICATES_KEY, JSON.stringify(customCertificates))
+  renderCertificates()
+})
 
 document.querySelector('.profile-editor-trigger').addEventListener('click', event => {
   if (!isRecruiterView && event.target.closest('.brand-avatar')) document.dispatchEvent(new CustomEvent('owner-menu-toggle'))
@@ -437,9 +456,14 @@ editor.querySelector('.editor-publish').addEventListener('click', async () => {
 })
 applyProfile(); renderFeed()
 window.addEventListener('storage', event => {
-  if (event.key !== PROFILE_KEY) return
-  savedProfile = readSaved(PROFILE_KEY, defaultProfile)
-  applyProfile()
+  if (event.key === PROFILE_KEY) {
+    savedProfile = readSaved(PROFILE_KEY, defaultProfile)
+    applyProfile()
+  }
+  if (event.key === CUSTOM_CERTIFICATES_KEY) {
+    customCertificates = readSaved(CUSTOM_CERTIFICATES_KEY, [])
+    renderCertificates()
+  }
 })
 if (isRecruiterView) {
   editor.querySelectorAll('input,select,textarea,button').forEach(control => { control.disabled = true })
