@@ -119,6 +119,42 @@ html[data-theme='light'] .owner-menu { background: rgba(245,250,253,.97); }
   transform: scale(1.06);
   box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent, #39d5e6) 16%, transparent);
 }
+.public-brand { position: relative; }
+.admin-avatar-link {
+  position: relative;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: transform .22s ease, box-shadow .22s ease;
+}
+.admin-avatar-link::after {
+  content: 'Área pessoal';
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  z-index: 5;
+  width: max-content;
+  padding: .42rem .58rem;
+  border: 1px solid color-mix(in srgb, var(--accent, #39d5e6) 28%, var(--line));
+  border-radius: 7px;
+  background: color-mix(in srgb, var(--bg, #06111f) 96%, transparent);
+  color: var(--text);
+  box-shadow: 0 10px 30px rgba(0,0,0,.2);
+  font: 600 .68rem/1 'DM Sans', sans-serif;
+  letter-spacing: 0;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+  transition: opacity .18s ease, transform .18s ease;
+}
+.admin-avatar-link:hover,
+.admin-avatar-link:focus-visible {
+  transform: scale(1.06);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent, #39d5e6) 16%, transparent);
+  outline: none;
+}
+.admin-avatar-link:hover::after,
+.admin-avatar-link:focus-visible::after { opacity: 1; transform: none; }
+html[data-theme='light'] .admin-avatar-link::after { background: rgba(255,255,255,.98); color: #092036; }
 
 main > section { position: relative; transition: background-color .45s ease, border-color .45s ease, color .45s ease; }
 main > section:not(.cinema-section)::after { content: ''; position: absolute; left: 50%; bottom: 0; width: min(var(--max), calc(100% - 64px)); height: 1px; background: linear-gradient(90deg, transparent, var(--line) 14%, var(--line) 86%, transparent); transform: translateX(-50%); pointer-events: none; }
