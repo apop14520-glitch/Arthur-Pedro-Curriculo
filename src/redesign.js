@@ -188,6 +188,13 @@ export function initializeRedesign({ isOwnerView, editor }) {
   if (!isOwnerView) {
     document.querySelector('.profile-editor-trigger')?.setAttribute('disabled', '')
     document.querySelector('.brand i')?.remove()
+    const ownerAccess = document.createElement('a')
+    ownerAccess.className = 'owner-access'
+    ownerAccess.href = '/admin.html'
+    ownerAccess.setAttribute('aria-label', 'Abrir minha área pessoal de edição')
+    ownerAccess.title = 'Área pessoal de edição'
+    ownerAccess.innerHTML = '<span>⚙</span><b>Área pessoal</b>'
+    document.querySelector('.site-header')?.append(ownerAccess)
     return
   }
 
@@ -256,3 +263,4 @@ export function initializeRedesign({ isOwnerView, editor }) {
     if (timelineId) { extraTimeline = extraTimeline.filter(item => item.id !== timelineId); localStorage.setItem(TIMELINE_KEY, JSON.stringify(extraTimeline)); renderTimeline() }
   })
 }
+
