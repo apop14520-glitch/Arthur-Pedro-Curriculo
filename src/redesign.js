@@ -213,12 +213,12 @@ export function initializeRedesign({ isOwnerView, editor }) {
     return
   }
 
+  /* Mecanismo legado removido: autenticação local não oferece controle de acesso real.
   const unlockAdmin = () => {
     sessionStorage.setItem(SECURITY_SESSION_KEY, '1')
     document.body.classList.remove('admin-locked')
     document.querySelector('.admin-gate')?.remove()
   }
-  /* Mecanismo legado removido: autenticação local não oferece controle de acesso real.
     if (sessionStorage.getItem(SECURITY_SESSION_KEY) === '1') return
     document.body.classList.add('admin-locked')
     const gate = document.createElement('div')
@@ -381,3 +381,4 @@ export function initializeRedesign({ isOwnerView, editor }) {
     if (timelineId) { extraTimeline = extraTimeline.filter(item => item.id !== timelineId); localStorage.setItem(TIMELINE_KEY, JSON.stringify(extraTimeline)); renderTimeline() }
   })
 }
+

@@ -519,3 +519,4 @@ const activateNavigation = () => {
 }
 window.addEventListener('scroll', activateNavigation, { passive: true })
 activateNavigation()
+
