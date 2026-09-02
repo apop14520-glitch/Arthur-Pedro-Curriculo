@@ -195,15 +195,22 @@ const readSaved = (key, fallback) => { try { return JSON.parse(localStorage.getI
 let savedProfile = readSaved(PROFILE_KEY, defaultProfile)
 let savedEntries = readSaved(FEED_KEY, [])
 
+const MAX_IMAGE_BYTES = 5 * 1024 * 1024
+const MAX_IMAGE_PIXELS = 24 * 1024 * 1024
+const ACCEPTED_IMAGE_TYPES = new Set(['image/jpeg', 'image/png', 'image/webp'])
 const imageToDataUrl = file => new Promise((resolve, reject) => {
   if (!file) return resolve('')
+  if (!ACCEPTED_IMAGE_TYPES.has(file.type)) return reject(new Error('Formato de imagem não permitido.'))
+  if (file.size > MAX_IMAGE_BYTES) return reject(new Error('A imagem excede o limite de 5 MB.'))
   const reader = new FileReader()
   reader.onerror = reject
   reader.onload = () => {
     const image = new Image()
     image.onerror = reject
     image.onload = () => {
-      const scale = Math.min(1, 1600 / image.width)
+      const pixels = image.width * image.height
+      if (!image.width || !image.height || pixels > MAX_IMAGE_PIXELS) return reject(new Error('As dimensões da imagem excedem o limite permitido.'))
+      const scale = Math.min(1, 1600 / Math.max(image.width, image.height), Math.sqrt(MAX_IMAGE_PIXELS / pixels))
       const canvas = document.createElement('canvas')
       canvas.width = Math.round(image.width * scale)
       canvas.height = Math.round(image.height * scale)
@@ -243,7 +250,7 @@ const renderFeed = () => {
   const empty = document.querySelector('[data-feed-empty]')
   if (!grid || !empty) return
   empty.hidden = savedEntries.length > 0
-  grid.innerHTML = savedEntries.map(entry => `<article class="feed-card"><div class="feed-card-head"><span>${escapeHtml(entry.category)}</span><button type="button" data-delete-entry="${entry.id}" aria-label="Excluir ${escapeHtml(entry.title)}">Excluir</button></div>${entry.image ? `<img src="${entry.image}" alt="Imagem de ${escapeHtml(entry.title)}" />` : ''}<div class="feed-card-body"><h3>${escapeHtml(entry.title)}</h3><p>${escapeHtml(entry.description)}</p><small>Adicionado ao perfil</small></div></article>`).join('')
+  grid.innerHTML = savedEntries.map(entry => `<article class="feed-card"><div class="feed-card-head"><span>${escapeHtml(entry.category)}</span><button type="button" data-delete-entry="${escapeHtml(entry.id)}" aria-label="Excluir ${escapeHtml(entry.title)}">Excluir</button></div>${entry.image ? `<img src="${entry.image}" alt="Imagem de ${escapeHtml(entry.title)}" />` : ''}<div class="feed-card-body"><h3>${escapeHtml(entry.title)}</h3><p>${escapeHtml(entry.description)}</p><small>Adicionado ao perfil</small></div></article>`).join('')
   if (isRecruiterView) return
   grid.querySelectorAll('[data-delete-entry]').forEach(button => button.addEventListener('click', () => {
     savedEntries = savedEntries.filter(entry => entry.id !== button.dataset.deleteEntry)
@@ -267,7 +274,10 @@ const adjusterHint = document.createElement('small')
 adjusterHint.className = 'crop-hint'
 adjusterHint.textContent = 'Arraste a foto dentro do círculo ou use os controles.'
 editor.querySelector('.photo-adjuster').append(adjusterHint)
-editorForm.elements.profilePhoto.addEventListener('change', async () => { pendingProfilePhoto = await imageToDataUrl(editorForm.elements.profilePhoto.files[0]); updateCropPreview() })
+editorForm.elements.profilePhoto.addEventListener('change', async () => {
+  try { pendingProfilePhoto = await imageToDataUrl(editorForm.elements.profilePhoto.files[0]); updateCropPreview() }
+  catch (error) { editorForm.elements.profilePhoto.value = ''; pendingProfilePhoto = ''; alert(error.message || 'Não foi possível processar a imagem.') }
+})
 ;['photoZoom','photoX','photoY'].forEach(name => editorForm.elements[name].addEventListener('input', updateCropPreview))
 
 const cropPreview = editor.querySelector('.crop-preview')

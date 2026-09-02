@@ -144,4 +144,3 @@ Os arquivos finais serão criados na pasta `dist`.
 - `src/redesign.js`: separação das versões, formações, linha do tempo e painel do proprietário.
 - `src/style.css`: identidade visual e responsividade.
 - `AGENTS.md`: orientação para futuras alterações com Codex.
-

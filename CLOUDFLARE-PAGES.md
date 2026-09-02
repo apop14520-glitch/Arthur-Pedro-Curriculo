@@ -42,4 +42,3 @@ Após o primeiro deploy, o Cloudflare disponibilizará um endereço no formato:
 `https://e-curriculo-arthur-pedro.pages.dev`
 
 O endereço efetivo depende da disponibilidade do nome no momento da criação. Um domínio personalizado também pode ser conectado posteriormente pelo painel do Cloudflare.
-
