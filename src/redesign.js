@@ -1,5 +1,6 @@
 const EDUCATION_KEY = 'arthur-education-v1'
 const TIMELINE_KEY = 'arthur-timeline-v1'
+const CUSTOM_CERTIFICATES_KEY = 'arthur-custom-certificates-v1'
 
 const safeParse = (key, fallback = []) => {
   try { return JSON.parse(localStorage.getItem(key)) || fallback } catch { return fallback }
@@ -122,7 +123,13 @@ export function initializeRedesign({ isOwnerView, editor }) {
       <div class="timeline-controls"><span>ARRASTE OU USE AS SETAS</span><div><button type="button" data-timeline-prev aria-label="Voltar na linha do tempo">‹</button><button type="button" data-timeline-next aria-label="Avançar na linha do tempo">›</button></div></div>
       <div class="journey-timeline" data-timeline tabindex="0" aria-label="Linha do tempo profissional"></div>
       <div class="timeline-progress"><i data-timeline-progress></i></div>
+    </div>
+    <div class="portfolio-feed" data-portfolio-feed>
+      <div class="portfolio-feed-head"><span>PUBLICAÇÕES DO PERFIL</span><h3>Projetos, cursos e novas conquistas</h3><p>Conteúdos adicionados diretamente pela área administrativa.</p></div>
+      <div class="feed-empty" data-feed-empty><strong>Nenhuma publicação adicionada.</strong><span>Use o painel administrativo para publicar o primeiro conteúdo.</span></div>
+      <div class="feed-grid" data-feed-grid></div>
     </div>`
+    document.dispatchEvent(new CustomEvent('profile-feed-remounted'))
   }
 
   const footer = document.querySelector('footer')
@@ -142,13 +149,13 @@ export function initializeRedesign({ isOwnerView, editor }) {
   const renderEducation = () => {
     const target = document.querySelector('.education-list')
     if (!target) return
-    target.innerHTML = [...baseEducation, ...extraEducation].map(item => `<article data-education-id="${item.id}"><span>${escapeHtml(item.type)}${item.period ? ` · ${escapeHtml(item.period)}` : ''}</span><div><h3>${escapeHtml(item.course)}</h3><p>${escapeHtml(item.institution)}</p></div><b>${escapeHtml(item.badge || 'TI')}</b>${isOwnerView && !String(item.id).startsWith('cloud') && !String(item.id).startsWith('ifro') ? `<button class="entry-remove" data-remove-education="${item.id}" type="button">Excluir</button>` : ''}</article>`).join('')
+    target.innerHTML = [...baseEducation, ...extraEducation].map(item => `<article data-education-id="${escapeHtml(item.id)}"><span>${escapeHtml(item.type)}${item.period ? ` · ${escapeHtml(item.period)}` : ''}</span><div><h3>${escapeHtml(item.course)}</h3><p>${escapeHtml(item.institution)}</p></div><b>${escapeHtml(item.badge || 'TI')}</b>${isOwnerView && !String(item.id).startsWith('cloud') && !String(item.id).startsWith('ifro') ? `<button class="entry-remove" data-remove-education="${escapeHtml(item.id)}" type="button">Excluir</button>` : ''}</article>`).join('')
   }
   const renderTimeline = () => {
     const target = document.querySelector('[data-timeline]')
     if (!target) return
     const items = [...baseTimeline, ...extraTimeline].sort((a, b) => String(a.year).localeCompare(String(b.year)))
-    target.innerHTML = items.map(item => `<article data-timeline-id="${item.id}"><time>${escapeHtml(item.year)}</time><div><span>${escapeHtml(item.category)}</span><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.description)}</p></div>${isOwnerView && String(item.id).startsWith('custom-') ? `<button class="entry-remove" data-remove-timeline="${item.id}" type="button">Excluir</button>` : ''}</article>`).join('')
+    target.innerHTML = items.map(item => `<article data-timeline-id="${escapeHtml(item.id)}"><time>${escapeHtml(item.year)}</time><div><span>${escapeHtml(item.category)}</span><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.description)}</p></div>${isOwnerView && String(item.id).startsWith('custom-') ? `<button class="entry-remove" data-remove-timeline="${escapeHtml(item.id)}" type="button">Excluir</button>` : ''}</article>`).join('')
   }
   renderEducation(); renderTimeline()
 
@@ -186,10 +193,73 @@ export function initializeRedesign({ isOwnerView, editor }) {
   requestAnimationFrame(updateTimelineState)
 
   if (!isOwnerView) {
-    document.querySelector('.profile-editor-trigger')?.setAttribute('disabled', '')
+    const profileTrigger = document.querySelector('.profile-editor-trigger')
     document.querySelector('.brand i')?.remove()
+    if (profileTrigger) {
+      const avatar = profileTrigger.querySelector('.brand-avatar')
+      const name = profileTrigger.querySelector('strong')
+      const publicBrand = document.createElement('div')
+      const avatarLink = document.createElement('a')
+      publicBrand.className = 'brand public-brand'
+      avatarLink.className = 'brand-avatar admin-avatar-link'
+      avatarLink.href = new URL('admin.html', document.baseURI).href
+      avatarLink.setAttribute('aria-label', 'Acessar área pessoal de administração')
+      avatarLink.title = 'Área pessoal'
+      while (avatar?.firstChild) avatarLink.append(avatar.firstChild)
+      publicBrand.append(avatarLink)
+      if (name) publicBrand.append(name)
+      profileTrigger.replaceWith(publicBrand)
+    }
     return
   }
+
+  const unlockAdmin = () => {
+    sessionStorage.setItem(SECURITY_SESSION_KEY, '1')
+    document.body.classList.remove('admin-locked')
+    document.querySelector('.admin-gate')?.remove()
+  }
+  /* Mecanismo legado removido: autenticação local não oferece controle de acesso real.
+    if (sessionStorage.getItem(SECURITY_SESSION_KEY) === '1') return
+    document.body.classList.add('admin-locked')
+    const gate = document.createElement('div')
+    gate.className = 'admin-gate'
+    const security = readSecurity()
+    gate.innerHTML = security
+      ? `<div class="admin-gate-card"><span>ÁREA PESSOAL</span><h1>Acessar painel</h1><p>Informe sua senha para editar o currículo neste navegador.</p><form data-security-login><label>Senha<input name="password" type="password" autocomplete="current-password" required /></label><p class="security-message" aria-live="polite"></p><button type="submit">Entrar no painel</button><button class="security-link" type="button" data-show-reset>Esqueci a senha</button></form><form data-security-reset hidden><label>Código de recuperação<input name="recovery" autocomplete="off" required /></label><label>Nova senha<input name="newPassword" type="password" minlength="8" required /></label><label>Confirmar nova senha<input name="confirmPassword" type="password" minlength="8" required /></label><p class="security-message" aria-live="polite"></p><button type="submit">Redefinir senha</button><button class="security-link" type="button" data-show-login>Voltar</button></form><a href="/">Voltar ao site público</a></div>`
+      : `<div class="admin-gate-card"><span>PRIMEIRO ACESSO</span><h1>Criar senha pessoal</h1><p>Proteja o painel de edição neste navegador. Use pelo menos 8 caracteres.</p><form data-security-create><label>Nova senha<input name="password" type="password" minlength="8" autocomplete="new-password" required /></label><label>Confirmar senha<input name="confirmPassword" type="password" minlength="8" autocomplete="new-password" required /></label><p class="security-message" aria-live="polite"></p><button type="submit">Criar senha</button></form><div class="recovery-result" hidden><span>CÓDIGO DE RECUPERAÇÃO</span><strong></strong><p>Guarde este código em local seguro. Ele será necessário para redefinir a senha.</p><button type="button" data-security-continue>Guardar e continuar</button></div><a href="/">Voltar ao site público</a></div>`
+    document.body.append(gate)
+    gate.querySelector('[data-security-create]')?.addEventListener('submit', async event => {
+      event.preventDefault()
+      const form = event.currentTarget, password = form.elements.password.value, confirmation = form.elements.confirmPassword.value
+      const message = form.querySelector('.security-message')
+      if (password.length < 8 || password !== confirmation) { message.textContent = password.length < 8 ? 'Use pelo menos 8 caracteres.' : 'As senhas não coincidem.'; return }
+      const salt = createSalt(), recoveryCode = createRecoveryCode()
+      localStorage.setItem(SECURITY_KEY, JSON.stringify({ salt, passwordHash: await hashSecret(password, salt), recoveryHash: await hashSecret(recoveryCode.replaceAll('-', ''), salt) }))
+      form.hidden = true
+      const result = gate.querySelector('.recovery-result'); result.hidden = false; result.querySelector('strong').textContent = recoveryCode
+    })
+    gate.querySelector('[data-security-continue]')?.addEventListener('click', unlockAdmin)
+    gate.querySelector('[data-security-login]')?.addEventListener('submit', async event => {
+      event.preventDefault()
+      const form = event.currentTarget, current = readSecurity(), message = form.querySelector('.security-message')
+      if (current && await hashSecret(form.elements.password.value, current.salt) === current.passwordHash) unlockAdmin()
+      else message.textContent = 'Senha incorreta.'
+    })
+    gate.querySelector('[data-show-reset]')?.addEventListener('click', () => { gate.querySelector('[data-security-login]').hidden = true; gate.querySelector('[data-security-reset]').hidden = false })
+    gate.querySelector('[data-show-login]')?.addEventListener('click', () => { gate.querySelector('[data-security-reset]').hidden = true; gate.querySelector('[data-security-login]').hidden = false })
+    gate.querySelector('[data-security-reset]')?.addEventListener('submit', async event => {
+      event.preventDefault()
+      const form = event.currentTarget, current = readSecurity(), password = form.elements.newPassword.value, confirmation = form.elements.confirmPassword.value, message = form.querySelector('.security-message')
+      const recovery = form.elements.recovery.value.replace(/[^a-f\d]/gi, '').toUpperCase()
+      if (!current || await hashSecret(recovery, current.salt) !== current.recoveryHash) { message.textContent = 'Código de recuperação inválido.'; return }
+      if (password.length < 8 || password !== confirmation) { message.textContent = password.length < 8 ? 'Use pelo menos 8 caracteres.' : 'As senhas não coincidem.'; return }
+      const salt = createSalt()
+      localStorage.setItem(SECURITY_KEY, JSON.stringify({ salt, passwordHash: await hashSecret(password, salt), recoveryHash: await hashSecret(recovery, salt) }))
+      unlockAdmin()
+    })
+  }
+  mountAdminGate()
+    */
 
   const ownerMenu = document.createElement('aside')
   ownerMenu.className = 'owner-menu'
@@ -200,14 +270,19 @@ export function initializeRedesign({ isOwnerView, editor }) {
       <button type="button" data-owner-action="education"><i>▤</i><span><b>Formações</b><small>Graduação e pós-graduação</small></span></button>
       <button type="button" data-owner-action="timeline"><i>⌁</i><span><b>Linha do tempo</b><small>Marcos da trajetória profissional</small></span></button>
       <button type="button" data-owner-action="publish"><i>＋</i><span><b>Publicações</b><small>Projetos, cursos e entregas</small></span></button>
+      <button type="button" data-owner-action="certificates"><i>✓</i><span><b>Certificados</b><small>Adicionar formação e credencial</small></span></button>
+      <button type="button" data-owner-action="security"><i>⌾</i><span><b>Segurança do acesso</b><small>Proteção do painel no Cloudflare</small></span></button>
     </div>
-    <button class="owner-preview" type="button" data-owner-action="preview"><i>↗</i><span><b>Visualizar site público</b><small>Abrir apresentação sem permissões</small></span></button>`
+    <button class="owner-preview" type="button" data-owner-action="preview"><i>↗</i><span><b>Visualizar site público</b><small>Abrir apresentação sem permissões</small></span></button>
+    <button class="owner-logout" type="button" data-owner-action="logout"><i>⇥</i><span><b>Sair da administração</b><small>Encerrar a sessão e voltar ao site público</small></span></button>`
   document.querySelector('.site-header').append(ownerMenu)
 
   const editorBody = editor.querySelector('.editor-body')
   editorBody.insertAdjacentHTML('beforeend', `
     <section class="editor-section owner-form" data-owner-panel="education"><h3>Nova formação</h3><label>Tipo<select name="educationType"><option>Graduação</option><option>Pós-graduação</option><option>Mestrado</option><option>Doutorado</option></select></label><label>Curso<input name="educationCourse" placeholder="Nome do curso" /></label><div class="editor-fields"><label>Instituição<input name="educationInstitution" placeholder="Instituição" /></label><label>Período<input name="educationPeriod" placeholder="Ex.: 2024–2026" /></label></div><label>Identificador<input name="educationBadge" maxlength="10" placeholder="Ex.: IFRO" /></label><button type="button" data-save-education>Adicionar formação</button></section>
-    <section class="editor-section owner-form" data-owner-panel="timeline"><h3>Novo marco da trajetória</h3><div class="editor-fields"><label>Ano<input name="timelineYear" inputmode="numeric" placeholder="2026" /></label><label>Categoria<input name="timelineCategory" placeholder="Formação, publicação..." /></label></div><label>Título<input name="timelineTitle" placeholder="Título do marco" /></label><label>Descrição<textarea name="timelineDescription" rows="3" placeholder="Breve contexto profissional"></textarea></label><button type="button" data-save-timeline>Adicionar à linha do tempo</button></section>`)
+    <section class="editor-section owner-form" data-owner-panel="timeline"><h3>Novo marco da trajetória</h3><div class="editor-fields"><label>Ano<input name="timelineYear" inputmode="numeric" placeholder="2026" /></label><label>Categoria<input name="timelineCategory" placeholder="Formação, publicação..." /></label></div><label>Título<input name="timelineTitle" placeholder="Título do marco" /></label><label>Descrição<textarea name="timelineDescription" rows="3" placeholder="Breve contexto profissional"></textarea></label><button type="button" data-save-timeline>Adicionar à linha do tempo</button></section>
+    <section class="editor-section owner-form certificate-panel" data-owner-panel="certificates"><h3>Adicionar certificado</h3><p>Cadastre a formação e a credencial para exibição na seção de certificados.</p><label>Título do certificado<input name="certificateTitle" placeholder="Ex.: Cibersegurança" /></label><div class="editor-fields"><label>Instituição emissora<input name="certificateIssuer" placeholder="Ex.: IFRO" /></label><label>Data de emissão<input name="certificateDate" placeholder="Ex.: ago 2026" /></label></div><div class="editor-fields"><label>Ano<input name="certificateYear" inputmode="numeric" maxlength="4" placeholder="2026" /></label><label>Código ou link da credencial<input name="certificateCredential" placeholder="Código ou https://..." /></label></div><button type="button" data-save-certificate>Adicionar aos certificados</button></section>`)
+  editorBody.insertAdjacentHTML('beforeend', `<section class="editor-section owner-form security-panel" data-owner-panel="security"><h3>Segurança do acesso</h3><p>O acesso é validado pelo Worker. A senha não fica salva neste navegador. Para trocar ou recuperar o acesso, atualize o segredo <code>ADMIN_PASSWORD</code> no Cloudflare e encerre as sessões ativas.</p><button type="button" data-lock-admin>Encerrar sessão neste dispositivo</button></section>`)
 
   const openPanel = panel => {
     editor.showModal()
@@ -225,10 +300,40 @@ export function initializeRedesign({ isOwnerView, editor }) {
     const action = event.target.closest('[data-owner-action]')?.dataset.ownerAction
     if (!action) return
     toggleMenu(false)
+    if (action === 'logout') {
+      fetch('/api/admin/logout', { method: 'POST', credentials: 'same-origin', headers: { 'X-Requested-With': 'portfolio' } }).finally(() => window.location.replace(new URL('index.html', document.baseURI).href))
+      return
+    }
     if (action === 'preview') return window.open(new URL('index.html', window.location.href), '_blank', 'noopener')
     if (action === 'profile') return editor.showModal()
     if (action === 'publish') return editor.showModal()
     openPanel(action)
+  })
+
+  /* Mecanismo legado de senha local removido; a sessão é controlada pelo Worker.
+  editor.querySelector('[data-change-password]')?.addEventListener('click', async () => {
+    const form = editor.querySelector('form'), current = readSecurity(), message = editor.querySelector('[data-security-message]')
+    const oldPassword = form.elements.securityCurrent.value, password = form.elements.securityNew.value, confirmation = form.elements.securityConfirm.value
+    if (!current || await hashSecret(oldPassword, current.salt) !== current.passwordHash) { message.textContent = 'A senha atual está incorreta.'; return }
+    if (password.length < 8 || password !== confirmation) { message.textContent = password.length < 8 ? 'Use pelo menos 8 caracteres.' : 'As novas senhas não coincidem.'; return }
+    const salt = createSalt(), recoveryCode = createRecoveryCode()
+    localStorage.setItem(SECURITY_KEY, JSON.stringify({ salt, passwordHash: await hashSecret(password, salt), recoveryHash: await hashSecret(recoveryCode.replaceAll('-', ''), salt) }))
+    message.textContent = 'Senha alterada. Guarde o novo código de recuperação exibido abaixo.'
+    const output = editor.querySelector('[data-recovery-output]'); output.hidden = false; output.textContent = recoveryCode
+    ;['securityCurrent', 'securityNew', 'securityConfirm'].forEach(name => { form.elements[name].value = '' })
+  })
+  editor.querySelector('[data-new-recovery]')?.addEventListener('click', async () => {
+    const form = editor.querySelector('form'), current = readSecurity(), message = editor.querySelector('[data-security-message]')
+    if (!current || await hashSecret(form.elements.securityCurrent.value, current.salt) !== current.passwordHash) { message.textContent = 'Informe corretamente a senha atual.'; return }
+    const recoveryCode = createRecoveryCode()
+    current.recoveryHash = await hashSecret(recoveryCode.replaceAll('-', ''), current.salt)
+    localStorage.setItem(SECURITY_KEY, JSON.stringify(current))
+    message.textContent = 'Novo código criado. O código anterior deixou de funcionar.'
+    const output = editor.querySelector('[data-recovery-output]'); output.hidden = false; output.textContent = recoveryCode
+  })
+  */
+  editor.querySelector('[data-lock-admin]').addEventListener('click', () => {
+    fetch('/api/admin/logout', { method: 'POST', credentials: 'same-origin', headers: { 'X-Requested-With': 'portfolio' } }).finally(() => window.location.replace(new URL('index.html', document.baseURI).href))
   })
 
   editor.querySelector('[data-save-education]').addEventListener('click', () => {
@@ -239,6 +344,26 @@ export function initializeRedesign({ isOwnerView, editor }) {
     localStorage.setItem(EDUCATION_KEY, JSON.stringify(extraEducation)); renderEducation()
     ;['educationCourse', 'educationInstitution', 'educationPeriod', 'educationBadge'].forEach(name => { form.elements[name].value = '' })
     editor.close(); document.querySelector('#formacao').scrollIntoView({ behavior: 'smooth' })
+  })
+  editor.querySelector('[data-save-certificate]').addEventListener('click', () => {
+    const form = editor.querySelector('form')
+    const title = form.elements.certificateTitle.value.trim()
+    const issuer = form.elements.certificateIssuer.value.trim()
+    const date = form.elements.certificateDate.value.trim()
+    const year = form.elements.certificateYear.value.trim()
+    const credential = form.elements.certificateCredential.value.trim()
+    if (!title || !issuer || !date || !/^\d{4}$/.test(year)) {
+      const target = !title ? 'certificateTitle' : !issuer ? 'certificateIssuer' : !date ? 'certificateDate' : 'certificateYear'
+      form.elements[target].focus()
+      return
+    }
+    const items = safeParse(CUSTOM_CERTIFICATES_KEY)
+    items.unshift({ id: `certificate-${Date.now()}`, title, issuer, date, year, credential })
+    localStorage.setItem(CUSTOM_CERTIFICATES_KEY, JSON.stringify(items))
+    ;['certificateTitle', 'certificateIssuer', 'certificateDate', 'certificateYear', 'certificateCredential'].forEach(name => { form.elements[name].value = '' })
+    document.dispatchEvent(new CustomEvent('certificates-updated'))
+    editor.close()
+    document.querySelector('#certificados')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   })
   editor.querySelector('[data-save-timeline]').addEventListener('click', () => {
     const form = editor.querySelector('form')

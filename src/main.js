@@ -68,7 +68,7 @@ document.querySelector('#app').innerHTML = `
       <div class="hero-proof reveal"><span>Gestão e sustentação de</span><div><b>Servidores</b><b>Redes</b><b>ERP</b><b>Conectividade</b><b>Segurança</b></div></div>
     </section>
 
-    <section class="cinema-section" id="sistemas"><div class="cinema-heading"><div class="section-kicker"><span>SHOWCASE</span> Sistemas desenvolvidos</div><h2>Projetos em <em>grande tela.</em></h2><p>Navegue pelas experiências, amplie cada interface e acesse os projetos publicados.</p></div><div class="cinema-carousel"><button class="cinema-arrow cinema-back" type="button" aria-label="Projeto anterior">‹</button><div class="cinema-stage"><figure class="cinema-slide active" data-title="SOPH.IA" data-image="/projetos/sophia.png" data-url="https://iasoph.netlify.app/"><button class="cinema-image" type="button" aria-label="Ampliar SOPH.IA"><img src="/projetos/sophia.png" alt="Tela do sistema SOPH.IA" /></button><figcaption><span>01 · Inteligência artificial</span><h3>SOPH.IA</h3><p>Assistente institucional para documentos, minutas e fluxos administrativos.</p><div><button type="button" class="cinema-zoom">Ampliar imagem</button><a href="https://iasoph.netlify.app/" target="_blank" rel="noreferrer">Acessar webpage ↗</a></div></figcaption></figure><figure class="cinema-slide" data-title="Do Zero ao Bananal" data-image="/projetos/do-zero-ao-bananal.png" data-url="https://criatorioaraguaia.netlify.app/"><button class="cinema-image" type="button" aria-label="Ampliar Do Zero ao Bananal"><img src="/projetos/do-zero-ao-bananal.png" alt="Tela do projeto Do Zero ao Bananal" /></button><figcaption><span>02 · Experiência digital</span><h3>Do Zero ao Bananal</h3><p>Manual interativo para implantação, manejo e acompanhamento do cultivo.</p><div><button type="button" class="cinema-zoom">Ampliar imagem</button><a href="https://criatorioaraguaia.netlify.app/" target="_blank" rel="noreferrer">Acessar webpage ↗</a></div></figcaption></figure><figure class="cinema-slide" data-title="NEXFORMA" data-image="/projetos/nexforma.png"><button class="cinema-image" type="button" aria-label="Ampliar NEXFORMA"><img src="/projetos/nexforma.png" alt="Painel do sistema NEXFORMA" /></button><figcaption><span>03 · Gestão e formação</span><h3>NEXFORMA</h3><p>Plataforma de gestão, precificação e apoio à produção com impressão 3D.</p><div><button type="button" class="cinema-zoom">Ampliar imagem</button></div></figcaption></figure></div><button class="cinema-arrow cinema-forward" type="button" aria-label="Próximo projeto">›</button><div class="cinema-progress"><i></i><span>01 / 03</span></div></div></section>
+    <section class="cinema-section" id="sistemas"><div class="cinema-heading"><div class="section-kicker"><span>SHOWCASE</span> Sistemas desenvolvidos</div><h2>Projetos em <em>grande tela.</em></h2><p>Navegue pelas experiências e amplie cada interface.</p></div><div class="cinema-carousel"><button class="cinema-arrow cinema-back" type="button" aria-label="Projeto anterior">‹</button><div class="cinema-stage"><figure class="cinema-slide active" data-title="SOPH.IA" data-image="/projetos/sophia.png"><button class="cinema-image" type="button" aria-label="Ampliar SOPH.IA"><img src="/projetos/sophia.png" alt="Tela do sistema SOPH.IA" /></button><figcaption><span>01 · Inteligência artificial</span><h3>SOPH.IA</h3><p>Assistente institucional para documentos, minutas e fluxos administrativos.</p><div><button type="button" class="cinema-zoom">Ampliar imagem</button></div></figcaption></figure><figure class="cinema-slide" data-title="Do Zero ao Bananal" data-image="/projetos/do-zero-ao-bananal.png"><button class="cinema-image" type="button" aria-label="Ampliar Do Zero ao Bananal"><img src="/projetos/do-zero-ao-bananal.png" alt="Tela do projeto Do Zero ao Bananal" /></button><figcaption><span>02 · Experiência digital</span><h3>Do Zero ao Bananal</h3><p>Manual interativo para implantação, manejo e acompanhamento do cultivo.</p><div><button type="button" class="cinema-zoom">Ampliar imagem</button></div></figcaption></figure><figure class="cinema-slide" data-title="NEXFORMA" data-image="/projetos/nexforma.png"><button class="cinema-image" type="button" aria-label="Ampliar NEXFORMA"><img src="/projetos/nexforma.png" alt="Painel do sistema NEXFORMA" /></button><figcaption><span>03 · Gestão e formação</span><h3>NEXFORMA</h3><p>Plataforma de gestão, precificação e apoio à produção com impressão 3D.</p><div><button type="button" class="cinema-zoom">Ampliar imagem</button></div></figcaption></figure><figure class="cinema-slide" data-title="Gram Energia" data-image="/projetos/gram-energia.png"><button class="cinema-image" type="button" aria-label="Ampliar Gram Energia"><img src="/projetos/gram-energia.png" alt="Página da consultoria Gram Energia" /></button><figcaption><span>04 · Energia e experiência digital</span><h3>Gram Energia</h3><p>Interface institucional para apresentação de soluções de energia limpa e economia por assinatura.</p><div><button type="button" class="cinema-zoom">Ampliar imagem</button></div></figcaption></figure></div><button class="cinema-arrow cinema-forward" type="button" aria-label="Próximo projeto">›</button><div class="cinema-progress"><i></i><span>01 / 04</span></div></div></section>
 
     <section class="section about" id="sobre">
       <div class="section-kicker reveal"><span>01</span> Sobre</div>
@@ -152,7 +152,7 @@ document.querySelector('#app').innerHTML = `
 
   <dialog class="editor-dialog" aria-labelledby="editor-title"><form class="editor-shell" method="dialog"><div class="editor-head"><div><span>Perfil profissional</span><h2 id="editor-title">Personalizar conteúdo</h2></div><button class="editor-close" value="cancel" aria-label="Fechar">×</button></div><div class="editor-body"><section class="editor-section"><h3>Identidade profissional</h3><div class="editor-fields"><label>Nome completo<input name="profileName" value="Arthur Pedro Oliveira de Paula" required /></label><label>Cargo ou título<input name="profileRole" value="Chefe de TI" required /></label></div><label class="upload-field">Foto de perfil<input name="profilePhoto" type="file" accept="image/*" /><span>Escolher uma foto do computador</span></label><div class="photo-adjuster"><div class="crop-preview"><span>AP</span></div><label>Zoom<input name="photoZoom" type="range" min="100" max="240" value="100" /></label><label>Horizontal<input name="photoX" type="range" min="0" max="100" value="50" /></label><label>Vertical<input name="photoY" type="range" min="0" max="100" value="50" /></label></div><label>WhatsApp com DDD<input name="profileWhatsapp" inputmode="numeric" placeholder="Ex.: 69999999999" /></label><label class="upload-field">Print do NEXFORMA<input name="nexformaImage" type="file" accept="image/*" /><span>Carregar imagem do sistema</span></label><button class="editor-save-profile" type="button">Salvar perfil</button></section><section class="editor-section"><h3>Adicionar ao portfólio</h3><div class="editor-fields"><label>Categoria<select name="entryCategory"><option>Projeto</option><option>Design entregue</option><option>Capacitação</option><option>Conhecimento</option><option>Certificação</option><option>Experiência</option></select></label><label>Título<input name="entryTitle" placeholder="Ex.: Curso de Segurança em Nuvem" /></label></div><label>Descrição<textarea name="entryDescription" rows="4" placeholder="Conte o que foi feito ou aprendido..."></textarea></label><label class="upload-field">Foto, print ou certificado<input name="entryImage" type="file" accept="image/*" /><span>Carregar imagem</span></label><button class="editor-publish" type="button">Publicar no perfil</button></section></div><p class="editor-note">As personalizações ficam salvas somente neste navegador e computador.</p></form></dialog>
   <div class="social-floats"><a class="github-float" href="${profileLinks.github}" target="_blank" rel="noreferrer" aria-label="Abrir GitHub"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" stroke="none" d="M12 .7a11.5 11.5 0 0 0-3.64 22.4c.58.1.79-.25.79-.56v-2.23c-3.22.7-3.9-1.37-3.9-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.77 2.72 1.26 3.38.96.1-.75.4-1.26.74-1.55-2.57-.29-5.27-1.29-5.27-5.69 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.16 1.18a10.9 10.9 0 0 1 5.75 0c2.2-1.49 3.16-1.18 3.16-1.18.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.09 0 4.42-2.71 5.39-5.29 5.68.42.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .7Z"/></svg></span><b>GitHub</b></a><a class="linkedin-float" href="${profileLinks.linkedin}" target="_blank" rel="noreferrer" aria-label="Abrir LinkedIn"><span><img src="/linkedin-icon-reference.png" alt="" /></span><b>LinkedIn</b></a><button class="whatsapp-float" type="button" aria-label="Conversar pelo WhatsApp"><span><img src="/whatsapp-icon-reference.png" alt="" /></span><b>WhatsApp</b></button></div>
-  <dialog class="cinema-lightbox"><button class="lightbox-close" type="button" aria-label="Fechar imagem">×</button><button class="lightbox-prev" type="button" aria-label="Imagem anterior">‹</button><img alt="Projeto ampliado" /><button class="lightbox-next" type="button" aria-label="Próxima imagem">›</button><div><h3></h3><a target="_blank" rel="noreferrer">Acessar projeto ↗</a></div></dialog>
+  <dialog class="cinema-lightbox"><button class="lightbox-close" type="button" aria-label="Fechar imagem">×</button><button class="lightbox-prev" type="button" aria-label="Imagem anterior">‹</button><img alt="Projeto ampliado" /><button class="lightbox-next" type="button" aria-label="Próxima imagem">›</button><div><h3></h3></div></dialog>
 `
 
 document.body.classList.toggle('recruiter-view', isRecruiterView)
@@ -195,15 +195,22 @@ const readSaved = (key, fallback) => { try { return JSON.parse(localStorage.getI
 let savedProfile = readSaved(PROFILE_KEY, defaultProfile)
 let savedEntries = readSaved(FEED_KEY, [])
 
+const MAX_IMAGE_BYTES = 5 * 1024 * 1024
+const MAX_IMAGE_PIXELS = 24 * 1024 * 1024
+const ACCEPTED_IMAGE_TYPES = new Set(['image/jpeg', 'image/png', 'image/webp'])
 const imageToDataUrl = file => new Promise((resolve, reject) => {
   if (!file) return resolve('')
+  if (!ACCEPTED_IMAGE_TYPES.has(file.type)) return reject(new Error('Formato de imagem não permitido.'))
+  if (file.size > MAX_IMAGE_BYTES) return reject(new Error('A imagem excede o limite de 5 MB.'))
   const reader = new FileReader()
   reader.onerror = reject
   reader.onload = () => {
     const image = new Image()
     image.onerror = reject
     image.onload = () => {
-      const scale = Math.min(1, 1600 / image.width)
+      const pixels = image.width * image.height
+      if (!image.width || !image.height || pixels > MAX_IMAGE_PIXELS) return reject(new Error('As dimensões da imagem excedem o limite permitido.'))
+      const scale = Math.min(1, 1600 / Math.max(image.width, image.height), Math.sqrt(MAX_IMAGE_PIXELS / pixels))
       const canvas = document.createElement('canvas')
       canvas.width = Math.round(image.width * scale)
       canvas.height = Math.round(image.height * scale)
@@ -240,14 +247,17 @@ const applyProfile = () => {
 const escapeHtml = value => String(value).replace(/[&<>'"]/g, char => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', "'":'&#39;', '"':'&quot;' })[char])
 const renderFeed = () => {
   const grid = document.querySelector('[data-feed-grid]')
-  document.querySelector('[data-feed-empty]').hidden = savedEntries.length > 0
-  grid.innerHTML = savedEntries.map(entry => `<article class="feed-card"><div class="feed-card-head"><span>${escapeHtml(entry.category)}</span><button type="button" data-delete-entry="${entry.id}" aria-label="Excluir ${escapeHtml(entry.title)}">Excluir</button></div>${entry.image ? `<img src="${entry.image}" alt="Imagem de ${escapeHtml(entry.title)}" />` : ''}<div class="feed-card-body"><h3>${escapeHtml(entry.title)}</h3><p>${escapeHtml(entry.description)}</p><small>Adicionado ao perfil</small></div></article>`).join('')
+  const empty = document.querySelector('[data-feed-empty]')
+  if (!grid || !empty) return
+  empty.hidden = savedEntries.length > 0
+  grid.innerHTML = savedEntries.map(entry => `<article class="feed-card"><div class="feed-card-head"><span>${escapeHtml(entry.category)}</span><button type="button" data-delete-entry="${escapeHtml(entry.id)}" aria-label="Excluir ${escapeHtml(entry.title)}">Excluir</button></div>${entry.image ? `<img src="${entry.image}" alt="Imagem de ${escapeHtml(entry.title)}" />` : ''}<div class="feed-card-body"><h3>${escapeHtml(entry.title)}</h3><p>${escapeHtml(entry.description)}</p><small>Adicionado ao perfil</small></div></article>`).join('')
   if (isRecruiterView) return
   grid.querySelectorAll('[data-delete-entry]').forEach(button => button.addEventListener('click', () => {
     savedEntries = savedEntries.filter(entry => entry.id !== button.dataset.deleteEntry)
     localStorage.setItem(FEED_KEY, JSON.stringify(savedEntries)); renderFeed()
   }))
 }
+document.addEventListener('profile-feed-remounted', renderFeed)
 
 let pendingProfilePhoto = ''
 const updateCropPreview = () => {
@@ -264,7 +274,10 @@ const adjusterHint = document.createElement('small')
 adjusterHint.className = 'crop-hint'
 adjusterHint.textContent = 'Arraste a foto dentro do círculo ou use os controles.'
 editor.querySelector('.photo-adjuster').append(adjusterHint)
-editorForm.elements.profilePhoto.addEventListener('change', async () => { pendingProfilePhoto = await imageToDataUrl(editorForm.elements.profilePhoto.files[0]); updateCropPreview() })
+editorForm.elements.profilePhoto.addEventListener('change', async () => {
+  try { pendingProfilePhoto = await imageToDataUrl(editorForm.elements.profilePhoto.files[0]); updateCropPreview() }
+  catch (error) { editorForm.elements.profilePhoto.value = ''; pendingProfilePhoto = ''; alert(error.message || 'Não foi possível processar a imagem.') }
+})
 ;['photoZoom','photoX','photoY'].forEach(name => editorForm.elements[name].addEventListener('input', updateCropPreview))
 
 const cropPreview = editor.querySelector('.crop-preview')
@@ -315,7 +328,7 @@ const showCinemaSlide = index => {
     slide.classList.toggle('before', position === (cinemaIndex - 1 + cinemaSlides.length) % cinemaSlides.length)
     slide.classList.toggle('after', position === (cinemaIndex + 1) % cinemaSlides.length)
   })
-  document.querySelector('.cinema-progress span').textContent = `${String(cinemaIndex + 1).padStart(2, '0')} / 03`
+  document.querySelector('.cinema-progress span').textContent = `${String(cinemaIndex + 1).padStart(2, '0')} / ${String(cinemaSlides.length).padStart(2, '0')}`
   document.querySelector('.cinema-progress i').style.width = `${((cinemaIndex + 1) / cinemaSlides.length) * 100}%`
 }
 const openCinemaLightbox = index => {
@@ -324,9 +337,6 @@ const openCinemaLightbox = index => {
   cinemaLightbox.querySelector('img').src = slide.dataset.image
   cinemaLightbox.querySelector('img').alt = `${slide.dataset.title} ampliado`
   cinemaLightbox.querySelector('h3').textContent = slide.dataset.title
-  const link = cinemaLightbox.querySelector('a')
-  link.hidden = !slide.dataset.url
-  if (slide.dataset.url) link.href = slide.dataset.url
   if (!cinemaLightbox.open) cinemaLightbox.showModal()
 }
 document.querySelector('.cinema-back').addEventListener('click', () => showCinemaSlide(cinemaIndex - 1))
@@ -351,7 +361,9 @@ document.querySelector('.whatsapp-float').addEventListener('click', () => {
   window.open(`https://wa.me/55${savedProfile.whatsapp}?text=${encodeURIComponent('Olá, Arthur! Vi seu portfólio profissional e gostaria de conversar.')}`, '_blank', 'noopener')
 })
 
-const certificates = [
+const CUSTOM_CERTIFICATES_KEY = 'arthur-custom-certificates-v1'
+let customCertificates = readSaved(CUSTOM_CERTIFICATES_KEY, [])
+const baseCertificates = [
   ['Certificado de Participação — Jornada Tech.RO','Even3','mar 2026','48659679.2001935.6.5.0587537266179858'],
   ['O ecossistema da LGPD','Descomplica Faculdade Digital','jan 2026','fe011ba1-e1f3-40ca-8307-5415daa22882'],
   ['A Inteligência Artificial como Habilidade no Mercado de Trabalho','Descomplica Faculdade Digital','jan 2026','48c96af5-a5bb-4641-8898-de365153a316'],
@@ -382,14 +394,20 @@ const certificates = [
   ['Fundamentos de Lógica de Programação','Fundação Bradesco','jan 2023','401F6B2C-06A2-4F59-9A48-45FA88F75E82'],
   ['Introdução ao Python','IFRO','nov 2022','4739415.2001935.935446.5.56412783324674671197'],
   ['19ª Semana Nacional de Ciência e Tecnologia','IFRO','out 2022','4714820.2001935.6.5.521083833246797']
-].map(([title, issuer, date, credential]) => ({ title, issuer, date, year: date.slice(-4), credential }))
+].map(([title, issuer, date, credential]) => ({ title, issuer, date, year: date.slice(-4), credential, custom: false }))
 let showAllCertificates = false
 const renderCertificates = () => {
+  const certificates = [...customCertificates.map(cert => ({ ...cert, custom: true })), ...baseCertificates]
   const query = document.querySelector('[data-cert-search]').value.toLocaleLowerCase('pt-BR')
-  const year = document.querySelector('[data-cert-year]').value
+  const yearSelect = document.querySelector('[data-cert-year]')
+  const currentYear = yearSelect.value
+  const years = [...new Set(certificates.map(cert => cert.year))].sort((a, b) => b.localeCompare(a))
+  yearSelect.innerHTML = '<option value="">Todos os anos</option>' + years.map(item => `<option>${escapeHtml(item)}</option>`).join('')
+  yearSelect.value = years.includes(currentYear) ? currentYear : ''
+  const year = yearSelect.value
   const matched = certificates.filter(cert => (!year || cert.year === year) && (!query || `${cert.title} ${cert.issuer}`.toLocaleLowerCase('pt-BR').includes(query)))
   const visible = showAllCertificates || query || year ? matched : matched.slice(0, 9)
-  document.querySelector('[data-cert-grid]').innerHTML = visible.map(cert => `<article class="certificate-card"><div class="certificate-year">${cert.year}</div><div><span>${escapeHtml(cert.issuer)}</span><h3>${escapeHtml(cert.title)}</h3><p>Emitido em ${escapeHtml(cert.date)}</p>${cert.credential ? `<details><summary>Ver credencial</summary><code>${escapeHtml(cert.credential)}</code></details>` : ''}</div></article>`).join('') || '<p class="certificate-none">Nenhum certificado encontrado.</p>'
+  document.querySelector('[data-cert-grid]').innerHTML = visible.map(cert => `<article class="certificate-card"><div class="certificate-year">${escapeHtml(cert.year)}</div><div><span>${escapeHtml(cert.issuer)}</span><h3>${escapeHtml(cert.title)}</h3><p>Emitido em ${escapeHtml(cert.date)}</p>${cert.credential ? `<details><summary>Ver credencial</summary><code>${escapeHtml(cert.credential)}</code></details>` : ''}${isOwnerView && cert.custom ? `<button class="certificate-delete" type="button" data-delete-certificate="${escapeHtml(cert.id)}">Excluir certificado</button>` : ''}</div></article>`).join('') || '<p class="certificate-none">Nenhum certificado encontrado.</p>'
   const more = document.querySelector('[data-cert-more]')
   more.hidden = Boolean(query || year) || matched.length <= 9
   more.textContent = showAllCertificates ? 'Mostrar destaques' : `Ver todos os ${certificates.length} certificados`
@@ -398,6 +416,17 @@ document.querySelector('[data-cert-search]').addEventListener('input', renderCer
 document.querySelector('[data-cert-year]').addEventListener('change', renderCertificates)
 document.querySelector('[data-cert-more]').addEventListener('click', () => { showAllCertificates = !showAllCertificates; renderCertificates() })
 renderCertificates()
+document.addEventListener('certificates-updated', () => {
+  customCertificates = readSaved(CUSTOM_CERTIFICATES_KEY, [])
+  renderCertificates()
+})
+document.querySelector('[data-cert-grid]').addEventListener('click', event => {
+  const id = event.target.closest('[data-delete-certificate]')?.dataset.deleteCertificate
+  if (!id || !isOwnerView) return
+  customCertificates = customCertificates.filter(cert => cert.id !== id)
+  localStorage.setItem(CUSTOM_CERTIFICATES_KEY, JSON.stringify(customCertificates))
+  renderCertificates()
+})
 
 document.querySelector('.profile-editor-trigger').addEventListener('click', event => {
   if (!isRecruiterView && event.target.closest('.brand-avatar')) document.dispatchEvent(new CustomEvent('owner-menu-toggle'))
@@ -414,13 +443,38 @@ editor.querySelector('.editor-save-profile').addEventListener('click', async () 
 editor.querySelector('.editor-publish').addEventListener('click', async () => {
   const title = editorForm.elements.entryTitle.value.trim(), description = editorForm.elements.entryDescription.value.trim()
   if (!title || !description) return editorForm.elements[!title ? 'entryTitle' : 'entryDescription'].focus()
-  const image = await imageToDataUrl(editorForm.elements.entryImage.files[0])
-  savedEntries.unshift({ id: `${Date.now()}`, category: editorForm.elements.entryCategory.value, title, description, image })
-  try { localStorage.setItem(FEED_KEY, JSON.stringify(savedEntries)) } catch { alert('A imagem é muito grande. Escolha uma imagem menor.'); savedEntries.shift(); return }
-  editorForm.elements.entryTitle.value = ''; editorForm.elements.entryDescription.value = ''; editorForm.elements.entryImage.value = ''
-  renderFeed(); editor.close(); document.querySelector('#publicacoes').scrollIntoView({ behavior: 'smooth' })
+  const publishButton = editor.querySelector('.editor-publish')
+  const originalLabel = publishButton.textContent
+  publishButton.disabled = true
+  publishButton.textContent = 'Publicando...'
+  try {
+    const image = await imageToDataUrl(editorForm.elements.entryImage.files[0])
+    savedEntries.unshift({ id: `${Date.now()}`, category: editorForm.elements.entryCategory.value, title, description, image })
+    try { localStorage.setItem(FEED_KEY, JSON.stringify(savedEntries)) } catch { alert('A imagem é muito grande. Escolha uma imagem menor.'); savedEntries.shift(); return }
+    editorForm.elements.entryTitle.value = ''; editorForm.elements.entryDescription.value = ''; editorForm.elements.entryImage.value = ''
+    renderFeed()
+    publishButton.textContent = 'Publicado com sucesso'
+    setTimeout(() => {
+      editor.close()
+      document.querySelector('[data-portfolio-feed]')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }, 450)
+  } catch {
+    alert('Não foi possível processar a imagem. Tente outro arquivo.')
+  } finally {
+    setTimeout(() => { publishButton.disabled = false; publishButton.textContent = originalLabel }, 500)
+  }
 })
 applyProfile(); renderFeed()
+window.addEventListener('storage', event => {
+  if (event.key === PROFILE_KEY) {
+    savedProfile = readSaved(PROFILE_KEY, defaultProfile)
+    applyProfile()
+  }
+  if (event.key === CUSTOM_CERTIFICATES_KEY) {
+    customCertificates = readSaved(CUSTOM_CERTIFICATES_KEY, [])
+    renderCertificates()
+  }
+})
 if (isRecruiterView) {
   editor.querySelectorAll('input,select,textarea,button').forEach(control => { control.disabled = true })
   const feedSection = document.querySelector('.profile-feed')
