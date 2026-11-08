@@ -72,6 +72,7 @@ export const en = {
   'Liderança &amp; Infraestrutura': 'Leadership &amp; Infrastructure',
   'Planejamento, implantação e modernização do ambiente tecnológico, com atuação em sistemas ERP, redes, servidores, CFTV, rádio, fibra óptica, switches e continuidade dos serviços.':
     'Planning, deployment and modernization of the technology environment, working with ERP systems, networks, servers, CCTV, radio links, optical fiber, switches and service continuity.',
+  'Sociedade de Portos e Hidrovias do Estado de Rondônia (SOPH) · set. 2025 – atual': 'Sociedade de Portos e Hidrovias do Estado de Rondônia (SOPH) · Sep 2025 – Present',
   'Gestão de TI': 'IT management',
   'Infraestrutura': 'Infrastructure',
   'Redes': 'Networks',

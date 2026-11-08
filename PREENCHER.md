@@ -3,9 +3,8 @@
 Estas informações não estão no projeto, e o `AGENTS.md` proíbe inventar números, datas, empregadores e e-mails.
 Com elas, o site e o CV em inglês ficam completos.
 
-1. **Datas dos cargos** (mês e ano de início e fim): Chefe de TI, Governo de Rondônia e Sapiens (Ministério Público Federal).
-2. **Nome completo do órgão "SOPH"**, para o CV em inglês. Hoje o CV traz só a sigla.
-3. **E-mail profissional** (e telefone, se quiser) para o CV. Hoje o CV traz só LinkedIn, GitHub e o site.
+1. **Datas dos cargos anteriores** (mês e ano de início e fim): Governo de Rondônia e Sapiens (Ministério Público Federal). O cargo de Chefe de TI na SOPH já consta (set. 2025 até hoje).
+2. **E-mail profissional** (e telefone, se quiser) para o CV. Hoje o CV traz só LinkedIn, GitHub e o site.
 4. **Tipo da graduação** (tecnólogo ou bacharelado) e carga horária no IFRO. Quem avalia diploma de fora pede isso.
 5. **Números reais** do trabalho: quantidade de servidores e máquinas virtuais, usuários atendidos, unidades conectadas, disponibilidade, economia obtida.
 6. **Certificação de nuvem** (AWS, Azure ou Google Cloud), assim que existir, para entrar no site e no CV.

@@ -43,6 +43,9 @@
 /* Publicações do perfil: ficam salvas só no navegador do dono, então o bloco vazio não aparece para os visitantes. */
 body.public-view .portfolio-feed:not(:has(.feed-grid > *)) { display: none; }
 
+/* Empregador e período no card do cargo atual */
+.timeline-item .time-content .role .role-meta { display: block; margin: .35rem 0 .2rem; color: var(--accent, #39d5e6); font: 600 .84rem/1.45 'Space Grotesk', sans-serif; letter-spacing: .02em; }
+
 /* Estudo de caso do SOPH.IA */
 .case-study {
   display: grid;
