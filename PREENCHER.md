@@ -10,6 +10,7 @@ Com elas, o site e o CV em inglês ficam completos.
 6. **Certificação de nuvem** (AWS, Azure ou Google Cloud), assim que existir, para entrar no site e no CV.
 7. **Disponibilidade para mudança** e situação de visto, se quiser que apareça no CV.
 8. **Meio período:** o LinkedIn marca o cargo de Chefe de TI como meio período, e o CV em inglês diz "part-time". Se não for o caso, corrija nos dois.
+9. **Nota do pitch da pós em Cloud:** quando a Descomplica corrigir o pitch, troque "pitch final em avaliação" por "concluída" em `src/main.js`, `src/redesign.js`, `src/i18n-en.js` e `cv/cv-en.html`, e gere o PDF de novo.
 
 ## Como gerar o CV em inglês de novo
 

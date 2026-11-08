@@ -9,7 +9,7 @@ const safeParse = (key, fallback = []) => {
 const escapeHtml = value => String(value || '').replace(/[&<>'"]/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' })[char])
 
 const baseEducation = [
-  { id: 'cloud', type: 'Pós-graduação', period: 'Especialização · out. 2025 – atual', course: 'Projetos de Cloud Computing', institution: 'Descomplica Faculdade Digital', badge: 'Cloud' },
+  { id: 'cloud', type: 'Pós-graduação', period: 'Especialização · out. 2025 – nov. 2026 (pitch final em avaliação)', course: 'Projetos de Cloud Computing', institution: 'Descomplica Faculdade Digital', badge: 'Cloud' },
   { id: 'ifro', type: 'Curso Superior de Tecnologia (CST)', period: 'fev. 2022 – ago. 2024', course: 'Tecnologia da Informação', institution: 'Instituto Federal de Rondônia — IFRO', badge: 'IFRO' },
 ]
 
