@@ -3,12 +3,13 @@
 Estas informações não estão no projeto, e o `AGENTS.md` proíbe inventar números, datas, empregadores e e-mails.
 Com elas, o site e o CV em inglês ficam completos.
 
-1. **Datas dos cargos anteriores** (mês e ano de início e fim): Governo de Rondônia e Sapiens (Ministério Público Federal). O cargo de Chefe de TI na SOPH já consta (set. 2025 até hoje).
+1. **Descrição dos estágios** no Governo de Rondônia e no Ministério Público Federal: o LinkedIn não traz texto sobre eles, então o site e o CV usam descrições genéricas.
 2. **E-mail profissional** (e telefone, se quiser) para o CV. Hoje o CV traz só LinkedIn, GitHub e o site.
-4. **Tipo da graduação** (tecnólogo ou bacharelado) e carga horária no IFRO. Quem avalia diploma de fora pede isso.
+4. **Carga horária** do curso superior de tecnologia (CST) no IFRO. Quem avalia diploma de fora pede isso.
 5. **Números reais** do trabalho: quantidade de servidores e máquinas virtuais, usuários atendidos, unidades conectadas, disponibilidade, economia obtida.
 6. **Certificação de nuvem** (AWS, Azure ou Google Cloud), assim que existir, para entrar no site e no CV.
 7. **Disponibilidade para mudança** e situação de visto, se quiser que apareça no CV.
+8. **Meio período:** o LinkedIn marca o cargo de Chefe de TI como meio período, e o CV em inglês diz "part-time". Se não for o caso, corrija nos dois.
 
 ## Como gerar o CV em inglês de novo
 

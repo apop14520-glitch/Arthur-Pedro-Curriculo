@@ -93,8 +93,9 @@ document.querySelector('#app').innerHTML = `
       <div class="section-heading reveal"><h2>Uma trajetória construída<br><em>de dentro da operação.</em></h2><p>Experiência progressiva em suporte, administração de ambientes, infraestrutura e liderança de TI.</p></div>
       <div class="timeline">
         <article class="timeline-item featured reveal"><div class="time-mark"><i></i><span>Atual</span></div><div class="time-content"><div class="role"><h3>Chefe de TI</h3><span>Liderança & Infraestrutura</span><small class="role-meta">Sociedade de Portos e Hidrovias do Estado de Rondônia (SOPH) · set. 2025 – atual</small></div><p>Planejamento, implantação e modernização do ambiente tecnológico, com atuação em sistemas ERP, redes, servidores, CFTV, rádio, fibra óptica, switches e continuidade dos serviços.</p><div class="tags"><span>Gestão de TI</span><span>ERP</span><span>Infraestrutura</span><span>Redes</span><span>CFTV</span></div></div></article>
-        <article class="timeline-item reveal"><div class="time-mark"><i></i><span>Experiência pública</span></div><div class="time-content"><div class="role"><h3>Tecnologia da Informação</h3><span>Governo de Rondônia</span></div><p>Atuação com suporte e sustentação tecnológica em ambiente público, apoiando usuários, serviços e rotinas de tecnologia.</p><div class="tags"><span>Suporte</span><span>Serviços de TI</span><span>Setor público</span></div></div></article>
-        <article class="timeline-item reveal"><div class="time-mark"><i></i><span>Base técnica</span></div><div class="time-content"><div class="role"><h3>Suporte & Administração</h3><span>Sapiens · Ministério Público Federal</span></div><p>Suporte técnico, administração de dispositivos e perfis, Google Admin Console e atendimento a usuários — a base prática para uma visão completa da operação.</p><div class="tags"><span>Google Admin</span><span>Chromebooks</span><span>Help Desk</span></div></div></article>
+        <article class="timeline-item reveal"><div class="time-mark"><i></i><span>Experiência pública</span></div><div class="time-content"><div class="role"><h3>Estagiário de TI</h3><span>Governo de Rondônia</span><small class="role-meta">jun. 2023 – ago. 2025</small></div><p>Atuação com suporte e sustentação tecnológica em ambiente público, apoiando usuários, serviços e rotinas de tecnologia.</p><div class="tags"><span>Suporte</span><span>Serviços de TI</span><span>Setor público</span></div></div></article>
+        <article class="timeline-item reveal"><div class="time-mark"><i></i><span>Base técnica</span></div><div class="time-content"><div class="role"><h3>Estagiário · Técnico educacional</h3><span>Colégio e Curso Sapiens</span><small class="role-meta">mar. 2023 – mai. 2023</small></div><p>Manutenção de Chromebooks institucionais (formatação, perfis de estudantes, solicitações de reparo), suporte ao aluno e gerenciamento do Google Admin Console.</p><div class="tags"><span>Google Admin</span><span>Chromebooks</span><span>Help Desk</span></div></div></article>
+        <article class="timeline-item reveal"><div class="time-mark"><i></i><span>Início na área</span></div><div class="time-content"><div class="role"><h3>Estagiário voluntário · Suporte de TI</h3><span>Ministério Público Federal</span><small class="role-meta">set. 2022 – fev. 2023</small></div><p>Suporte de TI ao usuário no Ministério Público Federal, em Porto Velho.</p><div class="tags"><span>Suporte</span><span>Help Desk</span><span>Setor público</span></div></div></article>
       </div>
     </section>
 
@@ -116,8 +117,8 @@ document.querySelector('#app').innerHTML = `
       <div class="education-grid">
         <div class="education-intro reveal"><h2>Conhecimento aplicado<br><em>à realidade.</em></h2><p>Formação tecnológica combinada à especialização em projetos de nuvem e à experiência prática em ambientes de TI.</p></div>
         <div class="education-list">
-          <article class="reveal"><span class="degree">Pós-graduação</span><div><h3>Projetos de Cloud Computing</h3><p>Descomplica</p></div><b>Cloud</b></article>
-          <article class="reveal"><span class="degree">Graduação · 2022—2024</span><div><h3>Tecnologia da Informação</h3><p>Instituto Federal de Rondônia — IFRO</p></div><b>IFRO</b></article>
+          <article class="reveal"><span class="degree">Pós-graduação · Especialização · out. 2025 – atual</span><div><h3>Projetos de Cloud Computing</h3><p>Descomplica</p></div><b>Cloud</b></article>
+          <article class="reveal"><span class="degree">Curso Superior de Tecnologia (CST) · fev. 2022 – ago. 2024</span><div><h3>Tecnologia da Informação</h3><p>Instituto Federal de Rondônia — IFRO</p></div><b>IFRO</b></article>
           <article class="reveal"><span class="degree">Desenvolvimento contínuo</span><div><h3>Formação complementar</h3><p>MySQL · Suporte em TI · Python · Servidores Linux</p></div><b>+</b></article>
         </div>
       </div>
@@ -145,6 +146,18 @@ document.querySelector('#app').innerHTML = `
           <div><h4>Recursos</h4><p>Biblioteca institucional (PDF e DOCX), chat com indicação das fontes consultadas, modelos de ETP, TR, despacho e memorando, e exportação das respostas para Word.</p></div>
         </div>
         <a class="case-link" href="${profileLinks.sophia}" target="_blank" rel="noreferrer">Ver o código no GitHub ${icons.external}</a>
+      </article>
+      <article class="case-study reveal" aria-labelledby="case-access-title">
+        <header>
+          <span class="case-kicker">Estudo de caso</span>
+          <h3 id="case-access-title">Controle de acesso de visitantes na SOPH</h3>
+          <p>Sistema criado a pedido da direção para registrar a entrada de visitantes, com foto tirada pela webcam. Por tratar dados sensíveis, os registros ficam guardados localmente, em um computador da própria instituição.</p>
+        </header>
+        <div class="case-columns">
+          <div><h4>O que faz</h4><p>Cadastro de visitantes com foto, busca de visitantes frequentes por nome ou CPF e níveis de acesso definidos para cada usuário.</p></div>
+          <div><h4>Como foi construído</h4><p>Node.js e JavaScript, com os dados em arquivo JSON local. Uma versão em Java foi iniciada com o apoio da equipe de informática.</p></div>
+          <div><h4>Próximo passo</h4><p>Publicar o sistema como intranet em um servidor da própria SOPH, atendendo da recepção à portaria.</p></div>
+        </div>
       </article>
       <p class="project-note reveal">Projetos apresentados como áreas de atuação. Inclua métricas e resultados públicos conforme sua disponibilidade.</p>
     </section>

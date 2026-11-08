@@ -4,81 +4,138 @@
 <meta charset="utf-8">
 <title>Arthur Pedro Oliveira de Paula | CV</title>
 <style>
-  @page { size: A4; margin: 11mm 14mm; }
+  /* Só Arial. Títulos de seção em 14 pt, subtítulos em 12 pt, texto em 10 pt. */
+  @page { size: A4; margin: 15mm 18mm 16mm 18mm; }
   * { box-sizing: border-box; }
-  body { margin: 0; font-family: Arial, Helvetica, sans-serif; font-size: 9.3pt; line-height: 1.34; color: #1a1f2b; }
-  h1 { margin: 0; font-size: 21pt; letter-spacing: .02em; color: #0b2a3f; }
-  .role { margin: 2px 0 0; font-size: 11pt; font-weight: 700; color: #0f7f90; }
-  .contact { margin: 5px 0 0; font-size: 8.8pt; color: #4a5568; }
-  h2 { margin: 9px 0 3px; padding-bottom: 2px; border-bottom: 1px solid #c8d3dc; font-size: 9.6pt; letter-spacing: .12em; text-transform: uppercase; color: #0b2a3f; }
-  p { margin: 0 0 3px; }
-  .job { margin-bottom: 6px; }
-  .job-head { display: flex; justify-content: space-between; gap: 10px; font-weight: 700; }
-  .job-head span { font-weight: 400; color: #4a5568; }
-  .employer { margin: 0 0 2px; font-style: italic; color: #4a5568; }
-  ul { margin: 2px 0 0; padding-left: 15px; }
-  li { margin: 0 0 1.5px; }
-  .skills p { margin-bottom: 2px; }
-  .skills b { color: #0b2a3f; }
+  body { margin: 0; font-family: Arial, Helvetica, sans-serif; font-size: 10pt; line-height: 1.55; color: #1f2937; }
+
+  header { padding-bottom: 14px; border-bottom: 2.5px solid #0f7f90; }
+  h1 { margin: 0; font-size: 26pt; line-height: 1.15; font-weight: 700; letter-spacing: .01em; color: #0b2a3f; }
+  .role { margin: 6px 0 0; font-size: 12pt; font-weight: 700; color: #0f7f90; }
+  .contact { margin: 10px 0 0; font-size: 9.5pt; line-height: 1.7; color: #4b5563; }
+  .contact span { white-space: nowrap; }
+  .contact i { margin: 0 8px; font-style: normal; color: #9ca3af; }
+
+  h2 { margin: 24px 0 12px; padding-bottom: 6px; border-bottom: 1px solid #d5dde3; font-size: 14pt; line-height: 1.2; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #0b2a3f; }
+  h3 { margin: 0; font-size: 12pt; line-height: 1.35; font-weight: 700; color: #0b2a3f; }
+  p { margin: 0 0 6px; }
+
+  .item { margin-bottom: 16px; break-inside: avoid; }
+  .item:last-child { margin-bottom: 0; }
+  .row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+  .when { flex: none; font-size: 10pt; color: #4b5563; white-space: nowrap; }
+  .where { margin: 1px 0 6px; font-size: 10pt; font-style: italic; color: #4b5563; }
+  ul { margin: 0; padding-left: 17px; }
+  li { margin: 0 0 4px; padding-left: 2px; }
+  li::marker { color: #0f7f90; }
+
+  .skills { display: grid; grid-template-columns: 175px 1fr; column-gap: 18px; row-gap: 8px; }
+  .skills dt { margin: 0; font-weight: 700; color: #0b2a3f; }
+  .skills dd { margin: 0; }
+
+  .note { font-size: 10pt; color: #4b5563; }
+  .break { break-before: page; }
+  .link { color: #0f7f90; }
 </style>
 </head>
 <body>
 
-<h1>ARTHUR PEDRO OLIVEIRA DE PAULA</h1>
-<p class="role">IT Infrastructure &amp; Cloud | Head of IT</p>
-<p class="contact">Porto Velho, Rondônia, Brazil &nbsp;·&nbsp; linkedin.com/in/arthur-p-7098a2150 &nbsp;·&nbsp; github.com/apop14520-glitch &nbsp;·&nbsp; arthur-pedro-curriculo.apop14520.workers.dev</p>
+<header>
+  <h1>ARTHUR PEDRO OLIVEIRA DE PAULA</h1>
+  <p class="role">IT Infrastructure &amp; Cloud &nbsp;|&nbsp; Head of IT</p>
+  <p class="contact"><span>Porto Velho, Rondônia, Brazil</span><i>|</i><span>linkedin.com/in/arthur-p-7098a2150</span><i>|</i><span>github.com/apop14520-glitch</span><i>|</i><span>arthur-pedro-curriculo.apop14520.workers.dev</span></p>
+</header>
 
 <h2>Profile</h2>
-<p>IT professional with 3 years of experience in public-sector IT, currently Head of IT at SOPH, the state-owned port and waterway company of Rondônia. Hands-on with virtualization (Proxmox), monitoring (Zabbix), service desk (GLPI), Active Directory, networks and ERP systems. Also builds internal web systems, including SOPH.IA, an AI assistant for institutional documents running on Cloudflare. Completing a postgraduate specialization in Cloud Computing Projects.</p>
+<p>IT professional in public-sector IT since 2022: internships at the Federal Public Prosecutor’s Office and the Rondônia State Government, and, since September 2025, Head of IT at SOPH, the state-owned port and waterway company of Rondônia. Hands-on with virtualization (Proxmox), monitoring (Zabbix), service desk (GLPI), Active Directory, networks and ERP systems. Also builds internal systems, including SOPH.IA, an AI assistant for institutional documents on Cloudflare, and a visitor access-control system. Completing a postgraduate specialization in Cloud Computing Projects.</p>
 
 <h2>Experience</h2>
-<div class="job">
-  <div class="job-head">Head of IT <span>Sep 2025 – Present</span></div>
-  <p class="employer">Sociedade de Portos e Hidrovias do Estado de Rondônia (SOPH): state-owned port and waterway company, Porto Velho, Brazil</p>
+
+<div class="item">
+  <div class="row"><h3>Head of IT (part-time)</h3><span class="when">Sep 2025 – Present</span></div>
+  <p class="where">Sociedade de Portos e Hidrovias do Estado de Rondônia (SOPH): state-owned port and waterway company, Porto Velho, Brazil</p>
   <ul>
     <li>Plan, deploy and modernize the technology environment: ERP systems, networks, servers, CCTV, radio links, optical fiber and switches, keeping services available.</li>
     <li>Administer virtualization (Proxmox VE), monitoring (Zabbix), service desk (GLPI) and identity services (Active Directory, file server).</li>
     <li>Lead the day-to-day IT operation, balancing people, processes and technology with focus on availability, security and service continuity.</li>
+    <li>Built a visitor access-control system at management’s request (Node.js, webcam photo capture, frequent-visitor lookup, per-user access levels).</li>
   </ul>
 </div>
-<div class="job">
-  <div class="job-head">IT Support <span>Rondônia State Government, Brazil</span></div>
+
+<div class="item">
+  <div class="row"><h3>IT Intern</h3><span class="when">Jun 2023 – Aug 2025</span></div>
+  <p class="where">Rondônia State Government, Brazil</p>
   <ul><li>Technical support and technology sustainment in a public-sector environment, assisting users, services and IT routines.</li></ul>
 </div>
-<div class="job">
-  <div class="job-head">IT Support &amp; Administration <span>Sapiens, Federal Public Prosecutor’s Office (MPF), Brazil</span></div>
-  <ul><li>Technical support, device and profile administration, Google Admin Console, Chromebooks, help desk and user service.</li></ul>
+
+<div class="item">
+  <div class="row"><h3>Intern, Educational Technician</h3><span class="when">Mar 2023 – May 2023</span></div>
+  <p class="where">Colégio e Curso Sapiens, Porto Velho, Brazil</p>
+  <ul><li>Maintained institutional Chromebooks (reimaging, student profiles, repair requests), supported students and managed Google Admin Console.</li></ul>
 </div>
 
-<h2>Skills</h2>
-<div class="skills">
-  <p><b>Virtualization &amp; cloud:</b> Proxmox VE, virtual machines, backup and recovery, Cloud Computing (specialization in progress)</p>
-  <p><b>Monitoring &amp; service management:</b> Zabbix, GLPI, incident management</p>
-  <p><b>Systems &amp; identity:</b> Active Directory, file server, Windows and Linux, ERP systems, Google Admin Console</p>
-  <p><b>Networks:</b> switches, optical fiber, radio links, CCTV</p>
-  <p><b>Development &amp; AI:</b> Python, web applications, React and Vite, Cloudflare Workers/Pages, D1, R2, Workers AI</p>
+<div class="item">
+  <div class="row"><h3>Volunteer Intern, IT User Support</h3><span class="when">Sep 2022 – Feb 2023</span></div>
+  <p class="where">Federal Public Prosecutor’s Office (MPF), Porto Velho, Brazil</p>
+  <ul><li>IT support to users in a federal public-sector office.</li></ul>
 </div>
+
+<p class="note" style="margin-top:14px"><b>Earlier roles (non-IT):</b> financial assistant, Hospital Prontocordis (Jan 2019 – May 2020); stock assistant, Rovema Energia (Aug 2020 – Jul 2021).</p>
+
+<h2 class="break">Skills</h2>
+<dl class="skills">
+  <dt>Virtualization &amp; cloud</dt><dd>Proxmox VE, virtual machines, backup and recovery, Cloud Computing (specialization in progress)</dd>
+  <dt>Monitoring &amp; service management</dt><dd>Zabbix, GLPI, incident management</dd>
+  <dt>Systems &amp; identity</dt><dd>Active Directory, file server, Windows and Linux, ERP systems (Questor Empresarial), Google Admin Console</dd>
+  <dt>Networks</dt><dd>Switches, optical fiber, radio links, CCTV</dd>
+  <dt>Service &amp; compliance</dt><dd>Service desk, network administration, technical troubleshooting, LGPD and GDPR concepts</dd>
+  <dt>Development &amp; AI</dt><dd>Python, web applications, React and Vite, Cloudflare Workers/Pages, D1, R2, Workers AI</dd>
+</dl>
 
 <h2>Selected projects</h2>
-<ul>
-  <li><b>SOPH.IA</b>: institutional AI assistant to draft, review and version administrative documents. React and Vite, Cloudflare Pages Functions, D1, R2 and Workers AI; JWT login with attempt limits and permissions validated on the server. github.com/apop14520-glitch/SOPH.IA</li>
-  <li><b>NEXFORMA</b>: platform for management, pricing and production support with 3D printing.</li>
-  <li><b>Do Zero ao Bananal</b>: interactive digital manual for setting up, managing and tracking a banana crop.</li>
-  <li><b>Gram Energia</b>: institutional website presenting clean-energy solutions and subscription-based savings.</li>
-</ul>
+<div class="item">
+  <h3>SOPH.IA</h3>
+  <p>Institutional AI assistant to draft, review and version administrative documents. React and Vite, Cloudflare Pages Functions, D1, R2 and Workers AI; JWT login with attempt limits and permissions validated on the server. <span class="link">github.com/apop14520-glitch/SOPH.IA</span></p>
+</div>
+<div class="item">
+  <h3>Visitor access control (SOPH)</h3>
+  <p>System to register visitors with a webcam photo, look up frequent visitors by name or CPF and set access levels per user. Node.js with local JSON storage; a Java version was started and an intranet rollout is planned.</p>
+</div>
+<div class="item">
+  <h3>NEXFORMA</h3>
+  <p>Platform for management, pricing and production support with 3D printing.</p>
+</div>
+<div class="item">
+  <h3>Do Zero ao Bananal</h3>
+  <p>Interactive digital manual for setting up, managing and tracking a banana crop.</p>
+</div>
+<div class="item">
+  <h3>Gram Energia</h3>
+  <p>Institutional website presenting clean-energy solutions and subscription-based savings.</p>
+</div>
 
 <h2>Education</h2>
-<p><b>Postgraduate specialization, Cloud Computing Projects</b> | Descomplica Faculdade Digital | in progress</p>
-<p><b>Undergraduate degree, Information Technology</b> | Federal Institute of Rondônia (IFRO) | 2022–2024</p>
+<div class="item">
+  <div class="row"><h3>Postgraduate specialization (lato sensu), Cloud Computing Projects</h3><span class="when">Oct 2025 – Present</span></div>
+  <p class="where">Descomplica Faculdade Digital</p>
+</div>
+<div class="item">
+  <div class="row"><h3>Technologist degree (CST) in Information Technology</h3><span class="when">Feb 2022 – Aug 2024</span></div>
+  <p class="where">Federal Institute of Rondônia (IFRO)</p>
+</div>
 
 <h2>Publication</h2>
-<p>Scientific article published in <i>Revista Observatorio Latinoamericana</i> (ojs.observatoriolatinoamericano.com/ojs/index.php/olel/article/view/5520).</p>
+<div class="item">
+  <h3>Scientific article</h3>
+  <p class="where" style="margin-bottom:0">Revista Observatorio Latinoamericana: <span class="link">ojs.observatoriolatinoamericano.com/ojs/index.php/olel/article/view/5520</span></p>
+</div>
 
 <h2>Selected certificates</h2>
 <ul>
   <li>Google: AI Fundamentals (<i>Fundamentos de IA do Google</i>), Jul 2025</li>
   <li>Google: IT Support (<i>Suporte em TI</i>), Jul 2025</li>
-  <li>Descomplica Faculdade Digital: Computing and Artificial Intelligence, Nov 2025; The LGPD ecosystem (Brazilian data protection law), Jan 2026</li>
+  <li>Descomplica Faculdade Digital: Computing and Artificial Intelligence, Nov 2025</li>
+  <li>Descomplica Faculdade Digital: The LGPD ecosystem (Brazilian data protection law), Jan 2026</li>
 </ul>
 
 <h2>Languages</h2>
