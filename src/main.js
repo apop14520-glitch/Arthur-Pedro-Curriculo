@@ -17,12 +17,15 @@ import './redesign.css'
 import './social-network-upgrade.css'
 import './footer-professional.css'
 import './carousel-contrast.css'
+import './improvements.css'
 
 // Substitua os dois links marcados abaixo pelos perfis individuais quando disponíveis.
 const profileLinks = {
   linkedin: 'https://www.linkedin.com/in/arthur-p-7098a2150/',
   github: 'https://github.com/apop14520-glitch',
   lattes: 'https://lattes.cnpq.br/', // TODO: informar o currículo de Arthur
+  sophia: 'https://github.com/apop14520-glitch/SOPH.IA',
+  cv: '/Arthur-Pedro-CV-EN.pdf',
 }
 
 const icons = {
@@ -55,10 +58,11 @@ document.querySelector('#app').innerHTML = `
         <p class="hero-lead">Sou <strong data-profile-name>Arthur Pedro Oliveira de Paula</strong>, <span data-profile-role>Chefe de TI</span>. Transformo ambientes complexos em infraestrutura confiável, segura e preparada para crescer.</p>
         <div class="hero-actions">
           <a class="button button-primary" href="#experiencia">Conheça minha trajetória ${icons.arrow}</a>
+          <a class="button button-ghost" href="${profileLinks.cv}" download>Baixar CV em inglês (PDF)</a>
         </div>
       </div>
       <div class="hero-panel reveal" aria-label="Resumo profissional">
-        <div class="system-carousel" aria-label="Projetos em destaque"><div class="carousel-track"><figure class="carousel-slide active"><img src="/projetos/sophia.png" alt="Sistema SOPH.IA" /><figcaption><b>SOPH.IA</b><span>Assistente institucional inteligente</span></figcaption></figure><figure class="carousel-slide"><img src="/projetos/do-zero-ao-bananal.png" alt="Sistema Do Zero ao Bananal" /><figcaption><b>Do Zero ao Bananal</b><span>Manual digital interativo</span></figcaption></figure><figure class="carousel-slide"><img src="/projetos/nexforma.png" alt="Sistema NEXFORMA" data-nexforma-image /><div class="nexforma-fallback"><b>NEXFORMA</b><span>Adicione o print em Personalizar</span></div><figcaption><b>NEXFORMA</b><span>Plataforma de formação</span></figcaption></figure></div><button class="carousel-prev" type="button" aria-label="Imagem anterior">‹</button><button class="carousel-next" type="button" aria-label="Próxima imagem">›</button><div class="carousel-dots" role="tablist"><button class="active" aria-label="Ver SOPH.IA"></button><button aria-label="Ver Do Zero ao Bananal"></button><button aria-label="Ver NEXFORMA"></button></div></div>
+        <div class="system-carousel" aria-label="Projetos em destaque"><div class="carousel-track"><figure class="carousel-slide active"><img src="/projetos/sophia.png" alt="Sistema SOPH.IA" /><figcaption><b>SOPH.IA</b><span>Assistente institucional inteligente</span></figcaption></figure><figure class="carousel-slide"><img src="/projetos/do-zero-ao-bananal.png" alt="Sistema Do Zero ao Bananal" /><figcaption><b>Do Zero ao Bananal</b><span>Manual digital interativo</span></figcaption></figure><figure class="carousel-slide"><img src="/projetos/nexforma.png" alt="Sistema NEXFORMA" data-nexforma-image /><div class="nexforma-fallback"><b>NEXFORMA</b><span>Plataforma de gestão e formação</span></div><figcaption><b>NEXFORMA</b><span>Plataforma de formação</span></figcaption></figure></div><button class="carousel-prev" type="button" aria-label="Imagem anterior">‹</button><button class="carousel-next" type="button" aria-label="Próxima imagem">›</button><div class="carousel-dots" role="tablist"><button class="active" aria-label="Ver SOPH.IA"></button><button aria-label="Ver Do Zero ao Bananal"></button><button aria-label="Ver NEXFORMA"></button></div></div>
         <div class="panel-top"><span class="status-dot"></span> Sistemas operacionais</div>
         <div class="metric"><strong>TI</strong><span>Liderança técnica<br>e visão estratégica</span></div>
         <div class="signal" aria-label="Habilidades técnicas"><i data-skill="Infraestrutura" data-level="90%"></i><i data-skill="Cloud Computing" data-level="82%"></i><i data-skill="Proxmox" data-level="94%"></i><i data-skill="Zabbix" data-level="86%"></i><i data-skill="GLPI" data-level="91%"></i><i data-skill="Active Directory" data-level="88%"></i><i data-skill="File Server" data-level="95%"></i><i data-skill="Redes" data-level="92%"></i><i data-skill="ERP" data-level="89%"></i><i data-skill="CFTV" data-level="84%"></i><i data-skill="Fibra óptica" data-level="87%"></i><i data-skill="Switches" data-level="93%"></i></div>
@@ -121,7 +125,7 @@ document.querySelector('#app').innerHTML = `
 
     <section class="section projects" id="projetos">
       <div class="section-kicker reveal"><span>05</span> Projetos</div>
-      <div class="section-heading reveal"><h2>Frentes de atuação<br><em>com impacto real.</em></h2><p>Áreas que representam a prática profissional e podem receber estudos de caso, métricas e detalhes no futuro.</p></div>
+      <div class="section-heading reveal"><h2>Frentes de atuação<br><em>com impacto real.</em></h2><p>Áreas que representam a prática profissional ao longo da carreira em TI.</p></div>
       <div class="projects-grid">
         <article class="project-card project-feature reveal"><div class="project-screenshot"><img src="/projetos/sophia.png" alt="Captura de tela do projeto SOPH.IA" /></div><div class="project-body"><span>Projeto web</span><h3>SOPH.IA</h3><p>Assistente institucional para elaboração, revisão e organização de documentos administrativos.</p><div class="tags"><span>IA</span><span>Interface</span><span>Produtividade</span></div></div></article>
         <article class="project-card project-feature reveal"><div class="project-screenshot"><img src="/projetos/do-zero-ao-bananal.png" alt="Captura de tela do projeto Do Zero ao Bananal" /></div><div class="project-body"><span>Projeto web</span><h3>Do Zero ao Bananal</h3><p>Manual digital de implantação, manejo inicial e acompanhamento do cultivo de banana.</p><div class="tags"><span>Website</span><span>Conteúdo</span><span>Experiência</span></div></div></article>
@@ -129,6 +133,19 @@ document.querySelector('#app').innerHTML = `
         <article class="project-card reveal"><div class="project-visual bars"><i></i><i></i><i></i><i></i><i></i><b>OBS / 02</b></div><div class="project-body"><span>Observabilidade</span><h3>Monitoramento de serviços</h3><p>Visibilidade de ativos e serviços para antecipar falhas e apoiar decisões operacionais.</p><div class="tags"><span>Zabbix</span><span>GLPI</span></div></div></article>
         <article class="project-card reveal"><div class="project-visual cubes"><i></i><i></i><i></i><b>CLOUD / 03</b></div><div class="project-body"><span>Virtualização</span><h3>Consolidação de ambientes</h3><p>Organização de recursos computacionais com foco em eficiência, disponibilidade e recuperação.</p><div class="tags"><span>Proxmox</span><span>Backup</span></div></div></article>
       </div>
+      <article class="case-study reveal" aria-labelledby="case-sophia-title">
+        <header>
+          <span class="case-kicker">Estudo de caso</span>
+          <h3 id="case-sophia-title">SOPH.IA — assistente documental institucional</h3>
+          <p>Aplicação para elaborar, revisar e versionar despachos, memorandos, estudos técnicos preliminares (ETP) e termos de referência (TR). Não assina documentos nem substitui a revisão de servidor competente.</p>
+        </header>
+        <div class="case-columns">
+          <div><h4>Arquitetura</h4><p>Interface em React e Vite, API em Pages Functions, dados em D1, arquivos em R2 e geração com Workers AI. Tudo na Cloudflare, sem servidor próprio para manter.</p></div>
+          <div><h4>Segurança e governança</h4><p>Login com JWT e limite de tentativas, perfis de acesso com permissões validadas no servidor e pesquisa na web restrita a domínios autorizados pelo administrador.</p></div>
+          <div><h4>Recursos</h4><p>Biblioteca institucional (PDF e DOCX), chat com indicação das fontes consultadas, modelos de ETP, TR, despacho e memorando, e exportação das respostas para Word.</p></div>
+        </div>
+        <a class="case-link" href="${profileLinks.sophia}" target="_blank" rel="noreferrer">Ver o código no GitHub ${icons.external}</a>
+      </article>
       <p class="project-note reveal">Projetos apresentados como áreas de atuação. Inclua métricas e resultados públicos conforme sua disponibilidade.</p>
     </section>
 
@@ -485,7 +502,10 @@ if (isRecruiterView) {
   }
 }
 
-import('./redesign.js').then(({ initializeRedesign }) => initializeRedesign({ isOwnerView, editor }))
+import('./redesign.js').then(({ initializeRedesign }) => {
+  initializeRedesign({ isOwnerView, editor })
+  if (!isOwnerView) import('./i18n.js').then(({ initI18n }) => initI18n())
+})
 
 const header = document.querySelector('.site-header')
 const menuButton = document.querySelector('.menu-button')

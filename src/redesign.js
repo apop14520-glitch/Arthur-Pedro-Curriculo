@@ -53,9 +53,9 @@ export function initializeRedesign({ isOwnerView, editor }) {
   document.querySelector('.contact-actions')?.remove()
   document.querySelector('.hero-proof')?.remove()
   const topNavigation = document.querySelector('.nav')
-  if (topNavigation && !topNavigation.querySelector('a[href="#sistemas"]')) {
+  if (topNavigation && !topNavigation.querySelector('a[href="#home"]')) {
     const homeLink = document.createElement('a')
-    homeLink.href = '#sistemas'
+    homeLink.href = '#home'
     homeLink.textContent = 'Início'
     topNavigation.prepend(homeLink)
   }
