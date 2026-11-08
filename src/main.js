@@ -117,7 +117,7 @@ document.querySelector('#app').innerHTML = `
       <div class="education-grid">
         <div class="education-intro reveal"><h2>Conhecimento aplicado<br><em>à realidade.</em></h2><p>Formação tecnológica combinada à especialização em projetos de nuvem e à experiência prática em ambientes de TI.</p></div>
         <div class="education-list">
-          <article class="reveal"><span class="degree">Pós-graduação · Especialização · out. 2025 – atual</span><div><h3>Projetos de Cloud Computing</h3><p>Descomplica</p></div><b>Cloud</b></article>
+          <article class="reveal"><span class="degree">Pós-graduação · Especialização · out. 2025 – nov. 2026 (pitch final em avaliação)</span><div><h3>Projetos de Cloud Computing</h3><p>Descomplica</p></div><b>Cloud</b></article>
           <article class="reveal"><span class="degree">Curso Superior de Tecnologia (CST) · fev. 2022 – ago. 2024</span><div><h3>Tecnologia da Informação</h3><p>Instituto Federal de Rondônia — IFRO</p></div><b>IFRO</b></article>
           <article class="reveal"><span class="degree">Desenvolvimento contínuo</span><div><h3>Formação complementar</h3><p>MySQL · Suporte em TI · Python · Servidores Linux</p></div><b>+</b></article>
         </div>
@@ -146,18 +146,6 @@ document.querySelector('#app').innerHTML = `
           <div><h4>Recursos</h4><p>Biblioteca institucional (PDF e DOCX), chat com indicação das fontes consultadas, modelos de ETP, TR, despacho e memorando, e exportação das respostas para Word.</p></div>
         </div>
         <a class="case-link" href="${profileLinks.sophia}" target="_blank" rel="noreferrer">Ver o código no GitHub ${icons.external}</a>
-      </article>
-      <article class="case-study reveal" aria-labelledby="case-access-title">
-        <header>
-          <span class="case-kicker">Estudo de caso</span>
-          <h3 id="case-access-title">Controle de acesso de visitantes na SOPH</h3>
-          <p>Sistema criado a pedido da direção para registrar a entrada de visitantes, com foto tirada pela webcam. Por tratar dados sensíveis, os registros ficam guardados localmente, em um computador da própria instituição.</p>
-        </header>
-        <div class="case-columns">
-          <div><h4>O que faz</h4><p>Cadastro de visitantes com foto, busca de visitantes frequentes por nome ou CPF e níveis de acesso definidos para cada usuário.</p></div>
-          <div><h4>Como foi construído</h4><p>Node.js e JavaScript, com os dados em arquivo JSON local. Uma versão em Java foi iniciada com o apoio da equipe de informática.</p></div>
-          <div><h4>Próximo passo</h4><p>Publicar o sistema como intranet em um servidor da própria SOPH, atendendo da recepção à portaria.</p></div>
-        </div>
       </article>
       <p class="project-note reveal">Projetos apresentados como áreas de atuação. Inclua métricas e resultados públicos conforme sua disponibilidade.</p>
     </section>

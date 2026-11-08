@@ -139,7 +139,7 @@ export const en = {
   'Conhecimento aplicado<br><em>à realidade.</em>': 'Knowledge applied<br><em>to the real world.</em>',
   'Formação tecnológica combinada à especialização em projetos de nuvem e à experiência prática em ambientes de TI.':
     'Technology education combined with a specialization in cloud projects and hands-on experience in IT environments.',
-  'Pós-graduação · Especialização · out. 2025 – atual': 'Postgraduate · Specialization · Oct 2025 – Present',
+  'Pós-graduação · Especialização · out. 2025 – nov. 2026 (pitch final em avaliação)': 'Postgraduate · Specialization · Oct 2025 – Nov 2026 (final pitch under review)',
   'Projetos de Cloud Computing': 'Cloud Computing Projects',
   'Curso Superior de Tecnologia (CST) · fev. 2022 – ago. 2024': 'Technologist degree (CST) · Feb 2022 – Aug 2024',
   'Instituto Federal de Rondônia — IFRO': 'Federal Institute of Rondônia — IFRO',
@@ -210,20 +210,6 @@ export const en = {
   'Suporte e sustentação tecnológica em ambiente público.': 'Support and technology sustainment in a public-sector environment.',
   'Chefe de TI na SOPH': 'Head of IT at SOPH',
   'Passa a liderar a infraestrutura e os sistemas de TI.': 'Takes over leading IT infrastructure and systems.',
-
-  // Estudo de caso: controle de acesso
-  'Controle de acesso de visitantes na SOPH': 'Visitor access control at SOPH',
-  'Sistema criado a pedido da direção para registrar a entrada de visitantes, com foto tirada pela webcam. Por tratar dados sensíveis, os registros ficam guardados localmente, em um computador da própria instituição.':
-    'A system built at the request of management to record visitor entries, with a photo taken by webcam. Because it handles sensitive data, records are stored locally on a computer inside the organization.',
-  'O que faz': 'What it does',
-  'Cadastro de visitantes com foto, busca de visitantes frequentes por nome ou CPF e níveis de acesso definidos para cada usuário.':
-    'Visitor registration with a photo, lookup of frequent visitors by name or CPF (Brazilian tax ID), and access levels defined per user.',
-  'Como foi construído': 'How it was built',
-  'Node.js e JavaScript, com os dados em arquivo JSON local. Uma versão em Java foi iniciada com o apoio da equipe de informática.':
-    'Node.js and JavaScript, with data in a local JSON file. A Java version was started with support from the IT team.',
-  'Próximo passo': 'Next step',
-  'Publicar o sistema como intranet em um servidor da própria SOPH, atendendo da recepção à portaria.':
-    'Publish the system as an intranet on a SOPH server, serving everything from reception to the gatehouse.',
 
   // Contato e rodapé
   '<span></span> Contato': '<span></span> Contact',
