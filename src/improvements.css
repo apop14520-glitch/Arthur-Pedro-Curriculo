@@ -8,6 +8,9 @@
   .site-header .brand { margin-right: 1.3rem; }
   .site-header .brand strong { display: none; }
 }
+@media (min-width: 1301px) {
+  .site-header .brand { margin-right: 1.8rem; }
+}
 @media (min-width: 901px) and (max-width: 1000px) {
   .site-header .nav { gap: 18px; }
   .site-header .nav .lang-toggle { margin-right: .2rem; }
