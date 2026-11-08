@@ -1,0 +1,81 @@
+/* Ajustes de layout e componentes novos: cabeçalho, seletor de idioma e estudo de caso. */
+
+/* Cabeçalho: o nome completo só aparece quando cabe em uma linha. */
+@media (min-width: 901px) {
+  .site-header .brand strong { white-space: nowrap; }
+}
+@media (min-width: 901px) and (max-width: 1300px) {
+  .site-header .brand { margin-right: 1.3rem; }
+  .site-header .brand strong { display: none; }
+}
+@media (min-width: 901px) and (max-width: 1000px) {
+  .site-header .nav { gap: 18px; }
+  .site-header .nav .lang-toggle { margin-right: .2rem; }
+}
+@media (max-width: 900px) {
+  .site-header .nav .lang-toggle { align-self: flex-start; width: auto; margin: .4rem 0 0; }
+}
+
+/* Botões do topo da página */
+.hero-actions { display: flex; flex-wrap: wrap; gap: .9rem; }
+
+/* Seletor de idioma (PT/EN) */
+.lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 46px;
+  height: 27px;
+  margin-right: .6rem;
+  padding: 0 .7rem;
+  border: 1px solid color-mix(in srgb, var(--muted) 44%, transparent);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text);
+  font: 600 .74rem 'Space Grotesk', sans-serif;
+  letter-spacing: .08em;
+  cursor: pointer;
+  transition: border-color .2s ease, color .2s ease;
+}
+.lang-toggle:hover,
+.lang-toggle:focus-visible { border-color: var(--accent, #39d5e6); color: var(--accent, #39d5e6); }
+
+/* Publicações do perfil: ficam salvas só no navegador do dono, então o bloco vazio não aparece para os visitantes. */
+body.public-view .portfolio-feed:not(:has(.feed-grid > *)) { display: none; }
+
+/* Empregador e período no card do cargo atual */
+.timeline-item .time-content .role .role-meta { display: block; margin: .35rem 0 .2rem; color: var(--accent, #39d5e6); font: 600 .84rem/1.45 'Space Grotesk', sans-serif; letter-spacing: .02em; }
+
+/* Estudo de caso do SOPH.IA */
+.case-study {
+  display: grid;
+  gap: 1.6rem;
+  margin-top: clamp(2rem, 4vw, 3rem);
+  padding: clamp(1.4rem, 3vw, 2.2rem);
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--surface, #091a2b) 94%, transparent);
+}
+.case-kicker {
+  font: 600 .72rem 'Space Grotesk', sans-serif;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--accent, #39d5e6);
+}
+.case-study h3 { margin: .45rem 0 .7rem; font: 600 clamp(1.25rem, 2.4vw, 1.7rem) 'Space Grotesk', sans-serif; }
+.case-study header p { max-width: 70ch; margin: 0; color: var(--muted); line-height: 1.65; }
+.case-columns { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.4rem; }
+.case-columns > div { padding-top: 1rem; border-top: 1px solid var(--line); }
+.case-columns h4 { margin: 0 0 .5rem; font: 600 .95rem 'Space Grotesk', sans-serif; color: var(--text); }
+.case-columns p { margin: 0; color: var(--muted); font-size: .92rem; line-height: 1.6; }
+.case-link {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  color: var(--accent, #39d5e6);
+  font-weight: 600;
+}
+.case-link svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; }
+@media (max-width: 860px) {
+  .case-columns { grid-template-columns: 1fr; }
+}

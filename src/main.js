@@ -17,12 +17,15 @@ import './redesign.css'
 import './social-network-upgrade.css'
 import './footer-professional.css'
 import './carousel-contrast.css'
+import './improvements.css'
 
 // Substitua os dois links marcados abaixo pelos perfis individuais quando disponíveis.
 const profileLinks = {
   linkedin: 'https://www.linkedin.com/in/arthur-p-7098a2150/',
   github: 'https://github.com/apop14520-glitch',
   lattes: 'https://lattes.cnpq.br/', // TODO: informar o currículo de Arthur
+  sophia: 'https://github.com/apop14520-glitch/SOPH.IA',
+  cv: '/Arthur-Pedro-CV-EN.pdf',
 }
 
 const icons = {
@@ -55,10 +58,11 @@ document.querySelector('#app').innerHTML = `
         <p class="hero-lead">Sou <strong data-profile-name>Arthur Pedro Oliveira de Paula</strong>, <span data-profile-role>Chefe de TI</span>. Transformo ambientes complexos em infraestrutura confiável, segura e preparada para crescer.</p>
         <div class="hero-actions">
           <a class="button button-primary" href="#experiencia">Conheça minha trajetória ${icons.arrow}</a>
+          <a class="button button-ghost" href="${profileLinks.cv}" download>Baixar CV em inglês (PDF)</a>
         </div>
       </div>
       <div class="hero-panel reveal" aria-label="Resumo profissional">
-        <div class="system-carousel" aria-label="Projetos em destaque"><div class="carousel-track"><figure class="carousel-slide active"><img src="/projetos/sophia.png" alt="Sistema SOPH.IA" /><figcaption><b>SOPH.IA</b><span>Assistente institucional inteligente</span></figcaption></figure><figure class="carousel-slide"><img src="/projetos/do-zero-ao-bananal.png" alt="Sistema Do Zero ao Bananal" /><figcaption><b>Do Zero ao Bananal</b><span>Manual digital interativo</span></figcaption></figure><figure class="carousel-slide"><img src="/projetos/nexforma.png" alt="Sistema NEXFORMA" data-nexforma-image /><div class="nexforma-fallback"><b>NEXFORMA</b><span>Adicione o print em Personalizar</span></div><figcaption><b>NEXFORMA</b><span>Plataforma de formação</span></figcaption></figure></div><button class="carousel-prev" type="button" aria-label="Imagem anterior">‹</button><button class="carousel-next" type="button" aria-label="Próxima imagem">›</button><div class="carousel-dots" role="tablist"><button class="active" aria-label="Ver SOPH.IA"></button><button aria-label="Ver Do Zero ao Bananal"></button><button aria-label="Ver NEXFORMA"></button></div></div>
+        <div class="system-carousel" aria-label="Projetos em destaque"><div class="carousel-track"><figure class="carousel-slide active"><img src="/projetos/sophia.png" alt="Sistema SOPH.IA" /><figcaption><b>SOPH.IA</b><span>Assistente institucional inteligente</span></figcaption></figure><figure class="carousel-slide"><img src="/projetos/do-zero-ao-bananal.png" alt="Sistema Do Zero ao Bananal" /><figcaption><b>Do Zero ao Bananal</b><span>Manual digital interativo</span></figcaption></figure><figure class="carousel-slide"><img src="/projetos/nexforma.png" alt="Sistema NEXFORMA" data-nexforma-image /><div class="nexforma-fallback"><b>NEXFORMA</b><span>Plataforma de gestão e formação</span></div><figcaption><b>NEXFORMA</b><span>Plataforma de formação</span></figcaption></figure></div><button class="carousel-prev" type="button" aria-label="Imagem anterior">‹</button><button class="carousel-next" type="button" aria-label="Próxima imagem">›</button><div class="carousel-dots" role="tablist"><button class="active" aria-label="Ver SOPH.IA"></button><button aria-label="Ver Do Zero ao Bananal"></button><button aria-label="Ver NEXFORMA"></button></div></div>
         <div class="panel-top"><span class="status-dot"></span> Sistemas operacionais</div>
         <div class="metric"><strong>TI</strong><span>Liderança técnica<br>e visão estratégica</span></div>
         <div class="signal" aria-label="Habilidades técnicas"><i data-skill="Infraestrutura" data-level="90%"></i><i data-skill="Cloud Computing" data-level="82%"></i><i data-skill="Proxmox" data-level="94%"></i><i data-skill="Zabbix" data-level="86%"></i><i data-skill="GLPI" data-level="91%"></i><i data-skill="Active Directory" data-level="88%"></i><i data-skill="File Server" data-level="95%"></i><i data-skill="Redes" data-level="92%"></i><i data-skill="ERP" data-level="89%"></i><i data-skill="CFTV" data-level="84%"></i><i data-skill="Fibra óptica" data-level="87%"></i><i data-skill="Switches" data-level="93%"></i></div>
@@ -88,9 +92,10 @@ document.querySelector('#app').innerHTML = `
       <div class="section-kicker reveal"><span>02</span> Experiência</div>
       <div class="section-heading reveal"><h2>Uma trajetória construída<br><em>de dentro da operação.</em></h2><p>Experiência progressiva em suporte, administração de ambientes, infraestrutura e liderança de TI.</p></div>
       <div class="timeline">
-        <article class="timeline-item featured reveal"><div class="time-mark"><i></i><span>Atual</span></div><div class="time-content"><div class="role"><h3>Chefe de TI</h3><span>Liderança & Infraestrutura</span></div><p>Planejamento, implantação e modernização do ambiente tecnológico, com atuação em sistemas ERP, redes, servidores, CFTV, rádio, fibra óptica, switches e continuidade dos serviços.</p><div class="tags"><span>Gestão de TI</span><span>ERP</span><span>Infraestrutura</span><span>Redes</span><span>CFTV</span></div></div></article>
-        <article class="timeline-item reveal"><div class="time-mark"><i></i><span>Experiência pública</span></div><div class="time-content"><div class="role"><h3>Tecnologia da Informação</h3><span>Governo de Rondônia</span></div><p>Atuação com suporte e sustentação tecnológica em ambiente público, apoiando usuários, serviços e rotinas de tecnologia.</p><div class="tags"><span>Suporte</span><span>Serviços de TI</span><span>Setor público</span></div></div></article>
-        <article class="timeline-item reveal"><div class="time-mark"><i></i><span>Base técnica</span></div><div class="time-content"><div class="role"><h3>Suporte & Administração</h3><span>Sapiens · Ministério Público Federal</span></div><p>Suporte técnico, administração de dispositivos e perfis, Google Admin Console e atendimento a usuários — a base prática para uma visão completa da operação.</p><div class="tags"><span>Google Admin</span><span>Chromebooks</span><span>Help Desk</span></div></div></article>
+        <article class="timeline-item featured reveal"><div class="time-mark"><i></i><span>Atual</span></div><div class="time-content"><div class="role"><h3>Chefe de TI</h3><span>Liderança & Infraestrutura</span><small class="role-meta">Sociedade de Portos e Hidrovias do Estado de Rondônia (SOPH) · set. 2025 – atual</small></div><p>Planejamento, implantação e modernização do ambiente tecnológico, com atuação em sistemas ERP, redes, servidores, CFTV, rádio, fibra óptica, switches e continuidade dos serviços.</p><div class="tags"><span>Gestão de TI</span><span>ERP</span><span>Infraestrutura</span><span>Redes</span><span>CFTV</span></div></div></article>
+        <article class="timeline-item reveal"><div class="time-mark"><i></i><span>Experiência pública</span></div><div class="time-content"><div class="role"><h3>Estagiário de TI</h3><span>Governo de Rondônia</span><small class="role-meta">jun. 2023 – ago. 2025</small></div><p>Atuação com suporte e sustentação tecnológica em ambiente público, apoiando usuários, serviços e rotinas de tecnologia.</p><div class="tags"><span>Suporte</span><span>Serviços de TI</span><span>Setor público</span></div></div></article>
+        <article class="timeline-item reveal"><div class="time-mark"><i></i><span>Base técnica</span></div><div class="time-content"><div class="role"><h3>Estagiário · Técnico educacional</h3><span>Colégio e Curso Sapiens</span><small class="role-meta">mar. 2023 – mai. 2023</small></div><p>Manutenção de Chromebooks institucionais (formatação, perfis de estudantes, solicitações de reparo), suporte ao aluno e gerenciamento do Google Admin Console.</p><div class="tags"><span>Google Admin</span><span>Chromebooks</span><span>Help Desk</span></div></div></article>
+        <article class="timeline-item reveal"><div class="time-mark"><i></i><span>Início na área</span></div><div class="time-content"><div class="role"><h3>Estagiário voluntário · Suporte de TI</h3><span>Ministério Público Federal</span><small class="role-meta">set. 2022 – fev. 2023</small></div><p>Suporte de TI ao usuário no Ministério Público Federal, em Porto Velho.</p><div class="tags"><span>Suporte</span><span>Help Desk</span><span>Setor público</span></div></div></article>
       </div>
     </section>
 
@@ -112,8 +117,8 @@ document.querySelector('#app').innerHTML = `
       <div class="education-grid">
         <div class="education-intro reveal"><h2>Conhecimento aplicado<br><em>à realidade.</em></h2><p>Formação tecnológica combinada à especialização em projetos de nuvem e à experiência prática em ambientes de TI.</p></div>
         <div class="education-list">
-          <article class="reveal"><span class="degree">Pós-graduação</span><div><h3>Projetos de Cloud Computing</h3><p>Descomplica</p></div><b>Cloud</b></article>
-          <article class="reveal"><span class="degree">Graduação · 2022—2024</span><div><h3>Tecnologia da Informação</h3><p>Instituto Federal de Rondônia — IFRO</p></div><b>IFRO</b></article>
+          <article class="reveal"><span class="degree">Pós-graduação · Especialização · out. 2025 – atual</span><div><h3>Projetos de Cloud Computing</h3><p>Descomplica</p></div><b>Cloud</b></article>
+          <article class="reveal"><span class="degree">Curso Superior de Tecnologia (CST) · fev. 2022 – ago. 2024</span><div><h3>Tecnologia da Informação</h3><p>Instituto Federal de Rondônia — IFRO</p></div><b>IFRO</b></article>
           <article class="reveal"><span class="degree">Desenvolvimento contínuo</span><div><h3>Formação complementar</h3><p>MySQL · Suporte em TI · Python · Servidores Linux</p></div><b>+</b></article>
         </div>
       </div>
@@ -121,7 +126,7 @@ document.querySelector('#app').innerHTML = `
 
     <section class="section projects" id="projetos">
       <div class="section-kicker reveal"><span>05</span> Projetos</div>
-      <div class="section-heading reveal"><h2>Frentes de atuação<br><em>com impacto real.</em></h2><p>Áreas que representam a prática profissional e podem receber estudos de caso, métricas e detalhes no futuro.</p></div>
+      <div class="section-heading reveal"><h2>Frentes de atuação<br><em>com impacto real.</em></h2><p>Áreas que representam a prática profissional ao longo da carreira em TI.</p></div>
       <div class="projects-grid">
         <article class="project-card project-feature reveal"><div class="project-screenshot"><img src="/projetos/sophia.png" alt="Captura de tela do projeto SOPH.IA" /></div><div class="project-body"><span>Projeto web</span><h3>SOPH.IA</h3><p>Assistente institucional para elaboração, revisão e organização de documentos administrativos.</p><div class="tags"><span>IA</span><span>Interface</span><span>Produtividade</span></div></div></article>
         <article class="project-card project-feature reveal"><div class="project-screenshot"><img src="/projetos/do-zero-ao-bananal.png" alt="Captura de tela do projeto Do Zero ao Bananal" /></div><div class="project-body"><span>Projeto web</span><h3>Do Zero ao Bananal</h3><p>Manual digital de implantação, manejo inicial e acompanhamento do cultivo de banana.</p><div class="tags"><span>Website</span><span>Conteúdo</span><span>Experiência</span></div></div></article>
@@ -129,6 +134,31 @@ document.querySelector('#app').innerHTML = `
         <article class="project-card reveal"><div class="project-visual bars"><i></i><i></i><i></i><i></i><i></i><b>OBS / 02</b></div><div class="project-body"><span>Observabilidade</span><h3>Monitoramento de serviços</h3><p>Visibilidade de ativos e serviços para antecipar falhas e apoiar decisões operacionais.</p><div class="tags"><span>Zabbix</span><span>GLPI</span></div></div></article>
         <article class="project-card reveal"><div class="project-visual cubes"><i></i><i></i><i></i><b>CLOUD / 03</b></div><div class="project-body"><span>Virtualização</span><h3>Consolidação de ambientes</h3><p>Organização de recursos computacionais com foco em eficiência, disponibilidade e recuperação.</p><div class="tags"><span>Proxmox</span><span>Backup</span></div></div></article>
       </div>
+      <article class="case-study reveal" aria-labelledby="case-sophia-title">
+        <header>
+          <span class="case-kicker">Estudo de caso</span>
+          <h3 id="case-sophia-title">SOPH.IA — assistente documental institucional</h3>
+          <p>Aplicação para elaborar, revisar e versionar despachos, memorandos, estudos técnicos preliminares (ETP) e termos de referência (TR). Não assina documentos nem substitui a revisão de servidor competente.</p>
+        </header>
+        <div class="case-columns">
+          <div><h4>Arquitetura</h4><p>Interface em React e Vite, API em Pages Functions, dados em D1, arquivos em R2 e geração com Workers AI. Tudo na Cloudflare, sem servidor próprio para manter.</p></div>
+          <div><h4>Segurança e governança</h4><p>Login com JWT e limite de tentativas, perfis de acesso com permissões validadas no servidor e pesquisa na web restrita a domínios autorizados pelo administrador.</p></div>
+          <div><h4>Recursos</h4><p>Biblioteca institucional (PDF e DOCX), chat com indicação das fontes consultadas, modelos de ETP, TR, despacho e memorando, e exportação das respostas para Word.</p></div>
+        </div>
+        <a class="case-link" href="${profileLinks.sophia}" target="_blank" rel="noreferrer">Ver o código no GitHub ${icons.external}</a>
+      </article>
+      <article class="case-study reveal" aria-labelledby="case-access-title">
+        <header>
+          <span class="case-kicker">Estudo de caso</span>
+          <h3 id="case-access-title">Controle de acesso de visitantes na SOPH</h3>
+          <p>Sistema criado a pedido da direção para registrar a entrada de visitantes, com foto tirada pela webcam. Por tratar dados sensíveis, os registros ficam guardados localmente, em um computador da própria instituição.</p>
+        </header>
+        <div class="case-columns">
+          <div><h4>O que faz</h4><p>Cadastro de visitantes com foto, busca de visitantes frequentes por nome ou CPF e níveis de acesso definidos para cada usuário.</p></div>
+          <div><h4>Como foi construído</h4><p>Node.js e JavaScript, com os dados em arquivo JSON local. Uma versão em Java foi iniciada com o apoio da equipe de informática.</p></div>
+          <div><h4>Próximo passo</h4><p>Publicar o sistema como intranet em um servidor da própria SOPH, atendendo da recepção à portaria.</p></div>
+        </div>
+      </article>
       <p class="project-note reveal">Projetos apresentados como áreas de atuação. Inclua métricas e resultados públicos conforme sua disponibilidade.</p>
     </section>
 
@@ -485,7 +515,10 @@ if (isRecruiterView) {
   }
 }
 
-import('./redesign.js').then(({ initializeRedesign }) => initializeRedesign({ isOwnerView, editor }))
+import('./redesign.js').then(({ initializeRedesign }) => {
+  initializeRedesign({ isOwnerView, editor })
+  if (!isOwnerView) import('./i18n.js').then(({ initI18n }) => initI18n())
+})
 
 const header = document.querySelector('.site-header')
 const menuButton = document.querySelector('.menu-button')

@@ -9,15 +9,18 @@ const safeParse = (key, fallback = []) => {
 const escapeHtml = value => String(value || '').replace(/[&<>'"]/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' })[char])
 
 const baseEducation = [
-  { id: 'cloud', type: 'Pós-graduação', period: 'Especialização', course: 'Projetos de Cloud Computing', institution: 'Descomplica Faculdade Digital', badge: 'Cloud' },
-  { id: 'ifro', type: 'Graduação', period: '2022–2024', course: 'Tecnologia da Informação', institution: 'Instituto Federal de Rondônia — IFRO', badge: 'IFRO' },
+  { id: 'cloud', type: 'Pós-graduação', period: 'Especialização · out. 2025 – atual', course: 'Projetos de Cloud Computing', institution: 'Descomplica Faculdade Digital', badge: 'Cloud' },
+  { id: 'ifro', type: 'Curso Superior de Tecnologia (CST)', period: 'fev. 2022 – ago. 2024', course: 'Tecnologia da Informação', institution: 'Instituto Federal de Rondônia — IFRO', badge: 'IFRO' },
 ]
 
 const baseTimeline = [
   { id: 't1', year: '2022', category: 'Formação', title: 'Início da graduação em Tecnologia da Informação', description: 'Base acadêmica no IFRO, conectando tecnologia, desenvolvimento e infraestrutura.' },
+  { id: 't1b', year: '2022', category: 'Carreira', title: 'Primeiro estágio em TI', description: 'Suporte de TI ao usuário, como voluntário, no Ministério Público Federal.' },
   { id: 't2', year: '2023', category: 'Capacitação', title: 'Aprofundamento em infraestrutura e desenvolvimento', description: 'Linux, servidores, redes, bancos de dados, Python e aplicações web.' },
+  { id: 't2b', year: '2023', category: 'Carreira', title: 'Estágio no Governo de Rondônia', description: 'Suporte e sustentação tecnológica em ambiente público.' },
   { id: 't3', year: '2024', category: 'Graduação', title: 'Tecnologia da Informação — IFRO', description: 'Conclusão da graduação com aplicação prática em ambientes e projetos de TI.' },
   { id: 't4', year: '2025', category: 'Especialização', title: 'Projetos de Cloud Computing', description: 'Especialização em arquitetura, planejamento e entrega de projetos em nuvem.' },
+  { id: 't4b', year: '2025', category: 'Carreira', title: 'Chefe de TI na SOPH', description: 'Passa a liderar a infraestrutura e os sistemas de TI.' },
   { id: 't5', year: '2026', category: 'Publicação', title: 'Artigo científico publicado', description: 'Produção científica disponibilizada pela Revista Observatorio Latinoamericana.' },
   { id: 't6', year: '2026', category: 'Certificações', title: 'IA, LGPD e Jornada Tech.RO', description: 'Atualização contínua em inteligência artificial, privacidade, inovação e tecnologia.' },
 ]
@@ -53,9 +56,9 @@ export function initializeRedesign({ isOwnerView, editor }) {
   document.querySelector('.contact-actions')?.remove()
   document.querySelector('.hero-proof')?.remove()
   const topNavigation = document.querySelector('.nav')
-  if (topNavigation && !topNavigation.querySelector('a[href="#sistemas"]')) {
+  if (topNavigation && !topNavigation.querySelector('a[href="#home"]')) {
     const homeLink = document.createElement('a')
-    homeLink.href = '#sistemas'
+    homeLink.href = '#home'
     homeLink.textContent = 'Início'
     topNavigation.prepend(homeLink)
   }
