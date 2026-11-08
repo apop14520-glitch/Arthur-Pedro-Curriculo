@@ -5,7 +5,6 @@ Com elas, o site e o CV em inglês ficam completos.
 
 1. **Descrição dos estágios** no Governo de Rondônia e no Ministério Público Federal: o LinkedIn não traz texto sobre eles, então o site e o CV usam descrições genéricas.
 2. **E-mail profissional** (e telefone, se quiser) para o CV. Hoje o CV traz só LinkedIn, GitHub e o site.
-4. **Carga horária** do curso superior de tecnologia (CST) no IFRO. Quem avalia diploma de fora pede isso.
 5. **Números reais** do trabalho: quantidade de servidores e máquinas virtuais, usuários atendidos, unidades conectadas, disponibilidade, economia obtida.
 6. **Certificação de nuvem** (AWS, Azure ou Google Cloud), assim que existir, para entrar no site e no CV.
 7. **Disponibilidade para mudança** e situação de visto, se quiser que apareça no CV.

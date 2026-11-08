@@ -78,7 +78,7 @@ export const en = {
   'Redes': 'Networks',
   'CFTV': 'CCTV',
   'Experiência pública': 'Public sector experience',
-  'Tecnologia da Informação': 'Information Technology',
+  'Sistemas para Internet': 'Internet Systems',
   'Governo de Rondônia': 'Rondônia State Government',
   'Atuação com suporte e sustentação tecnológica em ambiente público, apoiando usuários, serviços e rotinas de tecnologia.':
     'Support and technology sustainment in a public-sector environment, assisting users, services and IT routines.',
@@ -141,7 +141,7 @@ export const en = {
     'Technology education combined with a specialization in cloud projects and hands-on experience in IT environments.',
   'Pós-graduação · Especialização · out. 2025 – nov. 2026 (pitch final em avaliação)': 'Postgraduate · Specialization · Oct 2025 – Nov 2026 (final pitch under review)',
   'Projetos de Cloud Computing': 'Cloud Computing Projects',
-  'Curso Superior de Tecnologia (CST) · fev. 2022 – ago. 2024': 'Technologist degree (CST) · Feb 2022 – Aug 2024',
+  'Curso Superior de Tecnologia (CST) · fev. 2022 – ago. 2024 · 2.303 h': 'Technologist degree (CST) · Feb 2022 – Aug 2024 · 2,303 h',
   'Instituto Federal de Rondônia — IFRO': 'Federal Institute of Rondônia — IFRO',
 
   // Projetos
@@ -193,11 +193,11 @@ export const en = {
   'Graduação': 'Degree',
   'Especialização': 'Specialization',
   'Certificações': 'Certifications',
-  'Início da graduação em Tecnologia da Informação': 'Started the degree in Information Technology',
+  'Início da graduação em Sistemas para Internet': 'Started the degree in Internet Systems',
   'Base acadêmica no IFRO, conectando tecnologia, desenvolvimento e infraestrutura.': 'Academic foundation at IFRO, connecting technology, development and infrastructure.',
   'Aprofundamento em infraestrutura e desenvolvimento': 'Deepening in infrastructure and development',
   'Linux, servidores, redes, bancos de dados, Python e aplicações web.': 'Linux, servers, networks, databases, Python and web applications.',
-  'Tecnologia da Informação — IFRO': 'Information Technology — IFRO',
+  'Sistemas para Internet — IFRO': 'Internet Systems — IFRO',
   'Conclusão da graduação com aplicação prática em ambientes e projetos de TI.': 'Completed the degree with practical application in IT environments and projects.',
   'Especialização em arquitetura, planejamento e entrega de projetos em nuvem.': 'Specialization in architecture, planning and delivery of cloud projects.',
   'Produção científica disponibilizada pela Revista Observatorio Latinoamericana.': 'Scientific work published by Revista Observatorio Latinoamericana.',
