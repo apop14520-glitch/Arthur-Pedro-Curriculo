@@ -4,6 +4,10 @@
   "main": "./src/worker.js",
   "compatibility_date": "2026-08-18",
   "preview_urls": false,
+  "keep_vars": true,
+  "build": {
+    "command": "npm run build"
+  },
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",
