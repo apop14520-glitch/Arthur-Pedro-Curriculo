@@ -63,6 +63,7 @@ document.querySelector('#app').innerHTML = `
       </div>
       <div class="hero-panel reveal" aria-label="Resumo profissional">
         <div class="system-carousel" aria-label="Projetos em destaque"><div class="carousel-track"><figure class="carousel-slide active"><img src="/projetos/sophia.png" alt="Sistema SOPH.IA" /><figcaption><b>SOPH.IA</b><span>Assistente institucional inteligente</span></figcaption></figure><figure class="carousel-slide"><img src="/projetos/do-zero-ao-bananal.png" alt="Sistema Do Zero ao Bananal" /><figcaption><b>Do Zero ao Bananal</b><span>Manual digital interativo</span></figcaption></figure><figure class="carousel-slide"><img src="/projetos/nexforma.png" alt="Sistema NEXFORMA" data-nexforma-image /><div class="nexforma-fallback"><b>NEXFORMA</b><span>Plataforma de gestão e formação</span></div><figcaption><b>NEXFORMA</b><span>Plataforma de formação</span></figcaption></figure></div><button class="carousel-prev" type="button" aria-label="Imagem anterior">‹</button><button class="carousel-next" type="button" aria-label="Próxima imagem">›</button><div class="carousel-dots" role="tablist"><button class="active" aria-label="Ver SOPH.IA"></button><button aria-label="Ver Do Zero ao Bananal"></button><button aria-label="Ver NEXFORMA"></button></div></div>
+        <figure class="hero-portrait" hidden><img alt="Foto de Arthur Pedro Oliveira de Paula" width="240" height="240" decoding="async" /></figure>
         <div class="panel-top"><span class="status-dot"></span> Sistemas operacionais</div>
         <div class="metric"><strong>TI</strong><span>Liderança técnica<br>e visão estratégica</span></div>
         <div class="signal" aria-label="Habilidades técnicas"><i data-skill="Infraestrutura" data-level="90%"></i><i data-skill="Cloud Computing" data-level="82%"></i><i data-skill="Proxmox" data-level="94%"></i><i data-skill="Zabbix" data-level="86%"></i><i data-skill="GLPI" data-level="91%"></i><i data-skill="Active Directory" data-level="88%"></i><i data-skill="File Server" data-level="95%"></i><i data-skill="Redes" data-level="92%"></i><i data-skill="ERP" data-level="89%"></i><i data-skill="CFTV" data-level="84%"></i><i data-skill="Fibra óptica" data-level="87%"></i><i data-skill="Switches" data-level="93%"></i></div>
@@ -276,6 +277,8 @@ const applyProfile = () => {
   if (serverPhotoUrl || savedProfile.photo) { headerPhoto.src = serverPhotoUrl || savedProfile.photo; avatar.classList.add('has-photo') } else { avatar.classList.remove('has-photo') }
   const aboutPortrait = document.querySelector('.about-portrait')
   if (aboutPortrait) { if (serverPhotoUrl) aboutPortrait.querySelector('img').src = serverPhotoUrl; aboutPortrait.hidden = !serverPhotoUrl }
+  const heroPortrait = document.querySelector('.hero-portrait')
+  if (heroPortrait) { if (serverPhotoUrl) heroPortrait.querySelector('img').src = serverPhotoUrl; heroPortrait.hidden = !serverPhotoUrl }
   const removePhoto = editor.querySelector('.photo-remove')
   if (removePhoto) removePhoto.hidden = !serverPhotoUrl
   const zoom = serverPhotoUrl ? 1 : Math.max(1.1, (savedProfile.photoZoom ?? 110) / 100)
