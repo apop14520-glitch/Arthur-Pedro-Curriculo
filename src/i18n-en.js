@@ -139,9 +139,11 @@ export const en = {
   'Conhecimento aplicado<br><em>à realidade.</em>': 'Knowledge applied<br><em>to the real world.</em>',
   'Formação tecnológica combinada à especialização em projetos de nuvem e à experiência prática em ambientes de TI.':
     'Technology education combined with a specialization in cloud projects and hands-on experience in IT environments.',
-  'Pós-graduação · Especialização · out. 2025 – nov. 2026 (pitch final em avaliação)': 'Postgraduate · Specialization · Oct 2025 – Nov 2026 (final pitch under review)',
+  'Pós-graduação · Especialização': 'Postgraduate · Specialization',
+  'out. 2025 – nov. 2026 · pitch final em avaliação': 'Oct 2025 – Nov 2026 · final pitch under review',
   'Projetos de Cloud Computing': 'Cloud Computing Projects',
-  'Curso Superior de Tecnologia (CST) · fev. 2022 – ago. 2024 · 2.303 h': 'Technologist degree (CST) · Feb 2022 – Aug 2024 · 2,303 h',
+  'Curso Superior de Tecnologia (CST)': 'Technologist degree (CST)',
+  'fev. 2022 – ago. 2024 · 2.303 h': 'Feb 2022 – Aug 2024 · 2,303 h',
   'Instituto Federal de Rondônia — IFRO': 'Federal Institute of Rondônia — IFRO',
 
   // Projetos

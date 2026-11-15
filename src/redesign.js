@@ -9,7 +9,7 @@ const safeParse = (key, fallback = []) => {
 const escapeHtml = value => String(value || '').replace(/[&<>'"]/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' })[char])
 
 const baseEducation = [
-  { id: 'cloud', type: 'Pós-graduação', period: 'Especialização · out. 2025 – nov. 2026 (pitch final em avaliação)', course: 'Projetos de Cloud Computing', institution: 'Descomplica Faculdade Digital', badge: 'Cloud' },
+  { id: 'cloud', type: 'Pós-graduação · Especialização', period: 'out. 2025 – nov. 2026 · pitch final em avaliação', course: 'Projetos de Cloud Computing', institution: 'Descomplica Faculdade Digital', badge: 'Cloud' },
   { id: 'ifro', type: 'Curso Superior de Tecnologia (CST)', period: 'fev. 2022 – ago. 2024 · 2.303 h', course: 'Sistemas para Internet', institution: 'Instituto Federal de Rondônia — IFRO', badge: 'IFRO' },
 ]
 
@@ -152,7 +152,7 @@ export function initializeRedesign({ isOwnerView, editor }) {
   const renderEducation = () => {
     const target = document.querySelector('.education-list')
     if (!target) return
-    target.innerHTML = [...baseEducation, ...extraEducation].map(item => `<article data-education-id="${escapeHtml(item.id)}"><span>${escapeHtml(item.type)}${item.period ? ` · ${escapeHtml(item.period)}` : ''}</span><div><h3>${escapeHtml(item.course)}</h3><p>${escapeHtml(item.institution)}</p></div><b>${escapeHtml(item.badge || 'TI')}</b>${isOwnerView && !String(item.id).startsWith('cloud') && !String(item.id).startsWith('ifro') ? `<button class="entry-remove" data-remove-education="${escapeHtml(item.id)}" type="button">Excluir</button>` : ''}</article>`).join('')
+    target.innerHTML = [...baseEducation, ...extraEducation].map(item => `<article data-education-id="${escapeHtml(item.id)}"><span><small class="edu-type">${escapeHtml(item.type)}</small>${item.period ? `<small class="edu-period">${escapeHtml(item.period)}</small>` : ''}</span><div><h3>${escapeHtml(item.course)}</h3><p>${escapeHtml(item.institution)}</p></div><b>${escapeHtml(item.badge || 'TI')}</b>${isOwnerView && !String(item.id).startsWith('cloud') && !String(item.id).startsWith('ifro') ? `<button class="entry-remove" data-remove-education="${escapeHtml(item.id)}" type="button">Excluir</button>` : ''}</article>`).join('')
   }
   const renderTimeline = () => {
     const target = document.querySelector('[data-timeline]')
