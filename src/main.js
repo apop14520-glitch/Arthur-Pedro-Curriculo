@@ -69,7 +69,6 @@ document.querySelector('#app').innerHTML = `
         <div class="panel-grid"><div><small>FOCO</small><b>Disponibilidade</b></div><div><small>ATUAÇÃO</small><b>Infra & Cloud</b></div></div>
         <div class="stack-line"><span>PROXMOX</span><span>ZABBIX</span><span>GLPI</span><span>AD</span></div>
       </div>
-      <figure class="hero-portrait" hidden><img alt="Foto de Arthur Pedro Oliveira de Paula" width="640" height="640" decoding="async" /></figure>
       <div class="hero-proof reveal"><span>Gestão e sustentação de</span><div><b>Servidores</b><b>Redes</b><b>ERP</b><b>Conectividade</b><b>Segurança</b></div></div>
     </section>
 
@@ -79,8 +78,8 @@ document.querySelector('#app').innerHTML = `
       <div class="section-kicker reveal"><span>01</span> Sobre</div>
       <div class="about-grid">
         <h2 class="reveal">Da operação à liderança,<br>com a técnica sempre <em>por perto.</em></h2>
+        <figure class="about-portrait reveal" hidden><img alt="Foto de Arthur Pedro Oliveira de Paula" width="640" height="640" decoding="async" /></figure>
         <div class="about-copy reveal">
-          <figure class="about-portrait" hidden><img alt="Foto de Arthur Pedro Oliveira de Paula" width="320" height="320" decoding="async" /></figure>
           <p class="large">Atuo na área de Tecnologia da Informação com foco em infraestrutura, redes, virtualização, sistemas corporativos e transformação digital.</p>
           <p>Minha trajetória nasceu no suporte e evoluiu para a liderança de ambientes críticos. Essa base prática orienta decisões que equilibram pessoas, processos e tecnologia — sempre com atenção à disponibilidade, segurança e continuidade dos serviços.</p>
           <p>Hoje, participo do planejamento, implantação, administração e modernização da infraestrutura tecnológica, conectando necessidades do negócio a soluções sustentáveis.</p>
@@ -277,8 +276,6 @@ const applyProfile = () => {
   if (serverPhotoUrl || savedProfile.photo) { headerPhoto.src = serverPhotoUrl || savedProfile.photo; avatar.classList.add('has-photo') } else { avatar.classList.remove('has-photo') }
   const aboutPortrait = document.querySelector('.about-portrait')
   if (aboutPortrait) { if (serverPhotoUrl) aboutPortrait.querySelector('img').src = serverPhotoUrl; aboutPortrait.hidden = !serverPhotoUrl }
-  const heroPortrait = document.querySelector('.hero-portrait')
-  if (heroPortrait) { if (serverPhotoUrl) heroPortrait.querySelector('img').src = serverPhotoUrl; heroPortrait.hidden = !serverPhotoUrl; heroPortrait.closest('.hero')?.classList.toggle('has-portrait', Boolean(serverPhotoUrl)) }
   const removePhoto = editor.querySelector('.photo-remove')
   if (removePhoto) removePhoto.hidden = !serverPhotoUrl
   const zoom = serverPhotoUrl ? 1 : Math.max(1.1, (savedProfile.photoZoom ?? 110) / 100)
