@@ -117,8 +117,8 @@ document.querySelector('#app').innerHTML = `
       <div class="education-grid">
         <div class="education-intro reveal"><h2>Conhecimento aplicado<br><em>à realidade.</em></h2><p>Formação tecnológica combinada à especialização em projetos de nuvem e à experiência prática em ambientes de TI.</p></div>
         <div class="education-list">
-          <article class="reveal"><span class="degree">Pós-graduação · Especialização · out. 2025 – nov. 2026 (pitch final em avaliação)</span><div><h3>Projetos de Cloud Computing</h3><p>Descomplica</p></div><b>Cloud</b></article>
-          <article class="reveal"><span class="degree">Curso Superior de Tecnologia (CST) · fev. 2022 – ago. 2024 · 2.303 h</span><div><h3>Sistemas para Internet</h3><p>Instituto Federal de Rondônia — IFRO</p></div><b>IFRO</b></article>
+          <article class="reveal"><span><small class="edu-type">Pós-graduação · Especialização</small><small class="edu-period">out. 2025 – nov. 2026 · pitch final em avaliação</small></span><div><h3>Projetos de Cloud Computing</h3><p>Descomplica</p></div><b>Cloud</b></article>
+          <article class="reveal"><span><small class="edu-type">Curso Superior de Tecnologia (CST)</small><small class="edu-period">fev. 2022 – ago. 2024 · 2.303 h</small></span><div><h3>Sistemas para Internet</h3><p>Instituto Federal de Rondônia — IFRO</p></div><b>IFRO</b></article>
           <article class="reveal"><span class="degree">Desenvolvimento contínuo</span><div><h3>Formação complementar</h3><p>MySQL · Suporte em TI · Python · Servidores Linux</p></div><b>+</b></article>
         </div>
       </div>
