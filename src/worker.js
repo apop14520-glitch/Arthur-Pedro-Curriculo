@@ -119,7 +119,8 @@ export default {
     if (url.pathname === '/admin.html') {
       const authenticated = await verifySession(readCookie(request, 'ap_admin_session'), env.ADMIN_SESSION_SECRET)
       if (!authenticated) return redirect('/admin-login.html')
-      const indexUrl = new URL('/index.html', url)
+      // '/index.html' é redirecionado para '/' pelos arquivos estáticos, o que mandava o dono de volta ao site público.
+      const indexUrl = new URL('/', url)
       const asset = await env.ASSETS.fetch(new Request(indexUrl, request))
       return secureResponse(asset, { 'Cache-Control': 'no-store' })
     }
