@@ -79,6 +79,7 @@ document.querySelector('#app').innerHTML = `
       <div class="about-grid">
         <h2 class="reveal">Da operação à liderança,<br>com a técnica sempre <em>por perto.</em></h2>
         <div class="about-copy reveal">
+          <figure class="about-portrait" hidden><img alt="Foto de Arthur Pedro Oliveira de Paula" width="320" height="320" decoding="async" /></figure>
           <p class="large">Atuo na área de Tecnologia da Informação com foco em infraestrutura, redes, virtualização, sistemas corporativos e transformação digital.</p>
           <p>Minha trajetória nasceu no suporte e evoluiu para a liderança de ambientes críticos. Essa base prática orienta decisões que equilibram pessoas, processos e tecnologia — sempre com atenção à disponibilidade, segurança e continuidade dos serviços.</p>
           <p>Hoje, participo do planejamento, implantação, administração e modernização da infraestrutura tecnológica, conectando necessidades do negócio a soluções sustentáveis.</p>
@@ -168,7 +169,7 @@ document.querySelector('#app').innerHTML = `
 
   <footer><a class="brand" href="#home"><span>AP</span><strong data-profile-name>Arthur Pedro Oliveira de Paula</strong></a><p>© 2026 Arthur Pedro Oliveira de Paula. Todos os direitos reservados.<small>Infraestrutura · Cloud Computing · Gestão de TI</small></p><button class="back-top" type="button">Voltar ao topo ↑</button></footer>
 
-  <dialog class="editor-dialog" aria-labelledby="editor-title"><form class="editor-shell" method="dialog"><div class="editor-head"><div><span>Perfil profissional</span><h2 id="editor-title">Personalizar conteúdo</h2></div><button class="editor-close" value="cancel" aria-label="Fechar">×</button></div><div class="editor-body"><section class="editor-section"><h3>Identidade profissional</h3><div class="editor-fields"><label>Nome completo<input name="profileName" value="Arthur Pedro Oliveira de Paula" required /></label><label>Cargo ou título<input name="profileRole" value="Chefe de TI" required /></label></div><label class="upload-field">Foto de perfil<input name="profilePhoto" type="file" accept="image/*" /><span>Escolher uma foto do computador</span></label><div class="photo-adjuster"><div class="crop-preview"><span>AP</span></div><label>Zoom<input name="photoZoom" type="range" min="100" max="240" value="100" /></label><label>Horizontal<input name="photoX" type="range" min="0" max="100" value="50" /></label><label>Vertical<input name="photoY" type="range" min="0" max="100" value="50" /></label></div><label>WhatsApp com DDD<input name="profileWhatsapp" inputmode="numeric" placeholder="Ex.: 69999999999" /></label><label class="upload-field">Print do NEXFORMA<input name="nexformaImage" type="file" accept="image/*" /><span>Carregar imagem do sistema</span></label><button class="editor-save-profile" type="button">Salvar perfil</button></section><section class="editor-section"><h3>Adicionar ao portfólio</h3><div class="editor-fields"><label>Categoria<select name="entryCategory"><option>Projeto</option><option>Design entregue</option><option>Capacitação</option><option>Conhecimento</option><option>Certificação</option><option>Experiência</option></select></label><label>Título<input name="entryTitle" placeholder="Ex.: Curso de Segurança em Nuvem" /></label></div><label>Descrição<textarea name="entryDescription" rows="4" placeholder="Conte o que foi feito ou aprendido..."></textarea></label><label class="upload-field">Foto, print ou certificado<input name="entryImage" type="file" accept="image/*" /><span>Carregar imagem</span></label><button class="editor-publish" type="button">Publicar no perfil</button></section></div><p class="editor-note">As personalizações ficam salvas somente neste navegador e computador.</p></form></dialog>
+  <dialog class="editor-dialog" aria-labelledby="editor-title"><form class="editor-shell" method="dialog"><div class="editor-head"><div><span>Perfil profissional</span><h2 id="editor-title">Personalizar conteúdo</h2></div><button class="editor-close" value="cancel" aria-label="Fechar">×</button></div><div class="editor-body"><section class="editor-section"><h3>Identidade profissional</h3><div class="editor-fields"><label>Nome completo<input name="profileName" value="Arthur Pedro Oliveira de Paula" required /></label><label>Cargo ou título<input name="profileRole" value="Chefe de TI" required /></label></div><label class="upload-field">Foto de perfil<input name="profilePhoto" type="file" accept="image/*" /><span>Escolher uma foto do computador</span></label><div class="photo-adjuster"><div class="crop-preview"><span>AP</span></div><label>Zoom<input name="photoZoom" type="range" min="100" max="240" value="100" /></label><label>Horizontal<input name="photoX" type="range" min="0" max="100" value="50" /></label><label>Vertical<input name="photoY" type="range" min="0" max="100" value="50" /></label></div><p class="photo-note">A foto salva aqui é publicada para todos os visitantes, em qualquer navegador. Use JPG, PNG ou WebP.</p><button class="photo-remove" type="button" hidden>Remover foto publicada</button><label>WhatsApp com DDD<input name="profileWhatsapp" inputmode="numeric" placeholder="Ex.: 69999999999" /></label><label class="upload-field">Print do NEXFORMA<input name="nexformaImage" type="file" accept="image/*" /><span>Carregar imagem do sistema</span></label><button class="editor-save-profile" type="button">Salvar perfil</button></section><section class="editor-section"><h3>Adicionar ao portfólio</h3><div class="editor-fields"><label>Categoria<select name="entryCategory"><option>Projeto</option><option>Design entregue</option><option>Capacitação</option><option>Conhecimento</option><option>Certificação</option><option>Experiência</option></select></label><label>Título<input name="entryTitle" placeholder="Ex.: Curso de Segurança em Nuvem" /></label></div><label>Descrição<textarea name="entryDescription" rows="4" placeholder="Conte o que foi feito ou aprendido..."></textarea></label><label class="upload-field">Foto, print ou certificado<input name="entryImage" type="file" accept="image/*" /><span>Carregar imagem</span></label><button class="editor-publish" type="button">Publicar no perfil</button></section></div><p class="editor-note">As personalizações ficam salvas somente neste navegador e computador.</p></form></dialog>
   <div class="social-floats"><a class="github-float" href="${profileLinks.github}" target="_blank" rel="noreferrer" aria-label="Abrir GitHub"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" stroke="none" d="M12 .7a11.5 11.5 0 0 0-3.64 22.4c.58.1.79-.25.79-.56v-2.23c-3.22.7-3.9-1.37-3.9-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.77 2.72 1.26 3.38.96.1-.75.4-1.26.74-1.55-2.57-.29-5.27-1.29-5.27-5.69 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.16 1.18a10.9 10.9 0 0 1 5.75 0c2.2-1.49 3.16-1.18 3.16-1.18.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.09 0 4.42-2.71 5.39-5.29 5.68.42.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .7Z"/></svg></span><b>GitHub</b></a><a class="linkedin-float" href="${profileLinks.linkedin}" target="_blank" rel="noreferrer" aria-label="Abrir LinkedIn"><span><img src="/linkedin-icon-reference.png" alt="" /></span><b>LinkedIn</b></a><button class="whatsapp-float" type="button" aria-label="Conversar pelo WhatsApp"><span><img src="/whatsapp-icon-reference.png" alt="" /></span><b>WhatsApp</b></button></div>
   <dialog class="cinema-lightbox"><button class="lightbox-close" type="button" aria-label="Fechar imagem">×</button><button class="lightbox-prev" type="button" aria-label="Imagem anterior">‹</button><img alt="Projeto ampliado" /><button class="lightbox-next" type="button" aria-label="Próxima imagem">›</button><div><h3></h3></div></dialog>
 `
@@ -240,6 +241,31 @@ const imageToDataUrl = file => new Promise((resolve, reject) => {
   reader.readAsDataURL(file)
 })
 
+// Foto pública: fica no servidor (KV do Cloudflare) e aparece para todos os visitantes.
+const PHOTO_URL = '/api/profile-photo'
+const PHOTO_ADMIN_URL = '/api/admin/profile-photo'
+let serverPhotoUrl = ''
+const probePhoto = (version = '') => new Promise(resolve => {
+  const probe = new Image()
+  probe.onload = () => resolve(probe.src)
+  probe.onerror = () => resolve('')
+  probe.src = version ? `${PHOTO_URL}?v=${version}` : PHOTO_URL
+})
+const loadImage = src => new Promise((resolve, reject) => { const image = new Image(); image.onload = () => resolve(image); image.onerror = reject; image.src = src })
+const cropToJpeg = (image, zoom, positionX, positionY, side = 640) => new Promise(resolve => {
+  const canvas = document.createElement('canvas')
+  canvas.width = canvas.height = side
+  const scale = Math.max(side / image.width, side / image.height) * zoom / 100
+  const width = image.width * scale, height = image.height * scale
+  canvas.getContext('2d').drawImage(image, (side - width) * positionX / 100, (side - height) * positionY / 100, width, height)
+  canvas.toBlob(resolve, 'image/jpeg', .86)
+})
+const uploadProfilePhoto = async blob => {
+  if (!blob) throw new Error('Não foi possível preparar a foto.')
+  const response = await fetch(PHOTO_ADMIN_URL, { method: 'PUT', headers: { 'Content-Type': 'image/jpeg' }, body: blob, credentials: 'same-origin' })
+  if (!response.ok) throw new Error((await response.json().catch(() => ({}))).error || 'Não foi possível enviar a foto.')
+}
+
 const applyProfile = () => {
   document.querySelectorAll('[data-profile-name]').forEach(el => { el.textContent = savedProfile.name })
   document.querySelectorAll('[data-profile-role]').forEach(el => { el.textContent = savedProfile.role })
@@ -247,8 +273,12 @@ const applyProfile = () => {
   editorForm.elements.profileRole.value = savedProfile.role
   const headerPhoto = document.querySelector('[data-header-photo]')
   const avatar = headerPhoto.closest('.brand-avatar')
-  if (savedProfile.photo) { headerPhoto.src = savedProfile.photo; avatar.classList.add('has-photo') } else { avatar.classList.remove('has-photo') }
-  const zoom = Math.max(1.1, (savedProfile.photoZoom ?? 110) / 100)
+  if (serverPhotoUrl || savedProfile.photo) { headerPhoto.src = serverPhotoUrl || savedProfile.photo; avatar.classList.add('has-photo') } else { avatar.classList.remove('has-photo') }
+  const aboutPortrait = document.querySelector('.about-portrait')
+  if (aboutPortrait) { if (serverPhotoUrl) aboutPortrait.querySelector('img').src = serverPhotoUrl; aboutPortrait.hidden = !serverPhotoUrl }
+  const removePhoto = editor.querySelector('.photo-remove')
+  if (removePhoto) removePhoto.hidden = !serverPhotoUrl
+  const zoom = serverPhotoUrl ? 1 : Math.max(1.1, (savedProfile.photoZoom ?? 110) / 100)
   const offsetX = (50 - (savedProfile.photoX ?? 50)) * (zoom - 1) / zoom
   const offsetY = (50 - (savedProfile.photoY ?? 50)) * (zoom - 1) / zoom
   headerPhoto.style.objectPosition = 'center'
@@ -278,13 +308,22 @@ const renderFeed = () => {
 document.addEventListener('profile-feed-remounted', renderFeed)
 
 let pendingProfilePhoto = ''
+let pendingImage = null
 const updateCropPreview = () => {
   const preview = editor.querySelector('.crop-preview')
-  const source = pendingProfilePhoto || savedProfile.photo
+  const source = pendingProfilePhoto || serverPhotoUrl || savedProfile.photo
   preview.classList.toggle('has-image', Boolean(source))
   preview.style.backgroundImage = source ? `url(${source})` : ''
-  preview.style.backgroundSize = `${Math.max(110, Number(editorForm.elements.photoZoom.value))}%`
-  preview.style.backgroundPosition = `${editorForm.elements.photoX.value}% ${editorForm.elements.photoY.value}%`
+  if (pendingProfilePhoto && pendingImage) {
+    // Mesmo cálculo do recorte enviado ao servidor: a prévia mostra exatamente o que será publicado.
+    const side = preview.clientWidth || 160
+    const scale = Math.max(side / pendingImage.width, side / pendingImage.height) * Number(editorForm.elements.photoZoom.value) / 100
+    preview.style.backgroundSize = `${pendingImage.width * scale}px ${pendingImage.height * scale}px`
+    preview.style.backgroundPosition = `${editorForm.elements.photoX.value}% ${editorForm.elements.photoY.value}%`
+  } else {
+    preview.style.backgroundSize = 'cover'
+    preview.style.backgroundPosition = 'center'
+  }
 }
 editorForm.elements.photoZoom.min = '110'
 if (Number(editorForm.elements.photoZoom.value) < 110) editorForm.elements.photoZoom.value = '110'
@@ -293,8 +332,8 @@ adjusterHint.className = 'crop-hint'
 adjusterHint.textContent = 'Arraste a foto dentro do círculo ou use os controles.'
 editor.querySelector('.photo-adjuster').append(adjusterHint)
 editorForm.elements.profilePhoto.addEventListener('change', async () => {
-  try { pendingProfilePhoto = await imageToDataUrl(editorForm.elements.profilePhoto.files[0]); updateCropPreview() }
-  catch (error) { editorForm.elements.profilePhoto.value = ''; pendingProfilePhoto = ''; alert(error.message || 'Não foi possível processar a imagem.') }
+  try { pendingProfilePhoto = await imageToDataUrl(editorForm.elements.profilePhoto.files[0]); pendingImage = pendingProfilePhoto ? await loadImage(pendingProfilePhoto) : null; updateCropPreview() }
+  catch (error) { editorForm.elements.profilePhoto.value = ''; pendingProfilePhoto = ''; pendingImage = null; alert(error.message || 'Não foi possível processar a imagem.') }
 })
 ;['photoZoom','photoX','photoY'].forEach(name => editorForm.elements[name].addEventListener('input', updateCropPreview))
 
@@ -455,8 +494,27 @@ editor.querySelector('.editor-save-profile').addEventListener('click', async () 
   if (!name || !role) return editorForm.reportValidity()
   const file = editorForm.elements.profilePhoto.files[0]
   const nexformaFile = editorForm.elements.nexformaImage.files[0]
-  savedProfile = { name, role, photo: file ? await imageToDataUrl(file) : savedProfile.photo, photoZoom: Number(editorForm.elements.photoZoom.value), photoX: Number(editorForm.elements.photoX.value), photoY: Number(editorForm.elements.photoY.value), whatsapp: editorForm.elements.profileWhatsapp.value.replace(/\D/g, ''), nexforma: nexformaFile ? await imageToDataUrl(nexformaFile) : savedProfile.nexforma }
-  localStorage.setItem(PROFILE_KEY, JSON.stringify(savedProfile)); pendingProfilePhoto = ''; applyProfile(); editor.close()
+  let uploaded = false
+  if (file && pendingImage) {
+    try {
+      await uploadProfilePhoto(await cropToJpeg(pendingImage, Number(editorForm.elements.photoZoom.value), Number(editorForm.elements.photoX.value), Number(editorForm.elements.photoY.value)))
+      serverPhotoUrl = await probePhoto(Date.now())
+      uploaded = Boolean(serverPhotoUrl)
+    } catch (error) { alert(`${error.message || 'Não foi possível publicar a foto.'} A foto ficou salva só neste navegador.`) }
+  }
+  savedProfile = { name, role, photo: file && !uploaded ? await imageToDataUrl(file) : savedProfile.photo, photoZoom: Number(editorForm.elements.photoZoom.value), photoX: Number(editorForm.elements.photoX.value), photoY: Number(editorForm.elements.photoY.value), whatsapp: editorForm.elements.profileWhatsapp.value.replace(/\D/g, ''), nexforma: nexformaFile ? await imageToDataUrl(nexformaFile) : savedProfile.nexforma }
+  localStorage.setItem(PROFILE_KEY, JSON.stringify(savedProfile)); pendingProfilePhoto = ''; pendingImage = null; editorForm.elements.profilePhoto.value = ''; applyProfile(); updateCropPreview(); editor.close()
+  if (uploaded) alert('Foto publicada! Todos os visitantes passam a ver a nova foto em poucos minutos.')
+})
+editor.querySelector('.photo-remove').addEventListener('click', async () => {
+  if (!confirm('Remover a foto publicada? Ela deixa de aparecer para todos os visitantes.')) return
+  try {
+    const response = await fetch(PHOTO_ADMIN_URL, { method: 'DELETE', credentials: 'same-origin' })
+    if (!response.ok) throw new Error((await response.json().catch(() => ({}))).error || 'Não foi possível remover a foto.')
+    serverPhotoUrl = ''
+    applyProfile()
+    updateCropPreview()
+  } catch (error) { alert(error.message) }
 })
 editor.querySelector('.editor-publish').addEventListener('click', async () => {
   const title = editorForm.elements.entryTitle.value.trim(), description = editorForm.elements.entryDescription.value.trim()
@@ -483,6 +541,7 @@ editor.querySelector('.editor-publish').addEventListener('click', async () => {
   }
 })
 applyProfile(); renderFeed()
+probePhoto().then(url => { if (url) { serverPhotoUrl = url; applyProfile() } })
 window.addEventListener('storage', event => {
   if (event.key === PROFILE_KEY) {
     savedProfile = readSaved(PROFILE_KEY, defaultProfile)

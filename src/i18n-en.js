@@ -265,6 +265,7 @@ export const enAttrs = {
   'Página da consultoria Gram Energia': 'Gram Energia consultancy page',
   'Projeto ampliado': 'Enlarged project',
   'Foto de perfil': 'Profile photo',
+  'Foto de Arthur Pedro Oliveira de Paula': 'Photo of Arthur Pedro Oliveira de Paula',
   'Virtualização e cloud': 'Virtualization and cloud',
   'Monitoramento e observabilidade': 'Monitoring and observability',
   'Servidores e identidade': 'Servers and identity',

@@ -208,6 +208,7 @@ export function initializeRedesign({ isOwnerView, editor }) {
       avatarLink.href = new URL('admin.html', document.baseURI).href
       avatarLink.setAttribute('aria-label', 'Acessar área pessoal de administração')
       avatarLink.title = 'Área pessoal'
+      if (avatar?.classList.contains('has-photo')) avatarLink.classList.add('has-photo')
       while (avatar?.firstChild) avatarLink.append(avatar.firstChild)
       publicBrand.append(avatarLink)
       if (name) publicBrand.append(name)

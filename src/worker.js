@@ -52,6 +52,19 @@ const loginPage = message => `<!doctype html><html lang="pt-BR"><head><meta char
 const htmlResponse = (html, status = 200) => secureResponse(new Response(html, { status, headers: { 'Content-Type': 'text/html; charset=UTF-8', 'Cache-Control': 'no-store' } }))
 const redirect = (url, headers = {}) => secureResponse(new Response(null, { status: 302, headers: { Location: url, 'Cache-Control': 'no-store', ...headers } }))
 
+// Foto de perfil: fica no KV e é servida a todos os visitantes; só o painel (sessão válida) envia ou remove.
+const PHOTO_KEY = 'profile-photo'
+const MAX_PHOTO_BYTES = 1024 * 1024
+const PHOTO_TYPES = new Set(['image/jpeg', 'image/png', 'image/webp'])
+const ascii = (bytes, start, end) => String.fromCharCode(...bytes.slice(start, end))
+const looksLikeImage = (bytes, type) => {
+  if (type === 'image/jpeg') return bytes[0] === 0xff && bytes[1] === 0xd8 && bytes[2] === 0xff
+  if (type === 'image/png') return bytes[0] === 0x89 && ascii(bytes, 1, 4) === 'PNG'
+  if (type === 'image/webp') return ascii(bytes, 0, 4) === 'RIFF' && ascii(bytes, 8, 12) === 'WEBP'
+  return false
+}
+const jsonResponse = (body, status = 200) => secureResponse(new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json; charset=UTF-8', 'Cache-Control': 'no-store' } }))
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url)
@@ -76,6 +89,30 @@ export default {
       const origin = request.headers.get('Origin')
       if (origin && origin !== url.origin) return secureResponse(new Response('Origem não permitida.', { status: 403 }))
       return secureResponse(new Response(null, { status: 204, headers: { 'Set-Cookie': 'ap_admin_session=; HttpOnly; Secure; SameSite=Strict; Path=/; Max-Age=0', 'Cache-Control': 'no-store' } }))
+    }
+
+    if (url.pathname === '/api/profile-photo' && (request.method === 'GET' || request.method === 'HEAD')) {
+      const stored = env.PROFILE_KV ? await env.PROFILE_KV.getWithMetadata(PHOTO_KEY, 'arrayBuffer') : null
+      if (!stored?.value) return secureResponse(new Response(null, { status: 404, headers: { 'Cache-Control': 'no-store' } }))
+      return secureResponse(new Response(request.method === 'HEAD' ? null : stored.value, { headers: { 'Content-Type': stored.metadata?.contentType || 'image/jpeg', 'Cache-Control': 'public, max-age=300' } }))
+    }
+
+    if (url.pathname === '/api/admin/profile-photo' && (request.method === 'PUT' || request.method === 'DELETE')) {
+      if (request.headers.get('Origin') !== url.origin) return jsonResponse({ error: 'Origem não permitida.' }, 403)
+      if (!(await verifySession(readCookie(request, 'ap_admin_session'), env.ADMIN_SESSION_SECRET))) return jsonResponse({ error: 'Sessão expirada. Entre novamente no painel.' }, 401)
+      if (!env.PROFILE_KV) return jsonResponse({ error: 'O armazenamento de fotos ainda não foi configurado no Cloudflare.' }, 503)
+      if (request.method === 'DELETE') {
+        await env.PROFILE_KV.delete(PHOTO_KEY)
+        return jsonResponse({ ok: true })
+      }
+      const type = (request.headers.get('Content-Type') || '').split(';')[0].trim().toLowerCase()
+      if (!PHOTO_TYPES.has(type)) return jsonResponse({ error: 'Use uma imagem JPG, PNG ou WebP.' }, 415)
+      if (Number(request.headers.get('Content-Length') || 0) > MAX_PHOTO_BYTES) return jsonResponse({ error: 'A foto passa de 1 MB.' }, 413)
+      const bytes = new Uint8Array(await request.arrayBuffer())
+      if (!bytes.length || bytes.length > MAX_PHOTO_BYTES) return jsonResponse({ error: 'A foto passa de 1 MB.' }, 413)
+      if (!looksLikeImage(bytes, type)) return jsonResponse({ error: 'O arquivo não parece ser uma imagem válida.' }, 415)
+      await env.PROFILE_KV.put(PHOTO_KEY, bytes, { metadata: { contentType: type, updatedAt: Date.now() } })
+      return jsonResponse({ ok: true })
     }
 
     if (url.pathname === '/admin-login.html') return htmlResponse(loginPage())
