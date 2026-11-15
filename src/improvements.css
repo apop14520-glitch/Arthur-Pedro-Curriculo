@@ -82,6 +82,12 @@ body.public-view .portfolio-feed:not(:has(.feed-grid > *)) { display: none; }
 }
 
 /* Foto de perfil publicada: retrato na seção Sobre e avisos do painel */
+/* Seção Sobre mais compacta: título e parágrafos menores, texto alinhado à esquerda e sem palavras partidas (o conteúdo não muda) */
+#sobre .about-grid > h2 { font-size: clamp(1.7rem, 2.7vw, 2.4rem) !important; line-height: 1.12 !important; letter-spacing: -.02em; }
+#sobre .about-copy p { font-size: .95rem !important; line-height: 1.62 !important; margin: 0 0 .85rem !important; text-align: left !important; hyphens: manual !important; -webkit-hyphens: manual !important; }
+#sobre .about-copy p.large { font-size: 1.02rem !important; line-height: 1.55 !important; }
+#sobre .about-copy .text-link { margin-top: .4rem; }
+
 /* Uma única foto grande, na seção Sobre: foto à esquerda, no lugar do título; título e texto à direita */
 .about-portrait { margin: 0; width: 100%; max-width: 460px; align-self: start; }
 .about-portrait[hidden] { display: none; }
