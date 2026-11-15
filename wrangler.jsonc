@@ -8,6 +8,9 @@
   "build": {
     "command": "npm run build"
   },
+  "kv_namespaces": [
+    { "binding": "PROFILE_KV", "id": "8e7a183ffd774fbeb801706fd13153b4" }
+  ],
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",
